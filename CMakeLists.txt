@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 17)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -stdlib=libc++ -fexperimental-library")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 
 project(ImGuiVulkanHppImage LANGUAGES C CXX)
 
@@ -12,6 +12,9 @@ endif()
 add_subdirectory(lib)
 
 find_package(Vulkan REQUIRED)
+find_package(glslang REQUIRED)
+find_package(SPIRV-Tools)
+find_package(SPIRV-Tools-tools)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
@@ -34,9 +37,29 @@ include_directories(
     src
 )
 
+find_package(PkgConfig MODULE REQUIRED)
+pkg_check_modules(SHADERC shaderc QUIET IMPORTED_TARGET)
+# This is needed due to shaderc not providing a programmatic way to derive the path of the glslc executable
+if(SHADERC_FOUND)
+	cmake_path(GET SHADERC_INCLUDE_DIRS PARENT_PATH SHADERC_PREFIX)
+endif()
+
 find_library(SHADERC_LIB shaderc_combined $ENV{VULKAN_SDK}/lib)
 message(STATUS "Found shaderc in: ${SHADERC_LIB}")
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 ${Vulkan_LIBRARIES} ${SHADERC_LIB})
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 ${Vulkan_LIBRARIES} ${SHADERC_LIB}
+    Vulkan::Vulkan
+    Vulkan::Headers
+    glslang::OSDependent
+    glslang::glslang
+    glslang::MachineIndependent
+    glslang::GenericCodeGen
+    glslang::OGLCompiler
+    glslang::SPVRemapper
+    glslang::SPIRV
+    SPIRV-Tools
+    SPIRV-Tools-opt
+    SPIRV-Tools-static
+)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wno-elaborated-enum-base)
