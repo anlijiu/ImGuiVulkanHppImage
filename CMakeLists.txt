@@ -12,7 +12,7 @@ endif()
 add_subdirectory(lib)
 
 find_package(Vulkan REQUIRED)
-find_package(glslang REQUIRED)
+find_package(glslang CONFIG REQUIRED glslang OSDependent SPIRV HLSL )
 find_package(SPIRV-Tools)
 find_package(SPIRV-Tools-tools)
 
@@ -55,7 +55,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3 ${Vulkan_LIBRARIES} ${S
     glslang::glslang
     glslang::MachineIndependent
     glslang::GenericCodeGen
-    glslang::OGLCompiler
     glslang::SPVRemapper
     glslang::SPIRV
     SPIRV-Tools

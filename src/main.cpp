@@ -222,11 +222,11 @@ static vk::ClearColorValue ImVec4ToClearColor(const ImVec4 &v) {
 }
 
 int main(int, char **) {
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD) != 0) {
+    if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMEPAD)) {
         throw std::runtime_error(std::format("SDL_Init error: {}", SDL_GetError()));
     }
 
-    SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
+    // SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
 
     // Create window with Vulkan graphics context.
     const auto window_flags =
@@ -235,32 +235,26 @@ int main(int, char **) {
         | SDL_WINDOW_MAXIMIZED
         | SDL_WINDOW_HIGH_PIXEL_DENSITY;
 
-    auto *Window = SDL_CreateWindowWithPosition(
+    auto *Window = SDL_CreateWindow(
         "Mesh2Audio-Vulkan",
-        SDL_WINDOWPOS_CENTERED, 
-        SDL_WINDOWPOS_CENTERED, 
         1280, 
         720, 
         window_flags
     );
 
     uint extensions_count = 0;
-    SDL_Vulkan_GetInstanceExtensions(
-        &extensions_count,
-        nullptr
+    const auto extensionsPtr = SDL_Vulkan_GetInstanceExtensions(
+        &extensions_count
     );
     std::vector<const char *> extensions(extensions_count);
-    SDL_Vulkan_GetInstanceExtensions(
-        &extensions_count,
-        extensions.data()
-    );
+    std::copy(extensionsPtr, extensionsPtr + extensions_count, extensions.begin());
 
     // 创建上下文 VulkanContext
     VC = std::make_unique<VulkanContext>(extensions);
 
     // Create window surface.
     VkSurfaceKHR surface;
-    if (SDL_Vulkan_CreateSurface(Window, VC->Instance.get(), &surface) == 0) throw std::runtime_error("Failed to create Vulkan surface.\n");
+    if (SDL_Vulkan_CreateSurface(Window, VC->Instance.get(), nullptr, &surface) == 0) throw std::runtime_error("Failed to create Vulkan surface.\n");
 
     // Create framebuffers.
     int w, h;
@@ -300,7 +294,8 @@ int main(int, char **) {
     init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
     init_info.Allocator = nullptr;
     init_info.CheckVkResultFn = CheckVk;
-    ImGui_ImplVulkan_Init(&init_info, wd->RenderPass);
+    init_info.RenderPass = wd->RenderPass;
+    ImGui_ImplVulkan_Init(&init_info);
 
     // Load fonts.
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use PushFont()/PopFont() to select them.
@@ -321,18 +316,17 @@ int main(int, char **) {
     // Upload fonts.
     {
         // Use any command queue
-        vk::CommandPool command_pool = wd->Frames[wd->FrameIndex].CommandPool;
-        vk::CommandBuffer command_buffer = wd->Frames[wd->FrameIndex].CommandBuffer;
-        VC->Device->resetCommandPool(command_pool, vk::CommandPoolResetFlags());
-        command_buffer.begin({vk::CommandBufferUsageFlagBits::eOneTimeSubmit});
-        ImGui_ImplVulkan_CreateFontsTexture(command_buffer);
-        command_buffer.end();
+        // vk::CommandPool command_pool = wd->Frames[wd->FrameIndex].CommandPool;
+        // vk::CommandBuffer command_buffer = wd->Frames[wd->FrameIndex].CommandBuffer;
+        // VC->Device->resetCommandPool(command_pool, vk::CommandPoolResetFlags());
+        // command_buffer.begin({vk::CommandBufferUsageFlagBits::eOneTimeSubmit});
+        ImGui_ImplVulkan_CreateFontsTexture();
+        // command_buffer.end();
 
-        vk::SubmitInfo submit;
-        submit.setCommandBuffers(command_buffer);
-        VC->Queue.submit(submit);//vkQueueSubmit
+        // vk::SubmitInfo submit;
+        // submit.setCommandBuffers(command_buffer);
+        // VC->Queue.submit(submit);//vkQueueSubmit
         VC->Device->waitIdle();
-        ImGui_ImplVulkan_DestroyFontUploadObjects();
     }
 
     MainScene = std::make_unique<Scene>(*VC);
@@ -382,7 +376,8 @@ int main(int, char **) {
         NewFrame();
 
         auto dockspace_id = DockSpaceOverViewport(
-            nullptr,
+            0,
+            ImGui::GetMainViewport(),
             ImGuiDockNodeFlags_PassthruCentralNode
         );
         if (GetFrameCount() == 1) {
@@ -426,7 +421,7 @@ int main(int, char **) {
                 );
             }
 
-            Image((ImTextureID)MainSceneDescriptorSet, ImGui::GetContentRegionAvail());
+            ImGui::Image((ImTextureID)(void*)MainSceneDescriptorSet, ImGui::GetContentRegionAvail());
             End();
             PopStyleVar();
         }
