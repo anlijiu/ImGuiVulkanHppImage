@@ -18,6 +18,8 @@ find_package(SPIRV-Tools-tools)
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
+set(VK_ENABLE_BETA_EXTENSIONS "1")
+
 set(IMGUI_DIR lib/imgui)
 
 add_executable(${PROJECT_NAME}

@@ -45,7 +45,7 @@ VulkanContext::VulkanContext(std::vector<const char *> extensions) {
     if (QueueFamily == static_cast<uint>(-1)) throw std::runtime_error("No graphics queue family found.");
 
     // Create logical device (with 1 queue).
-    const std::vector<const char *> device_extensions{VK_KHR_SWAPCHAIN_EXTENSION_NAME, "VK_KHR_portability_subset"};
+    const std::vector<const char *> device_extensions{VK_KHR_SWAPCHAIN_EXTENSION_NAME};
     const std::array<float, 1> queue_priority = {1.0f};
     const vk::DeviceQueueCreateInfo queue_info{{}, QueueFamily, 1, queue_priority.data()};
     Device = PhysicalDevice.createDeviceUnique({{}, queue_info, {}, device_extensions});

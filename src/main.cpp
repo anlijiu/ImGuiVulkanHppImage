@@ -7,12 +7,15 @@
 #include <SDL3/SDL_vulkan.h>
 #include <format>
 #include <stdexcept>
+#include <vulkan/vulkan_beta.h>
+#include <vulkan/vulkan.hpp>
 
 #include "Scene.h"
 #include "VulkanContext.h"
 #include "Window.h"
 
 // #define IMGUI_UNLIMITED_FRAME_RATE
+#define  VK_ENABLE_BETA_EXTENSIONS 1
 
 static ImGui_ImplVulkanH_Window MainWindowData;
 static uint MinImageCount = 2;
@@ -28,27 +31,68 @@ static vk::DescriptorSet MainSceneDescriptorSet;
 static void SetupVulkanWindow(ImGui_ImplVulkanH_Window *wd, vk::SurfaceKHR surface, int width, int height) {
     wd->Surface = surface;
 
+    /**
+     * 由于vulkan无法和窗口直接交互， 需要使用 Windows System Integration 扩展， 简称WSI
+     * 拿到 VkSurfaceKHR 就可将 image 呈现在 surface 上了
+     */
     // Check for WSI support
-    auto res = VC->PhysicalDevice.getSurfaceSupportKHR(VC->QueueFamily, wd->Surface);
+    auto res = VC->PhysicalDevice.getSurfaceSupportKHR(
+        VC->QueueFamily,
+        wd->Surface
+    );
     if (res != VK_TRUE) throw std::runtime_error("Error no WSI support on physical device 0\n");
 
     // Select surface format.
-    const VkFormat requestSurfaceImageFormat[] = {VK_FORMAT_B8G8R8A8_UNORM, VK_FORMAT_R8G8B8A8_UNORM, VK_FORMAT_B8G8R8_UNORM, VK_FORMAT_R8G8B8_UNORM};
+    const VkFormat requestSurfaceImageFormat[] = {
+        VK_FORMAT_B8G8R8A8_UNORM,
+        VK_FORMAT_R8G8B8A8_UNORM,
+        VK_FORMAT_B8G8R8_UNORM,
+        VK_FORMAT_R8G8B8_UNORM
+    };
     const VkColorSpaceKHR requestSurfaceColorSpace = VK_COLORSPACE_SRGB_NONLINEAR_KHR;
-    wd->SurfaceFormat = ImGui_ImplVulkanH_SelectSurfaceFormat(VC->PhysicalDevice, wd->Surface, requestSurfaceImageFormat, (size_t)IM_ARRAYSIZE(requestSurfaceImageFormat), requestSurfaceColorSpace);
 
-    // Select present mode.
+    // VkSurfaceFormatKHR // 表面格式（像素格式、颜色空间）  06_swap_chain_creation.cpp :: chooseSwapSurfaceFormat
+    wd->SurfaceFormat = ImGui_ImplVulkanH_SelectSurfaceFormat(
+        VC->PhysicalDevice,
+        wd->Surface,
+        requestSurfaceImageFormat,
+        (size_t)IM_ARRAYSIZE(requestSurfaceImageFormat),
+        requestSurfaceColorSpace
+    );
+
+    // Select present mode.呈现模式. 06_swap_chain_creation.cpp :: chooseSwapPresentMode
 #ifdef IMGUI_UNLIMITED_FRAME_RATE
-    VkPresentModeKHR present_modes[] = {VK_PRESENT_MODE_MAILBOX_KHR, VK_PRESENT_MODE_IMMEDIATE_KHR, VK_PRESENT_MODE_FIFO_KHR};
+    VkPresentModeKHR present_modes[] = {
+        VK_PRESENT_MODE_MAILBOX_KHR,  // 与FIFO的区别就是 当队列已满时，
+                                      // 应用程序不会阻塞，而是直接用较新的图像替换已排队的图像。
+        VK_PRESENT_MODE_IMMEDIATE_KHR,// 提交的图像会立即传输到屏幕上，这可能会导致撕裂
+        VK_PRESENT_MODE_FIFO_KHR,     // 就把这个当做垂直同步
+    };
 #else
     VkPresentModeKHR present_modes[] = {VK_PRESENT_MODE_FIFO_KHR};
 #endif
-    wd->PresentMode = ImGui_ImplVulkanH_SelectPresentMode(VC->PhysicalDevice, wd->Surface, &present_modes[0], IM_ARRAYSIZE(present_modes));
+    wd->PresentMode = ImGui_ImplVulkanH_SelectPresentMode(
+        VC->PhysicalDevice,
+        wd->Surface,
+        &present_modes[0],
+        IM_ARRAYSIZE(present_modes)
+    );
     // printf("[vulkan] Selected PresentMode = %d\n", wd->PresentMode);
 
     // Create SwapChain, RenderPass, Framebuffer, etc.
     IM_ASSERT(MinImageCount >= 2);
-    ImGui_ImplVulkanH_CreateOrResizeWindow(VC->Instance.get(), VC->PhysicalDevice, VC->Device.get(), wd, VC->QueueFamily, nullptr, width, height, MinImageCount);
+    // 建立交换链，渲染过程，图像视图，帧缓冲
+    ImGui_ImplVulkanH_CreateOrResizeWindow(
+        VC->Instance.get(),
+        VC->PhysicalDevice,
+        VC->Device.get(),
+        wd,
+        VC->QueueFamily,
+        nullptr,
+        width,
+        height,
+        MinImageCount
+    );
 }
 
 static void CleanupVulkanWindow() {
@@ -56,43 +100,73 @@ static void CleanupVulkanWindow() {
 }
 
 static void FrameRender(ImGui_ImplVulkanH_Window *wd, ImDrawData *draw_data) {
+    // Semaphores 信号量  ----------  15_hello_triangle.cpp :: drawFrame
+    // 信号量用于同步队列queue。
+    // 信号量用于GPU操作。  block GPU
     VkSemaphore image_acquired_semaphore = wd->FrameSemaphores[wd->SemaphoreIndex].ImageAcquiredSemaphore;
     VkSemaphore render_complete_semaphore = wd->FrameSemaphores[wd->SemaphoreIndex].RenderCompleteSemaphore;
-    const VkResult err = vkAcquireNextImageKHR(VC->Device.get(), wd->Swapchain, UINT64_MAX, image_acquired_semaphore, VK_NULL_HANDLE, &wd->FrameIndex);
+
+    // 从交换链获取图像。
+    const VkResult err = vkAcquireNextImageKHR(
+        VC->Device.get(),
+        wd->Swapchain,
+        UINT64_MAX,
+        image_acquired_semaphore,
+        VK_NULL_HANDLE,
+        &wd->FrameIndex
+    );
+
     if (err == VK_ERROR_OUT_OF_DATE_KHR || err == VK_SUBOPTIMAL_KHR) {
         SwapChainRebuild = true;
         return;
     }
     CheckVk(err);
 
+    // ImGui_ImplVulkanH_Frame 包含渲染一帧的各种必需的vk 资源
+    // VkCommandPool VkCommandBuffer VkFence VkImage VkImageView VkFramebuffer  
+    // FrameIndex 当前帧 index
     ImGui_ImplVulkanH_Frame *fd = &wd->Frames[wd->FrameIndex];
     {
+        // 15_hello_triangle.cpp :: drawFrame
+        // 等到前一帧完成
         CheckVk(vkWaitForFences(VC->Device.get(), 1, &fd->Fence, VK_TRUE, UINT64_MAX)); // wait indefinitely instead of periodically checking
+        // 重置为无信号状态
         CheckVk(vkResetFences(VC->Device.get(), 1, &fd->Fence));
     }
     {
+        // reset -> 所有已从命令池分配的命令缓冲区都将处于初始状态。
+        // 任何从另一个 VkCommandPool 分配的主命令缓冲区 处于记录或可执行状态的，
+        // 并且记录到主命令缓冲区的,  从 commandPool 分配的辅助命令缓冲区，都将变为无效。
         CheckVk(vkResetCommandPool(VC->Device.get(), fd->CommandPool, 0));
         VkCommandBufferBeginInfo info = {};
         info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
         info.flags |= VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT;
+        // 开始记录命令缓冲区
         CheckVk(vkBeginCommandBuffer(fd->CommandBuffer, &info));
     }
     {
         VkRenderPassBeginInfo info = {};
-        info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+        info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;// 别废话， 必须是这个
         info.renderPass = wd->RenderPass;
         info.framebuffer = fd->Framebuffer;
         info.renderArea.extent.width = wd->Width;
         info.renderArea.extent.height = wd->Height;
         info.clearValueCount = 1;
         info.pClearValues = &wd->ClearValue;
-        vkCmdBeginRenderPass(fd->CommandBuffer, &info, VK_SUBPASS_CONTENTS_INLINE);
+        // 开始渲染过程
+        vkCmdBeginRenderPass(
+            fd->CommandBuffer, 
+            &info, 
+            VK_SUBPASS_CONTENTS_INLINE
+        );
     }
 
     // Record dear imgui primitives into command buffer
+    // 将imgui ImDrawData 转化为 vkCommandBuffer
     ImGui_ImplVulkan_RenderDrawData(draw_data, fd->CommandBuffer);
 
     // Submit command buffer
+    // 结束渲染过程
     vkCmdEndRenderPass(fd->CommandBuffer);
     {
         VkPipelineStageFlags wait_stage = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
@@ -106,7 +180,10 @@ static void FrameRender(ImGui_ImplVulkanH_Window *wd, ImDrawData *draw_data) {
         info.signalSemaphoreCount = 1;
         info.pSignalSemaphores = &render_complete_semaphore;
 
+        // 完成命令缓冲区的记录  
         CheckVk(vkEndCommandBuffer(fd->CommandBuffer));
+
+        // vkQueueSubmit 调用会立即返回 - 等待仅发生在 GPU 上
         CheckVk(vkQueueSubmit(VC->Queue, 1, &info, fd->Fence));
     }
 }
@@ -122,18 +199,27 @@ static void FramePresent(ImGui_ImplVulkanH_Window *wd) {
     info.swapchainCount = 1;
     info.pSwapchains = &wd->Swapchain;
     info.pImageIndices = &wd->FrameIndex;
+    // vkQueuePresentKHR 函数向交换链提交显示图像的请求。
     VkResult err = vkQueuePresentKHR(VC->Queue, &info);
     if (err == VK_ERROR_OUT_OF_DATE_KHR || err == VK_SUBOPTIMAL_KHR) {
         SwapChainRebuild = true;
         return;
     }
     CheckVk(err);
+    // ImageCount 基本上就是 MinImageCount (2)
     wd->SemaphoreIndex = (wd->SemaphoreIndex + 1) % wd->ImageCount; // Now we can use the next set of semaphores.
 }
 
 using namespace ImGui;
 
-static vk::ClearColorValue ImVec4ToClearColor(const ImVec4 &v) { return {v.x, v.y, v.z, v.w}; }
+static vk::ClearColorValue ImVec4ToClearColor(const ImVec4 &v) {
+    return {
+        v.x,
+        v.y,
+        v.z,
+        v.w
+    };
+}
 
 int main(int, char **) {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD) != 0) {
@@ -143,13 +229,33 @@ int main(int, char **) {
     SDL_SetHint(SDL_HINT_IME_SHOW_UI, "1");
 
     // Create window with Vulkan graphics context.
-    const auto window_flags = SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED | SDL_WINDOW_HIGH_PIXEL_DENSITY;
-    auto *Window = SDL_CreateWindowWithPosition("Mesh2Audio-Vulkan", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1280, 720, window_flags);
+    const auto window_flags =
+        SDL_WINDOW_VULKAN
+        | SDL_WINDOW_RESIZABLE
+        | SDL_WINDOW_MAXIMIZED
+        | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+
+    auto *Window = SDL_CreateWindowWithPosition(
+        "Mesh2Audio-Vulkan",
+        SDL_WINDOWPOS_CENTERED, 
+        SDL_WINDOWPOS_CENTERED, 
+        1280, 
+        720, 
+        window_flags
+    );
 
     uint extensions_count = 0;
-    SDL_Vulkan_GetInstanceExtensions(&extensions_count, nullptr);
+    SDL_Vulkan_GetInstanceExtensions(
+        &extensions_count,
+        nullptr
+    );
     std::vector<const char *> extensions(extensions_count);
-    SDL_Vulkan_GetInstanceExtensions(&extensions_count, extensions.data());
+    SDL_Vulkan_GetInstanceExtensions(
+        &extensions_count,
+        extensions.data()
+    );
+
+    // 创建上下文 VulkanContext
     VC = std::make_unique<VulkanContext>(extensions);
 
     // Create window surface.
@@ -162,7 +268,7 @@ int main(int, char **) {
     ImGui_ImplVulkanH_Window *wd = &MainWindowData;
     SetupVulkanWindow(wd, surface, w, h);
 
-    // Setup ImGui context.
+    // Setup ImGui context. ImGui上下文
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
@@ -174,10 +280,11 @@ int main(int, char **) {
 
     io.IniFilename = nullptr; // Disable ImGui's .ini file saving
 
+    // 设置样式中各种颜色
     StyleColorsDark();
     // StyleColorsLight();
 
-    // Setup Platform/Renderer backends
+    // Setup Platform/Renderer backends  
     ImGui_ImplSDL3_InitForVulkan(Window);
     ImGui_ImplVulkan_InitInfo init_info = {};
     init_info.Instance = VC->Instance.get();
@@ -223,7 +330,7 @@ int main(int, char **) {
 
         vk::SubmitInfo submit;
         submit.setCommandBuffers(command_buffer);
-        VC->Queue.submit(submit);
+        VC->Queue.submit(submit);//vkQueueSubmit
         VC->Device->waitIdle();
         ImGui_ImplVulkan_DestroyFontUploadObjects();
     }
@@ -253,7 +360,17 @@ int main(int, char **) {
             SDL_GetWindowSize(Window, &width, &height);
             if (width > 0 && height > 0) {
                 ImGui_ImplVulkan_SetMinImageCount(MinImageCount);
-                ImGui_ImplVulkanH_CreateOrResizeWindow(VC->Instance.get(), VC->PhysicalDevice, VC->Device.get(), &MainWindowData, VC->QueueFamily, nullptr, width, height, MinImageCount);
+                ImGui_ImplVulkanH_CreateOrResizeWindow(
+                    VC->Instance.get(),
+                    VC->PhysicalDevice,
+                    VC->Device.get(),
+                    &MainWindowData,
+                    VC->QueueFamily,
+                    nullptr,
+                    width,
+                    height,
+                    MinImageCount
+                );
                 MainWindowData.FrameIndex = 0;
                 SwapChainRebuild = false;
             }
@@ -264,12 +381,27 @@ int main(int, char **) {
         ImGui_ImplSDL3_NewFrame();
         NewFrame();
 
-        auto dockspace_id = DockSpaceOverViewport(nullptr, ImGuiDockNodeFlags_PassthruCentralNode);
+        auto dockspace_id = DockSpaceOverViewport(
+            nullptr,
+            ImGuiDockNodeFlags_PassthruCentralNode
+        );
         if (GetFrameCount() == 1) {
-            auto demo_node_id = DockBuilderSplitNode(dockspace_id, ImGuiDir_Right, 0.3f, nullptr, &dockspace_id);
+            auto demo_node_id = DockBuilderSplitNode(
+                dockspace_id,
+                ImGuiDir_Right,
+                0.3f,
+                nullptr,
+                &dockspace_id
+            );
             DockBuilderDockWindow(Windows.ImGuiDemo.Name, demo_node_id);
             auto mesh_node_id = dockspace_id;
-            auto controls_node_id = DockBuilderSplitNode(mesh_node_id, ImGuiDir_Left, 0.4f, nullptr, &mesh_node_id);
+            auto controls_node_id = DockBuilderSplitNode(
+                mesh_node_id,
+                ImGuiDir_Left,
+                0.4f,
+                nullptr,
+                &mesh_node_id
+            );
             DockBuilderDockWindow(Windows.SceneControls.Name, controls_node_id);
             DockBuilderDockWindow(Windows.Scene.Name, mesh_node_id);
         }
@@ -280,9 +412,18 @@ int main(int, char **) {
             PushStyleVar(ImGuiStyleVar_WindowPadding, {0, 0});
             Begin(Windows.Scene.Name, &Windows.Scene.Visible);
             const auto content_region = GetContentRegionAvail();
-            if (MainScene->Render(content_region.x, content_region.y, ImVec4ToClearColor(GetStyleColorVec4(ImGuiCol_WindowBg)))) {
+            bool ret_render = MainScene->Render(
+                content_region.x,
+                content_region.y,
+                ImVec4ToClearColor(GetStyleColorVec4(ImGuiCol_WindowBg))
+            );
+            if (ret_render) {
                 ImGui_ImplVulkan_RemoveTexture(MainSceneDescriptorSet);
-                MainSceneDescriptorSet = ImGui_ImplVulkan_AddTexture(MainScene->TC.TextureSampler.get(), MainScene->TC.ResolveImageView.get(), VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+                MainSceneDescriptorSet = ImGui_ImplVulkan_AddTexture(
+                    MainScene->TC.TextureSampler.get(),
+                    MainScene->TC.ResolveImageView.get(),
+                    VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+                );
             }
 
             Image((ImTextureID)MainSceneDescriptorSet, ImGui::GetContentRegionAvail());
