@@ -106,6 +106,18 @@ static void FrameRender(ImGui_ImplVulkanH_Window *wd, ImDrawData *draw_data) {
     VkSemaphore image_acquired_semaphore = wd->FrameSemaphores[wd->SemaphoreIndex].ImageAcquiredSemaphore;
     VkSemaphore render_complete_semaphore = wd->FrameSemaphores[wd->SemaphoreIndex].RenderCompleteSemaphore;
 
+    // ImGui_ImplVulkanH_Frame 包含渲染一帧的各种必需的vk 资源
+    // VkCommandPool VkCommandBuffer VkFence VkImage VkImageView VkFramebuffer  
+    // FrameIndex 当前帧 index
+    ImGui_ImplVulkanH_Frame *fd = &wd->Frames[wd->FrameIndex];
+    {
+        // 15_hello_triangle.cpp :: drawFrame
+        // 等到前一帧完成
+        CheckVk(vkWaitForFences(VC->Device.get(), 1, &fd->Fence, VK_TRUE, UINT64_MAX)); // wait indefinitely instead of periodically checking
+        // 重置为无信号状态
+        CheckVk(vkResetFences(VC->Device.get(), 1, &fd->Fence));
+    }
+
     // 从交换链获取图像。
     const VkResult err = vkAcquireNextImageKHR(
         VC->Device.get(),
@@ -122,17 +134,6 @@ static void FrameRender(ImGui_ImplVulkanH_Window *wd, ImDrawData *draw_data) {
     }
     CheckVk(err);
 
-    // ImGui_ImplVulkanH_Frame 包含渲染一帧的各种必需的vk 资源
-    // VkCommandPool VkCommandBuffer VkFence VkImage VkImageView VkFramebuffer  
-    // FrameIndex 当前帧 index
-    ImGui_ImplVulkanH_Frame *fd = &wd->Frames[wd->FrameIndex];
-    {
-        // 15_hello_triangle.cpp :: drawFrame
-        // 等到前一帧完成
-        CheckVk(vkWaitForFences(VC->Device.get(), 1, &fd->Fence, VK_TRUE, UINT64_MAX)); // wait indefinitely instead of periodically checking
-        // 重置为无信号状态
-        CheckVk(vkResetFences(VC->Device.get(), 1, &fd->Fence));
-    }
     {
         // reset -> 所有已从命令池分配的命令缓冲区都将处于初始状态。
         // 任何从另一个 VkCommandPool 分配的主命令缓冲区 处于记录或可执行状态的，
@@ -316,16 +317,16 @@ int main(int, char **) {
     // Upload fonts.
     {
         // Use any command queue
-        // vk::CommandPool command_pool = wd->Frames[wd->FrameIndex].CommandPool;
-        // vk::CommandBuffer command_buffer = wd->Frames[wd->FrameIndex].CommandBuffer;
-        // VC->Device->resetCommandPool(command_pool, vk::CommandPoolResetFlags());
-        // command_buffer.begin({vk::CommandBufferUsageFlagBits::eOneTimeSubmit});
+        vk::CommandPool command_pool = wd->Frames[wd->FrameIndex].CommandPool;
+        vk::CommandBuffer command_buffer = wd->Frames[wd->FrameIndex].CommandBuffer;
+        VC->Device->resetCommandPool(command_pool, vk::CommandPoolResetFlags());
+        command_buffer.begin({vk::CommandBufferUsageFlagBits::eOneTimeSubmit});
         ImGui_ImplVulkan_CreateFontsTexture();
-        // command_buffer.end();
+        command_buffer.end();
 
-        // vk::SubmitInfo submit;
-        // submit.setCommandBuffers(command_buffer);
-        // VC->Queue.submit(submit);//vkQueueSubmit
+        vk::SubmitInfo submit;
+        submit.setCommandBuffers(command_buffer);
+        VC->Queue.submit(submit);//vkQueueSubmit
         VC->Device->waitIdle();
     }
 
@@ -348,10 +349,10 @@ int main(int, char **) {
                 done = true;
         }
 
+        int width, height;
+        SDL_GetWindowSize(Window, &width, &height);
         // Resize swap chain?
-        if (SwapChainRebuild) {
-            int width, height;
-            SDL_GetWindowSize(Window, &width, &height);
+        if (width > 0 && height > 0 && (SwapChainRebuild || MainWindowData.Width != width || MainWindowData.Height != height)) {
             if (width > 0 && height > 0) {
                 ImGui_ImplVulkan_SetMinImageCount(MinImageCount);
                 ImGui_ImplVulkanH_CreateOrResizeWindow(
