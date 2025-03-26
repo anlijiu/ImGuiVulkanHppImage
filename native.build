@@ -1,0 +1,16 @@
+[constants]
+
+[built-in options]
+c_std = 'gnu23'
+cpp_std = 'gnu++26'
+buildtype = 'plain'
+debug = true
+
+[binaries]
+c = '/usr/bin/gcc'
+cpp = '/usr/bin/g++'
+ld = 'lld'
+
+[cmake]
+CMAKE_C_COMPILER    = '/usr/bin/gcc'
+CMAKE_CXX_COMPILER  = '/usr/bin/g++'

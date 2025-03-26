@@ -1,7 +1,20 @@
-[submodule "lib/SDL"]
-	path = lib/SDL
+[submodule "subprojects/SDL"]
+	path = subprojects/SDL
 	url = git@github.com:libsdl-org/SDL.git
-[submodule "lib/imgui"]
-	path = lib/imgui
+	branch = main
+[submodule "subprojects/imgui"]
+	path = subprojects/imgui
 	url = git@github.com:ocornut/imgui.git
 	branch = docking
+[submodule "subprojects/vk-bootstrap"]
+	path = subprojects/vk-bootstrap
+	url = git@github.com:charles-lunarg/vk-bootstrap
+	branch = main
+[submodule "subprojects/VulkanMemoryAllocator"]
+	path = subprojects/VulkanMemoryAllocator
+	url = git@github.com:GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator
+	branch = master
+[submodule "subprojects/volk"]
+	path = subprojects/volk
+	url = git@github.com:zeux/volk
+	branch = master

@@ -1,0 +1,2 @@
+
+option('NDK', type : 'string', value : '/home/an/Android/Sdk/ndk/android-ndk-r28/', description : 'NDK path')
