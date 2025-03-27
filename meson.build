@@ -2,7 +2,10 @@ project('test', 'c','cpp',
   version : '0.1',
   )
 
-
+cpp_compiler = meson.get_compiler('cpp')
+c_compiler = meson.get_compiler('c')
+not_found = dependency('', required: false)
+host_os = host_machine.system()
 bt = get_option('buildtype')
 
 if bt == 'debug'
@@ -62,6 +65,43 @@ incdir = include_directories('src')
 cmake = import('cmake')
 
 
+vulkan = not_found
+libglslang = not_found
+
+if host_os == 'windows'
+  vulkan = declare_dependency(compile_args: ['-DVK_USE_PLATFORM_WIN32_KHR'])
+elif host_os == 'linux'
+  vulkan = dependency('vulkan')
+endif
+
+if vulkan.found()
+  libglslang = cpp_compiler.find_library('glslang', required: false)
+  if not libglslang.found()
+    # FIXME: Get spirv-tools to enable opt.
+    glslang_opts = cmake.subproject_options()
+    glslang_opts.add_cmake_defines({'ENABLE_OPT': false, 'ENABLE_HLSL': false})
+    glslang_subpro = cmake.subproject('glslang', options: glslang_opts)
+    libglslang = declare_dependency(link_with: [
+          glslang_subpro.target('glslang'),
+          glslang_subpro.target('MachineIndependent'),
+          glslang_subpro.target('GenericCodeGen'),
+          glslang_subpro.target('SPIRV'),
+        ], include_directories: glslang_subpro.include_directories('glslang')
+      )
+  endif
+
+  volk_opts = cmake.subproject_options()
+  volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
+  if host_os == 'windows'
+    volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
+  endif
+  volk_subproj = cmake.subproject('volk', options: volk_opts)
+  volk_dep = declare_dependency(compile_args: ['-DVK_NO_PROTOTYPES'],
+                            include_directories: volk_subproj.include_directories('volk'),
+                            link_with: volk_subproj.target('volk'),
+                            dependencies: vulkan)
+endif
+
 sdl_opts = cmake.subproject_options()
 sdl_opts.add_cmake_defines({
 	'SDL_TESTS': 'OFF',
@@ -73,7 +113,10 @@ sdl_opts.add_cmake_defines({
 	'SDL_VIDEO': 'ON',
 	'SDL_RENDER': 'OFF',
 	'SDL_CAMERA': 'OFF',
-	'SDL_JOYSTICK': 'OFF',
+	'SDL_JOYSTICK': 'ON',
+
+    'SDL_RENDER_GPU'             : 'ON',
+    'SDL_RENDER_VULKAN'          : 'ON',
 	'SDL_HAPTIC': 'OFF',
 	'SDL_HIDAPI': 'OFF',
 	'SDL_POWER': 'OFF',
@@ -93,19 +136,36 @@ sdl_opts.add_cmake_defines({
 	'CMAKE_POLICY_DEFAULT_CMP0091': 'NEW'
 })
 sdl_opts.append_compile_args('c', '-Dhid_darwin_set_open_exclusive(x)=;')
-sdl_proj = cmake.subproject('SDL', options: sdl_opts, required: true)
-sdl_dep = sdl_proj.dependency('SDL3-static')
-# sdl_proj = cmake.subproject('SDL')
-# sdl_dep = sdl_proj.dependency('SDL')
+# sdl_proj = cmake.subproject('SDL', options: sdl_opts, required: true)
+# sdl_dep = sdl_proj.dependency('SDL3')
 
-volk_proj = cmake.subproject('volk')
-volk_dep = volk_proj.dependency('volk')
+glfw_proj = cmake.subproject('glfw')
+glfw_dep = glfw_proj.dependency('glfw')
 
 vk_bootstrap_proj = cmake.subproject('vk-bootstrap')
 vk_bootstrap_dep = vk_bootstrap_proj.dependency('vk-bootstrap')
 
-vma_proj = cmake.subproject('VulkanMemoryAllocator')
-vma_dep = vma_proj.dependency('VulkanMemoryAllocator')
+message('CMake targets:\n - ' + '\n - '.join(cmake.subproject('VulkanMemoryAllocator-Hpp').target_list()))
 
+vma_dep = cmake.subproject('VulkanMemoryAllocator').dependency('VulkanMemoryAllocator')
+vma_hpp_dep = cmake.subproject('VulkanMemoryAllocator-Hpp').dependency('VulkanMemoryAllocator-Hpp')
+
+glm_proj = cmake.subproject('glm')
+glm_dep = glm_proj.dependency('glm')
+
+
+app_deps = [
+  vma_dep,
+  vk_bootstrap_dep,
+  volk_dep,
+  glfw_dep,
+  glm_dep,
+]
 
 sources = files('src/main.cpp')
+
+executable('m',
+  sources,
+  include_directories : incdir,
+  dependencies : app_deps,
+)

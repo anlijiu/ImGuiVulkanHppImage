@@ -7,10 +7,10 @@ buildtype = 'plain'
 debug = true
 
 [binaries]
-c = '/usr/bin/gcc'
-cpp = '/usr/bin/g++'
+c = '/usr/bin/cc'
+cpp = '/usr/bin/c++'
 ld = 'lld'
 
 [cmake]
-CMAKE_C_COMPILER    = '/usr/bin/gcc'
-CMAKE_CXX_COMPILER  = '/usr/bin/g++'
+CMAKE_C_COMPILER    = '/usr/bin/cc'
+CMAKE_CXX_COMPILER  = '/usr/bin/c++'
