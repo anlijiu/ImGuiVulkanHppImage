@@ -142,7 +142,10 @@ sdl_opts.append_compile_args('c', '-Dhid_darwin_set_open_exclusive(x)=;')
 glfw_proj = cmake.subproject('glfw')
 glfw_dep = glfw_proj.dependency('glfw')
 
-vk_bootstrap_proj = cmake.subproject('vk-bootstrap')
+
+vk_bootstrap_opts = cmake.subproject_options()
+vk_bootstrap_opts.add_cmake_defines({'VK_BOOTSTRAP_TEST': false})
+vk_bootstrap_proj = cmake.subproject('vk-bootstrap', options: vk_bootstrap_opts)
 vk_bootstrap_dep = vk_bootstrap_proj.dependency('vk-bootstrap')
 
 message('CMake targets:\n - ' + '\n - '.join(cmake.subproject('VulkanMemoryAllocator-Hpp').target_list()))

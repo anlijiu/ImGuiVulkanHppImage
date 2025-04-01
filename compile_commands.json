@@ -1,0 +1,434 @@
+[
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/volk/libvolk.a.p -Isubprojects/volk -I../subprojects/volk -I/usr/include -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -DVK_NO_PROTOTYPES -MD -MQ subprojects/volk/libvolk.a.p/volk.c.o -MF subprojects/volk/libvolk.a.p/volk.c.o.d -o subprojects/volk/libvolk.a.p/volk.c.o -c ../subprojects/volk/volk.c",
+    "file": "../subprojects/volk/volk.c",
+    "output": "subprojects/volk/libvolk.a.p/volk.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_context.c.o -MF subprojects/glfw/libglfw.a.p/src_context.c.o.d -o subprojects/glfw/libglfw.a.p/src_context.c.o -c ../subprojects/glfw/src/context.c",
+    "file": "../subprojects/glfw/src/context.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_context.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_init.c.o -MF subprojects/glfw/libglfw.a.p/src_init.c.o.d -o subprojects/glfw/libglfw.a.p/src_init.c.o -c ../subprojects/glfw/src/init.c",
+    "file": "../subprojects/glfw/src/init.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_init.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_input.c.o -MF subprojects/glfw/libglfw.a.p/src_input.c.o.d -o subprojects/glfw/libglfw.a.p/src_input.c.o -c ../subprojects/glfw/src/input.c",
+    "file": "../subprojects/glfw/src/input.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_input.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_monitor.c.o -MF subprojects/glfw/libglfw.a.p/src_monitor.c.o.d -o subprojects/glfw/libglfw.a.p/src_monitor.c.o -c ../subprojects/glfw/src/monitor.c",
+    "file": "../subprojects/glfw/src/monitor.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_monitor.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_platform.c.o -MF subprojects/glfw/libglfw.a.p/src_platform.c.o.d -o subprojects/glfw/libglfw.a.p/src_platform.c.o -c ../subprojects/glfw/src/platform.c",
+    "file": "../subprojects/glfw/src/platform.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_platform.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_vulkan.c.o -MF subprojects/glfw/libglfw.a.p/src_vulkan.c.o.d -o subprojects/glfw/libglfw.a.p/src_vulkan.c.o -c ../subprojects/glfw/src/vulkan.c",
+    "file": "../subprojects/glfw/src/vulkan.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_vulkan.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_window.c.o -MF subprojects/glfw/libglfw.a.p/src_window.c.o.d -o subprojects/glfw/libglfw.a.p/src_window.c.o -c ../subprojects/glfw/src/window.c",
+    "file": "../subprojects/glfw/src/window.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_window.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_egl_context.c.o -MF subprojects/glfw/libglfw.a.p/src_egl_context.c.o.d -o subprojects/glfw/libglfw.a.p/src_egl_context.c.o -c ../subprojects/glfw/src/egl_context.c",
+    "file": "../subprojects/glfw/src/egl_context.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_egl_context.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_osmesa_context.c.o -MF subprojects/glfw/libglfw.a.p/src_osmesa_context.c.o.d -o subprojects/glfw/libglfw.a.p/src_osmesa_context.c.o -c ../subprojects/glfw/src/osmesa_context.c",
+    "file": "../subprojects/glfw/src/osmesa_context.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_osmesa_context.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_null_init.c.o -MF subprojects/glfw/libglfw.a.p/src_null_init.c.o.d -o subprojects/glfw/libglfw.a.p/src_null_init.c.o -c ../subprojects/glfw/src/null_init.c",
+    "file": "../subprojects/glfw/src/null_init.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_null_init.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_null_monitor.c.o -MF subprojects/glfw/libglfw.a.p/src_null_monitor.c.o.d -o subprojects/glfw/libglfw.a.p/src_null_monitor.c.o -c ../subprojects/glfw/src/null_monitor.c",
+    "file": "../subprojects/glfw/src/null_monitor.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_null_monitor.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_null_window.c.o -MF subprojects/glfw/libglfw.a.p/src_null_window.c.o.d -o subprojects/glfw/libglfw.a.p/src_null_window.c.o -c ../subprojects/glfw/src/null_window.c",
+    "file": "../subprojects/glfw/src/null_window.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_null_window.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_null_joystick.c.o -MF subprojects/glfw/libglfw.a.p/src_null_joystick.c.o.d -o subprojects/glfw/libglfw.a.p/src_null_joystick.c.o -c ../subprojects/glfw/src/null_joystick.c",
+    "file": "../subprojects/glfw/src/null_joystick.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_null_joystick.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_posix_module.c.o -MF subprojects/glfw/libglfw.a.p/src_posix_module.c.o.d -o subprojects/glfw/libglfw.a.p/src_posix_module.c.o -c ../subprojects/glfw/src/posix_module.c",
+    "file": "../subprojects/glfw/src/posix_module.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_posix_module.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_posix_time.c.o -MF subprojects/glfw/libglfw.a.p/src_posix_time.c.o.d -o subprojects/glfw/libglfw.a.p/src_posix_time.c.o -c ../subprojects/glfw/src/posix_time.c",
+    "file": "../subprojects/glfw/src/posix_time.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_posix_time.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_posix_thread.c.o -MF subprojects/glfw/libglfw.a.p/src_posix_thread.c.o.d -o subprojects/glfw/libglfw.a.p/src_posix_thread.c.o -c ../subprojects/glfw/src/posix_thread.c",
+    "file": "../subprojects/glfw/src/posix_thread.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_posix_thread.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_x11_init.c.o -MF subprojects/glfw/libglfw.a.p/src_x11_init.c.o.d -o subprojects/glfw/libglfw.a.p/src_x11_init.c.o -c ../subprojects/glfw/src/x11_init.c",
+    "file": "../subprojects/glfw/src/x11_init.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_x11_init.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_x11_monitor.c.o -MF subprojects/glfw/libglfw.a.p/src_x11_monitor.c.o.d -o subprojects/glfw/libglfw.a.p/src_x11_monitor.c.o -c ../subprojects/glfw/src/x11_monitor.c",
+    "file": "../subprojects/glfw/src/x11_monitor.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_x11_monitor.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_x11_window.c.o -MF subprojects/glfw/libglfw.a.p/src_x11_window.c.o.d -o subprojects/glfw/libglfw.a.p/src_x11_window.c.o -c ../subprojects/glfw/src/x11_window.c",
+    "file": "../subprojects/glfw/src/x11_window.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_x11_window.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_xkb_unicode.c.o -MF subprojects/glfw/libglfw.a.p/src_xkb_unicode.c.o.d -o subprojects/glfw/libglfw.a.p/src_xkb_unicode.c.o -c ../subprojects/glfw/src/xkb_unicode.c",
+    "file": "../subprojects/glfw/src/xkb_unicode.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_xkb_unicode.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_glx_context.c.o -MF subprojects/glfw/libglfw.a.p/src_glx_context.c.o.d -o subprojects/glfw/libglfw.a.p/src_glx_context.c.o -c ../subprojects/glfw/src/glx_context.c",
+    "file": "../subprojects/glfw/src/glx_context.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_glx_context.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_wl_init.c.o -MF subprojects/glfw/libglfw.a.p/src_wl_init.c.o.d -o subprojects/glfw/libglfw.a.p/src_wl_init.c.o -c ../subprojects/glfw/src/wl_init.c",
+    "file": "../subprojects/glfw/src/wl_init.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_wl_init.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_wl_monitor.c.o -MF subprojects/glfw/libglfw.a.p/src_wl_monitor.c.o.d -o subprojects/glfw/libglfw.a.p/src_wl_monitor.c.o -c ../subprojects/glfw/src/wl_monitor.c",
+    "file": "../subprojects/glfw/src/wl_monitor.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_wl_monitor.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_wl_window.c.o -MF subprojects/glfw/libglfw.a.p/src_wl_window.c.o.d -o subprojects/glfw/libglfw.a.p/src_wl_window.c.o -c ../subprojects/glfw/src/wl_window.c",
+    "file": "../subprojects/glfw/src/wl_window.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_wl_window.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_linux_joystick.c.o -MF subprojects/glfw/libglfw.a.p/src_linux_joystick.c.o.d -o subprojects/glfw/libglfw.a.p/src_linux_joystick.c.o -c ../subprojects/glfw/src/linux_joystick.c",
+    "file": "../subprojects/glfw/src/linux_joystick.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_linux_joystick.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/libglfw.a.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=c99 -g -fPIC -DHAVE_MEMFD_CREATE -D_DEFAULT_SOURCE -D_GLFW_WAYLAND -D_GLFW_X11 -MD -MQ subprojects/glfw/libglfw.a.p/src_posix_poll.c.o -MF subprojects/glfw/libglfw.a.p/src_posix_poll.c.o.d -o subprojects/glfw/libglfw.a.p/src_posix_poll.c.o -c ../subprojects/glfw/src/posix_poll.c",
+    "file": "../subprojects/glfw/src/posix_poll.c",
+    "output": "subprojects/glfw/libglfw.a.p/src_posix_poll.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/allocator.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/allocator.p/tests_allocator.c.o -MF subprojects/glfw/allocator.p/tests_allocator.c.o.d -o subprojects/glfw/allocator.p/tests_allocator.c.o -c ../subprojects/glfw/tests/allocator.c",
+    "file": "../subprojects/glfw/tests/allocator.c",
+    "output": "subprojects/glfw/allocator.p/tests_allocator.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/boing.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/boing.p/examples_boing.c.o -MF subprojects/glfw/boing.p/examples_boing.c.o.d -o subprojects/glfw/boing.p/examples_boing.c.o -c ../subprojects/glfw/examples/boing.c",
+    "file": "../subprojects/glfw/examples/boing.c",
+    "output": "subprojects/glfw/boing.p/examples_boing.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/clipboard.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/clipboard.p/tests_clipboard.c.o -MF subprojects/glfw/clipboard.p/tests_clipboard.c.o.d -o subprojects/glfw/clipboard.p/tests_clipboard.c.o -c ../subprojects/glfw/tests/clipboard.c",
+    "file": "../subprojects/glfw/tests/clipboard.c",
+    "output": "subprojects/glfw/clipboard.p/tests_clipboard.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/clipboard.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/clipboard.p/deps_getopt.c.o -MF subprojects/glfw/clipboard.p/deps_getopt.c.o.d -o subprojects/glfw/clipboard.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/clipboard.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/cursor.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/cursor.p/tests_cursor.c.o -MF subprojects/glfw/cursor.p/tests_cursor.c.o.d -o subprojects/glfw/cursor.p/tests_cursor.c.o -c ../subprojects/glfw/tests/cursor.c",
+    "file": "../subprojects/glfw/tests/cursor.c",
+    "output": "subprojects/glfw/cursor.p/tests_cursor.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/empty.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/empty.p/tests_empty.c.o -MF subprojects/glfw/empty.p/tests_empty.c.o.d -o subprojects/glfw/empty.p/tests_empty.c.o -c ../subprojects/glfw/tests/empty.c",
+    "file": "../subprojects/glfw/tests/empty.c",
+    "output": "subprojects/glfw/empty.p/tests_empty.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/empty.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/empty.p/deps_tinycthread.c.o -MF subprojects/glfw/empty.p/deps_tinycthread.c.o.d -o subprojects/glfw/empty.p/deps_tinycthread.c.o -c ../subprojects/glfw/deps/tinycthread.c",
+    "file": "../subprojects/glfw/deps/tinycthread.c",
+    "output": "subprojects/glfw/empty.p/deps_tinycthread.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/events.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/events.p/tests_events.c.o -MF subprojects/glfw/events.p/tests_events.c.o.d -o subprojects/glfw/events.p/tests_events.c.o -c ../subprojects/glfw/tests/events.c",
+    "file": "../subprojects/glfw/tests/events.c",
+    "output": "subprojects/glfw/events.p/tests_events.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/events.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/events.p/deps_getopt.c.o -MF subprojects/glfw/events.p/deps_getopt.c.o.d -o subprojects/glfw/events.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/events.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/gamma.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/gamma.p/tests_gamma.c.o -MF subprojects/glfw/gamma.p/tests_gamma.c.o.d -o subprojects/glfw/gamma.p/tests_gamma.c.o -c ../subprojects/glfw/tests/gamma.c",
+    "file": "../subprojects/glfw/tests/gamma.c",
+    "output": "subprojects/glfw/gamma.p/tests_gamma.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/gears.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/gears.p/examples_gears.c.o -MF subprojects/glfw/gears.p/examples_gears.c.o.d -o subprojects/glfw/gears.p/examples_gears.c.o -c ../subprojects/glfw/examples/gears.c",
+    "file": "../subprojects/glfw/examples/gears.c",
+    "output": "subprojects/glfw/gears.p/examples_gears.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/glfwinfo.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/glfwinfo.p/tests_glfwinfo.c.o -MF subprojects/glfw/glfwinfo.p/tests_glfwinfo.c.o.d -o subprojects/glfw/glfwinfo.p/tests_glfwinfo.c.o -c ../subprojects/glfw/tests/glfwinfo.c",
+    "file": "../subprojects/glfw/tests/glfwinfo.c",
+    "output": "subprojects/glfw/glfwinfo.p/tests_glfwinfo.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/glfwinfo.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/glfwinfo.p/deps_getopt.c.o -MF subprojects/glfw/glfwinfo.p/deps_getopt.c.o.d -o subprojects/glfw/glfwinfo.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/glfwinfo.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/heightmap.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/heightmap.p/examples_heightmap.c.o -MF subprojects/glfw/heightmap.p/examples_heightmap.c.o.d -o subprojects/glfw/heightmap.p/examples_heightmap.c.o -c ../subprojects/glfw/examples/heightmap.c",
+    "file": "../subprojects/glfw/examples/heightmap.c",
+    "output": "subprojects/glfw/heightmap.p/examples_heightmap.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/icon.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/icon.p/tests_icon.c.o -MF subprojects/glfw/icon.p/tests_icon.c.o.d -o subprojects/glfw/icon.p/tests_icon.c.o -c ../subprojects/glfw/tests/icon.c",
+    "file": "../subprojects/glfw/tests/icon.c",
+    "output": "subprojects/glfw/icon.p/tests_icon.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/iconify.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/iconify.p/tests_iconify.c.o -MF subprojects/glfw/iconify.p/tests_iconify.c.o.d -o subprojects/glfw/iconify.p/tests_iconify.c.o -c ../subprojects/glfw/tests/iconify.c",
+    "file": "../subprojects/glfw/tests/iconify.c",
+    "output": "subprojects/glfw/iconify.p/tests_iconify.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/iconify.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/iconify.p/deps_getopt.c.o -MF subprojects/glfw/iconify.p/deps_getopt.c.o.d -o subprojects/glfw/iconify.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/iconify.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/inputlag.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/inputlag.p/tests_inputlag.c.o -MF subprojects/glfw/inputlag.p/tests_inputlag.c.o.d -o subprojects/glfw/inputlag.p/tests_inputlag.c.o -c ../subprojects/glfw/tests/inputlag.c",
+    "file": "../subprojects/glfw/tests/inputlag.c",
+    "output": "subprojects/glfw/inputlag.p/tests_inputlag.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/inputlag.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/inputlag.p/deps_getopt.c.o -MF subprojects/glfw/inputlag.p/deps_getopt.c.o.d -o subprojects/glfw/inputlag.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/inputlag.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/joysticks.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/joysticks.p/tests_joysticks.c.o -MF subprojects/glfw/joysticks.p/tests_joysticks.c.o.d -o subprojects/glfw/joysticks.p/tests_joysticks.c.o -c ../subprojects/glfw/tests/joysticks.c",
+    "file": "../subprojects/glfw/tests/joysticks.c",
+    "output": "subprojects/glfw/joysticks.p/tests_joysticks.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/monitors.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/monitors.p/tests_monitors.c.o -MF subprojects/glfw/monitors.p/tests_monitors.c.o.d -o subprojects/glfw/monitors.p/tests_monitors.c.o -c ../subprojects/glfw/tests/monitors.c",
+    "file": "../subprojects/glfw/tests/monitors.c",
+    "output": "subprojects/glfw/monitors.p/tests_monitors.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/monitors.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/monitors.p/deps_getopt.c.o -MF subprojects/glfw/monitors.p/deps_getopt.c.o.d -o subprojects/glfw/monitors.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/monitors.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/msaa.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/msaa.p/tests_msaa.c.o -MF subprojects/glfw/msaa.p/tests_msaa.c.o.d -o subprojects/glfw/msaa.p/tests_msaa.c.o -c ../subprojects/glfw/tests/msaa.c",
+    "file": "../subprojects/glfw/tests/msaa.c",
+    "output": "subprojects/glfw/msaa.p/tests_msaa.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/msaa.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/msaa.p/deps_getopt.c.o -MF subprojects/glfw/msaa.p/deps_getopt.c.o.d -o subprojects/glfw/msaa.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/msaa.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/offscreen.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/offscreen.p/examples_offscreen.c.o -MF subprojects/glfw/offscreen.p/examples_offscreen.c.o.d -o subprojects/glfw/offscreen.p/examples_offscreen.c.o -c ../subprojects/glfw/examples/offscreen.c",
+    "file": "../subprojects/glfw/examples/offscreen.c",
+    "output": "subprojects/glfw/offscreen.p/examples_offscreen.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/particles.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/particles.p/examples_particles.c.o -MF subprojects/glfw/particles.p/examples_particles.c.o.d -o subprojects/glfw/particles.p/examples_particles.c.o -c ../subprojects/glfw/examples/particles.c",
+    "file": "../subprojects/glfw/examples/particles.c",
+    "output": "subprojects/glfw/particles.p/examples_particles.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/particles.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/particles.p/deps_tinycthread.c.o -MF subprojects/glfw/particles.p/deps_tinycthread.c.o.d -o subprojects/glfw/particles.p/deps_tinycthread.c.o -c ../subprojects/glfw/deps/tinycthread.c",
+    "file": "../subprojects/glfw/deps/tinycthread.c",
+    "output": "subprojects/glfw/particles.p/deps_tinycthread.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/particles.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/particles.p/deps_getopt.c.o -MF subprojects/glfw/particles.p/deps_getopt.c.o.d -o subprojects/glfw/particles.p/deps_getopt.c.o -c ../subprojects/glfw/deps/getopt.c",
+    "file": "../subprojects/glfw/deps/getopt.c",
+    "output": "subprojects/glfw/particles.p/deps_getopt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/reopen.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/reopen.p/tests_reopen.c.o -MF subprojects/glfw/reopen.p/tests_reopen.c.o.d -o subprojects/glfw/reopen.p/tests_reopen.c.o -c ../subprojects/glfw/tests/reopen.c",
+    "file": "../subprojects/glfw/tests/reopen.c",
+    "output": "subprojects/glfw/reopen.p/tests_reopen.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/sharing.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/sharing.p/examples_sharing.c.o -MF subprojects/glfw/sharing.p/examples_sharing.c.o.d -o subprojects/glfw/sharing.p/examples_sharing.c.o -c ../subprojects/glfw/examples/sharing.c",
+    "file": "../subprojects/glfw/examples/sharing.c",
+    "output": "subprojects/glfw/sharing.p/examples_sharing.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/splitview.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/splitview.p/examples_splitview.c.o -MF subprojects/glfw/splitview.p/examples_splitview.c.o.d -o subprojects/glfw/splitview.p/examples_splitview.c.o -c ../subprojects/glfw/examples/splitview.c",
+    "file": "../subprojects/glfw/examples/splitview.c",
+    "output": "subprojects/glfw/splitview.p/examples_splitview.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/tearing.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/tearing.p/tests_tearing.c.o -MF subprojects/glfw/tearing.p/tests_tearing.c.o.d -o subprojects/glfw/tearing.p/tests_tearing.c.o -c ../subprojects/glfw/tests/tearing.c",
+    "file": "../subprojects/glfw/tests/tearing.c",
+    "output": "subprojects/glfw/tearing.p/tests_tearing.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/threads.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/threads.p/tests_threads.c.o -MF subprojects/glfw/threads.p/tests_threads.c.o.d -o subprojects/glfw/threads.p/tests_threads.c.o -c ../subprojects/glfw/tests/threads.c",
+    "file": "../subprojects/glfw/tests/threads.c",
+    "output": "subprojects/glfw/threads.p/tests_threads.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/threads.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/threads.p/deps_tinycthread.c.o -MF subprojects/glfw/threads.p/deps_tinycthread.c.o.d -o subprojects/glfw/threads.p/deps_tinycthread.c.o -c ../subprojects/glfw/deps/tinycthread.c",
+    "file": "../subprojects/glfw/deps/tinycthread.c",
+    "output": "subprojects/glfw/threads.p/deps_tinycthread.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/timeout.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/timeout.p/tests_timeout.c.o -MF subprojects/glfw/timeout.p/tests_timeout.c.o.d -o subprojects/glfw/timeout.p/tests_timeout.c.o -c ../subprojects/glfw/tests/timeout.c",
+    "file": "../subprojects/glfw/tests/timeout.c",
+    "output": "subprojects/glfw/timeout.p/tests_timeout.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/title.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/title.p/tests_title.c.o -MF subprojects/glfw/title.p/tests_title.c.o.d -o subprojects/glfw/title.p/tests_title.c.o -c ../subprojects/glfw/tests/title.c",
+    "file": "../subprojects/glfw/tests/title.c",
+    "output": "subprojects/glfw/title.p/tests_title.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/triangle_opengl.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/triangle_opengl.p/examples_triangle-opengl.c.o -MF subprojects/glfw/triangle_opengl.p/examples_triangle-opengl.c.o.d -o subprojects/glfw/triangle_opengl.p/examples_triangle-opengl.c.o -c ../subprojects/glfw/examples/triangle-opengl.c",
+    "file": "../subprojects/glfw/examples/triangle-opengl.c",
+    "output": "subprojects/glfw/triangle_opengl.p/examples_triangle-opengl.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/triangle_opengles.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/triangle_opengles.p/examples_triangle-opengles.c.o -MF subprojects/glfw/triangle_opengles.p/examples_triangle-opengles.c.o.d -o subprojects/glfw/triangle_opengles.p/examples_triangle-opengles.c.o -c ../subprojects/glfw/examples/triangle-opengles.c",
+    "file": "../subprojects/glfw/examples/triangle-opengles.c",
+    "output": "subprojects/glfw/triangle_opengles.p/examples_triangle-opengles.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/triangle_vulkan.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/triangle_vulkan.p/tests_triangle-vulkan.c.o -MF subprojects/glfw/triangle_vulkan.p/tests_triangle-vulkan.c.o.d -o subprojects/glfw/triangle_vulkan.p/tests_triangle-vulkan.c.o -c ../subprojects/glfw/tests/triangle-vulkan.c",
+    "file": "../subprojects/glfw/tests/triangle-vulkan.c",
+    "output": "subprojects/glfw/triangle_vulkan.p/tests_triangle-vulkan.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/wave.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/wave.p/examples_wave.c.o -MF subprojects/glfw/wave.p/examples_wave.c.o.d -o subprojects/glfw/wave.p/examples_wave.c.o -c ../subprojects/glfw/examples/wave.c",
+    "file": "../subprojects/glfw/examples/wave.c",
+    "output": "subprojects/glfw/wave.p/examples_wave.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/window.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/window.p/tests_window.c.o -MF subprojects/glfw/window.p/tests_window.c.o.d -o subprojects/glfw/window.p/tests_window.c.o -c ../subprojects/glfw/tests/window.c",
+    "file": "../subprojects/glfw/tests/window.c",
+    "output": "subprojects/glfw/window.p/tests_window.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/glfw/windows.p -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/glfw/deps -I../subprojects/glfw/include -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu99 -g -MD -MQ subprojects/glfw/windows.p/examples_windows.c.o -MF subprojects/glfw/windows.p/examples_windows.c.o.d -o subprojects/glfw/windows.p/examples_windows.c.o -c ../subprojects/glfw/examples/windows.c",
+    "file": "../subprojects/glfw/examples/windows.c",
+    "output": "subprojects/glfw/windows.p/examples_windows.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/vk-bootstrap/libvk_bootstrap.a.p -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -I../subprojects/vk-bootstrap/src -I/usr/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wconversion -Wsign-conversion -MD -MQ subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -MF subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o.d -o subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -c ../subprojects/vk-bootstrap/src/VkBootstrap.cpp",
+    "file": "../subprojects/vk-bootstrap/src/VkBootstrap.cpp",
+    "output": "subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/glm/libglm.a.p -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -MD -MQ subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -MF subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o.d -o subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -c ../subprojects/glm/glm/detail/glm.cpp",
+    "file": "../subprojects/glm/glm/detail/glm.cpp",
+    "output": "subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/VulkanMemoryAllocator/include -Isubprojects/VulkanMemoryAllocator/__CMake_build -I../subprojects/VulkanMemoryAllocator/__CMake_build -Isubprojects/VulkanMemoryAllocator -I../subprojects/VulkanMemoryAllocator -I../subprojects/vk-bootstrap/src -I/usr/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -MD -MQ m.p/src_main.cpp.o -MF m.p/src_main.cpp.o.d -o m.p/src_main.cpp.o -c ../src/main.cpp",
+    "file": "../src/main.cpp",
+    "output": "m.p/src_main.cpp.o"
+  }
+]
