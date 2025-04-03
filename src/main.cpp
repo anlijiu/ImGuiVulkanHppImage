@@ -11,13 +11,32 @@
 #include <iostream>
 #include <random>
 #include <stdio.h>
+#include <fmt/format.h>
+
+#define VK_CHECK(call)                 \
+    do {                               \
+        VkResult result_ = call;       \
+        assert(result_ == VK_SUCCESS); \
+    } while (0)
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
 const int NUM_RECTANGLES = 500;
 
 inline constexpr std::uint32_t FRAME_OVERLAP = 2;
+const char* appName = "test";
 
+struct Version {
+    uint32_t major{0};
+    uint32_t minor{0};
+    uint32_t patch{0};
+
+    std::string toString(bool addV = true) const
+    {
+        return fmt::format("{}{}.{}.{}", addV ? "v" : "", major, minor, patch);
+    }
+};
+Version appVersion = {0, 0, 0};
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -27,6 +46,16 @@ static void glfw_error_callback(int error, const char* description)
 struct InstanceData {
     glm::vec2 position;
     glm::vec2 scale;
+};
+
+struct GPUBuffer {
+    VkBuffer buffer{VK_NULL_HANDLE};
+    VmaAllocation allocation;
+    VmaAllocationInfo info;
+
+    // Only for buffers created with VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT
+    // TODO: add check that this is not 0 if requesting address?
+    VkDeviceAddress address{0};
 };
 
 class Swapchain {
@@ -44,7 +73,7 @@ private:
     std::vector<VkImage> images;
     std::vector<VkImageView> imageViews;
     bool dirty{false};
-}
+};
 
 class VulkanApp {
 public:
@@ -57,7 +86,7 @@ public:
 
 private:
     GLFWwindow* window;
-    vkb::Instance vkbInstance;
+    vkb::Instance instance;
     vkb::PhysicalDevice physicalDevice;
     vkb::Device device;
     VmaAllocator allocator;
@@ -70,28 +99,31 @@ private:
     Swapchain swapchain;
 
     std::array<FrameData, graphics::FRAME_OVERLAP> frames{};
+    std::uint32_t frameNumber{0};
 
-    VkDevice device;
-    VkQueue graphicsQueue;
-    VkPhysicalDevice physicalDevice;
-    VkCommandPool commandPool;
-    VkCommandBuffer commandBuffer;
-    VkPipeline pipeline;
-    VkPipelineLayout pipelineLayout;
-    VkRenderPass renderPass;
-    VkBuffer vertexBuffer, instanceBuffer;
-    VmaAllocator allocator;
-    VmaAllocation vertexBufferAlloc, instanceBufferAlloc;
-    VkDescriptorSetLayout descriptorSetLayout;
-    VkPipelineBindPoint bindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-    VkFormat swapchainImageFormat;
-    VkExtent2D swapchainExtent;
-    VkSwapchainKHR swapchain;
-    std::vector<VkImageView> swapchainImageViews;
-    std::vector<VkFramebuffer> swapchainFramebuffers;
-    std::vector<VkCommandBuffer> commandBuffers;
-    VkSemaphore imageAvailableSemaphore, renderFinishedSemaphore;
-    VkFence inFlightFence;
+    VkSampleCountFlagBits supportedSampleCounts;
+    VkSampleCountFlagBits highestSupportedSamples{VK_SAMPLE_COUNT_1_BIT};
+    float maxSamplerAnisotropy{1.f};
+
+
+    // VkCommandPool commandPool;
+    // VkCommandBuffer commandBuffer;
+    // VkPipeline pipeline;
+    // VkPipelineLayout pipelineLayout;
+    // VkRenderPass renderPass;
+    // VkBuffer vertexBuffer, instanceBuffer;
+    // VmaAllocator allocator;
+    // VmaAllocation vertexBufferAlloc, instanceBufferAlloc;
+    // VkDescriptorSetLayout descriptorSetLayout;
+    // VkPipelineBindPoint bindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+    // VkFormat swapchainImageFormat;
+    // VkExtent2D swapchainExtent;
+    // VkSwapchainKHR swapchain;
+    // std::vector<VkImageView> swapchainImageViews;
+    // std::vector<VkFramebuffer> swapchainFramebuffers;
+    // std::vector<VkCommandBuffer> commandBuffers;
+    // VkSemaphore imageAvailableSemaphore, renderFinishedSemaphore;
+    // VkFence inFlightFence;
 
     // bool g_SwapChainRebuild;
     // ImGui_ImplVulkanH_Window g_MainWindowData;
@@ -112,6 +144,38 @@ private:
 
     std::vector<InstanceData> instances;
 
+
+    void checkDeviceCapabilities()
+    {
+        // check limits
+        VkPhysicalDeviceProperties props{};
+        vkGetPhysicalDeviceProperties(physicalDevice, &props);
+
+        maxSamplerAnisotropy = props.limits.maxSamplerAnisotropy;
+
+        { // store which sampling counts HW supports
+            const auto counts = std::array{
+                VK_SAMPLE_COUNT_1_BIT,
+                    VK_SAMPLE_COUNT_2_BIT,
+                    VK_SAMPLE_COUNT_4_BIT,
+                    VK_SAMPLE_COUNT_8_BIT,
+                    VK_SAMPLE_COUNT_16_BIT,
+                    VK_SAMPLE_COUNT_32_BIT,
+                    VK_SAMPLE_COUNT_64_BIT,
+            };
+
+            const auto supportedByDepthAndColor =
+                props.limits.framebufferColorSampleCounts & props.limits.framebufferDepthSampleCounts;
+            supportedSampleCounts = {};
+            for (const auto& count : counts) {
+                if (supportedByDepthAndColor & count) {
+                    supportedSampleCounts = (VkSampleCountFlagBits)(supportedSampleCounts | count);
+                    highestSupportedSamples = count;
+                }
+            }
+        }
+    }
+
     int initWindow() {
         glfwInit();
 
@@ -128,49 +192,91 @@ private:
     }
 
     int initVulkan() {
-        volkInitialize();
+
+        VK_CHECK(volkInitialize());
+
+        instance = vkb::InstanceBuilder{}
+        .set_app_name(appName)
+            .set_app_version(appVersion.major, appVersion.major, appVersion.patch)
+            .request_validation_layers()
+            .use_default_debug_messenger()
+            .require_api_version(1, 4, 0)
+            .build()
+            .value();
+
+        volkLoadInstance(instance);
+
+        VkResult err = glfwCreateWindowSurface(instance, window, nullptr, &surface);
+
+        if (err) {
+            const char* error_msg;
+            int ret = glfwGetError(&error_msg);
+            if (ret != 0) {
+                std::cout << ret << " ";
+                if (error_msg != nullptr) std::cout << error_msg;
+                std::cout << "\n";
+            }
+            surface = VK_NULL_HANDLE;
+            std::exit(1);
+        }
         
-        vkb::InstanceBuilder builder;
-        vkbInstance = builder.set_app_name("Vulkan Sprites")
-                    .request_validation_layers(true)
-                    .build().value();
-
-        VkSurfaceKHR surface;
-        VkResult err;
-
-        glfwCreateWindowSurface(vkbInstance.instance, window, nullptr, &surface);
-
-        vkb::PhysicalDeviceSelector selector{vkbInstance};
-        auto phys_ret = selector.set_surface(surface).select();
-        physicalDevice = phys_ret.value();
-
-        vkb::DeviceBuilder deviceBuilder{phys_ret.value()};
-        auto vkbDevice = deviceBuilder.build().value();
-        device = vkbDevice.device;
-        graphicsQueue = vkbDevice.get_queue(vkb::QueueType::graphics).value();
-
-        volkLoadInstance(vkbInstance);
-
-        const auto vulkanFunctions = VmaVulkanFunctions{
-            .vkGetInstanceProcAddr = vkGetInstanceProcAddr,
-            .vkGetDeviceProcAddr = vkGetDeviceProcAddr,
+        const auto deviceFeatures = VkPhysicalDeviceFeatures{
+            .imageCubeArray = VK_TRUE,
+            .geometryShader = VK_TRUE, // for im3d
+            .depthClamp = VK_TRUE,
+            .samplerAnisotropy = VK_TRUE,
         };
-
-        const auto allocatorInfo = VmaAllocatorCreateInfo{
-            .flags = VMA_ALLOCATOR_CREATE_BUFFER_DEVICE_ADDRESS_BIT,
-            .physicalDevice = physicalDevice,
-            .device = vkbDevice,
-            .pVulkanFunctions = &vulkanFunctions,
-            .instance = vkbInstance,
+        
+        const auto features12 = VkPhysicalDeviceVulkan12Features{
+            .descriptorIndexing = true,
+            .descriptorBindingSampledImageUpdateAfterBind = true,
+            .descriptorBindingStorageImageUpdateAfterBind = true,
+            .descriptorBindingPartiallyBound = true,
+            .descriptorBindingVariableDescriptorCount = true,
+            .runtimeDescriptorArray = true,
+            .scalarBlockLayout = true,
+            .bufferDeviceAddress = true,
         };
+        const auto features13 = VkPhysicalDeviceVulkan13Features{
+            .synchronization2 = true,
+            .dynamicRendering = true,
+        };
+        auto features14 = VkPhysicalDeviceVulkan14Features{
+            .maintenance5 = VK_TRUE,
+        };
+        
+        physicalDevice = vkb::PhysicalDeviceSelector{instance}
+                             .set_minimum_version(1, 3)
+                             .set_required_features(deviceFeatures)
+                             .set_required_features_12(features12)
+                             .set_required_features_13(features13)
+                             .set_required_features_14(features14)
+                             .set_surface(surface)
+                             .select()
+                             .value();
 
-        vmaCreateAllocator(&allocatorInfo, &allocator);
+        checkDeviceCapabilities();
 
-        // ImGui_ImplVulkanH_Window* wd = &g_MainWindowData;
-        // // Select Surface Format
-        // const VkFormat requestSurfaceImageFormat[] = { VK_FORMAT_B8G8R8A8_UNORM, VK_FORMAT_R8G8B8A8_UNORM, VK_FORMAT_B8G8R8_UNORM, VK_FORMAT_R8G8B8_UNORM };
-        // const VkColorSpaceKHR requestSurfaceColorSpace = VK_COLORSPACE_SRGB_NONLINEAR_KHR;
-        // wd->SurfaceFormat = ImGui_ImplVulkanH_SelectSurfaceFormat(g_PhysicalDevice, wd->Surface, requestSurfaceImageFormat, (size_t)IM_ARRAYSIZE(requestSurfaceImageFormat), requestSurfaceColorSpace);
+        device = vkb::DeviceBuilder{physicalDevice}.build().value();
+
+        graphicsQueueFamily = device.get_queue_index(vkb::QueueType::graphics).value();
+        graphicsQueue = device.get_queue(vkb::QueueType::graphics).value();
+
+        { // Init VMA
+            const auto vulkanFunctions = VmaVulkanFunctions{
+                .vkGetInstanceProcAddr = vkGetInstanceProcAddr,
+                    .vkGetDeviceProcAddr = vkGetDeviceProcAddr,
+            };
+
+            const auto allocatorInfo = VmaAllocatorCreateInfo{
+                .flags = VMA_ALLOCATOR_CREATE_BUFFER_DEVICE_ADDRESS_BIT,
+                    .physicalDevice = physicalDevice,
+                    .device = device,
+                    .pVulkanFunctions = &vulkanFunctions,
+                    .instance = instance,
+            };
+            vmaCreateAllocator(&allocatorInfo, &allocator);
+        }
 
         createInstanceBuffer();
     }

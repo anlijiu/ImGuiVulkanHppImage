@@ -38,6 +38,7 @@ else
 endif
 cmake_msvc_lib += 'DLL'
 
+
 # glslc = find_program('glslc')
 # 
 # glslc_text_gen = generator(glslc, arguments: ['-w', '-mfmt=c', '-o', '@OUTPUT@', '@INPUT@'], output: '@PLAINNAME@.txt')
@@ -139,6 +140,8 @@ sdl_opts.append_compile_args('c', '-Dhid_darwin_set_open_exclusive(x)=;')
 # sdl_proj = cmake.subproject('SDL', options: sdl_opts, required: true)
 # sdl_dep = sdl_proj.dependency('SDL3')
 
+fmt_dep = cmake.subproject('fmt').get_variable('fmt_dep')
+
 glfw_proj = cmake.subproject('glfw')
 glfw_dep = glfw_proj.dependency('glfw')
 
@@ -148,16 +151,16 @@ vk_bootstrap_opts.add_cmake_defines({'VK_BOOTSTRAP_TEST': false})
 vk_bootstrap_proj = cmake.subproject('vk-bootstrap', options: vk_bootstrap_opts)
 vk_bootstrap_dep = vk_bootstrap_proj.dependency('vk-bootstrap')
 
-message('CMake targets:\n - ' + '\n - '.join(cmake.subproject('VulkanMemoryAllocator-Hpp').target_list()))
+# message('CMake targets:\n - ' + '\n - '.join(cmake.subproject('VulkanMemoryAllocator-Hpp').target_list()))
 
 vma_dep = cmake.subproject('VulkanMemoryAllocator').dependency('VulkanMemoryAllocator')
-vma_hpp_dep = cmake.subproject('VulkanMemoryAllocator-Hpp').dependency('VulkanMemoryAllocator-Hpp')
 
 glm_proj = cmake.subproject('glm')
 glm_dep = glm_proj.dependency('glm')
 
 
 app_deps = [
+  fmt_dep,
   vma_dep,
   vk_bootstrap_dep,
   volk_dep,
