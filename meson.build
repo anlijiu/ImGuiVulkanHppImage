@@ -175,3 +175,19 @@ executable('m',
   include_directories : incdir,
   dependencies : app_deps,
 )
+
+Asources = files('src/mainA.cpp')
+
+executable('m1',
+  Asources,
+  include_directories : incdir,
+  dependencies : app_deps,
+)
+
+Bsources = files('src/mainB.cpp')
+
+executable('m2',
+  Bsources,
+  include_directories : incdir,
+  dependencies : app_deps,
+)

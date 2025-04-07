@@ -58,14 +58,15 @@ struct GPUBuffer {
     VkDeviceAddress address{0};
 };
 
+struct FrameData {
+    VkSemaphore swapchainSemaphore;
+    VkSemaphore renderSemaphore;
+    VkFence renderFence;
+};
+
 class Swapchain {
 
 private:
-    struct FrameData {
-        VkSemaphore swapchainSemaphore;
-        VkSemaphore renderSemaphore;
-        VkFence renderFence;
-    };
 
     //飞行帧
     std::array<FrameData, FRAME_OVERLAP> frames;
@@ -98,7 +99,7 @@ private:
     VkFormat swapchainFormat;
     Swapchain swapchain;
 
-    std::array<FrameData, graphics::FRAME_OVERLAP> frames{};
+    std::array<FrameData, FRAME_OVERLAP> frames{};
     std::uint32_t frameNumber{0};
 
     VkSampleCountFlagBits supportedSampleCounts;
@@ -278,9 +279,54 @@ private:
             vmaCreateAllocator(&allocatorInfo, &allocator);
         }
 
-        createInstanceBuffer();
+        // createInstanceBuffer();
     }
 
+    [[nodiscard]] GPUBuffer createBuffer(
+        std::size_t allocSize,
+        VkBufferUsageFlags usage,
+        VmaMemoryUsage memoryUsage = VMA_MEMORY_USAGE_AUTO) const {
+
+        const auto bufferInfo = VkBufferCreateInfo{
+            .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
+            .size = allocSize,
+            .usage = usage,
+        };
+       
+        const auto allocInfo = VmaAllocationCreateInfo{
+            .flags = VMA_ALLOCATION_CREATE_MAPPED_BIT |
+                     // TODO: allow to set VMA_ALLOCATION_CREATE_HOST_ACCESS_RANDOM_BIT when needed
+                     VMA_ALLOCATION_CREATE_HOST_ACCESS_SEQUENTIAL_WRITE_BIT,
+            .usage = memoryUsage,
+        };
+       
+        GPUBuffer buffer{};
+        VK_CHECK(vmaCreateBuffer(
+            allocator, &bufferInfo, &allocInfo, &buffer.buffer, &buffer.allocation, &buffer.info));
+        if ((usage & VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT) != 0) {
+            const auto deviceAdressInfo = VkBufferDeviceAddressInfo{
+                .sType = VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO,
+                .buffer = buffer.buffer,
+            };
+            buffer.address = vkGetBufferDeviceAddress(device, &deviceAdressInfo);
+        }
+       
+        return buffer;
+    }
+
+    [[nodiscard]] VkDeviceAddress getBufferAddress(const GPUBuffer& buffer) const {
+        const auto deviceAdressInfo = VkBufferDeviceAddressInfo{
+            .sType = VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO,
+            .buffer = buffer.buffer,
+        };
+        return vkGetBufferDeviceAddress(device, &deviceAdressInfo);
+    }
+
+    void destroyBuffer(const GPUBuffer& buffer) const {
+        vmaDestroyBuffer(allocator, buffer.buffer, buffer.allocation);
+    }
+
+    /*
     void createInstanceBuffer() {
         instances.resize(NUM_RECTANGLES);
         std::random_device rd;
@@ -311,6 +357,7 @@ private:
         memcpy(data, instances.data(), bufferSize);
         vmaUnmapMemory(allocator, instanceBufferAlloc);
     }
+    */
 
     void mainLoop() {
         while (!glfwWindowShouldClose(window)) {
@@ -319,10 +366,10 @@ private:
     }
 
     void cleanup() {
-        vmaDestroyBuffer(allocator, instanceBuffer, instanceBufferAlloc);
+        // vmaDestroyBuffer(allocator, instanceBuffer, instanceBufferAlloc);
         vmaDestroyAllocator(allocator);
         vkDestroyDevice(device, nullptr);
-        vkb::destroy_instance(vkbInstance);
+        // vkb::destroy_instance(vkbInstance);
         glfwDestroyWindow(window);
         glfwTerminate();
     }
