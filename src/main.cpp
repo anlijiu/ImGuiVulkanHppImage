@@ -1,7 +1,17 @@
-#define VMA_IMPLEMENTATION
-#include "vk_mem_alloc.h"
-#include "VkBootstrap.h"
+
+#include <vulkan/vulkan.h>
+
+// #define VK_NO_PROTOTYPES
+#define VOLK_IMPLEMENTATION
 #include "volk.h"
+
+#define VMA_IMPLEMENTATION
+#define VMA_STATIC_VULKAN_FUNCTIONS 0
+#define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
+#define VMA_DEBUG_LOG
+#include "vk_mem_alloc.h"
+
+#include "VkBootstrap.h"
 
 #include <GLFW/glfw3.h>
 
@@ -11,6 +21,7 @@
 #include <iostream>
 #include <random>
 #include <stdio.h>
+#include <print>
 #include <fmt/format.h>
 
 #define VK_CHECK(call)                 \
@@ -36,7 +47,7 @@ struct Version {
         return fmt::format("{}{}.{}.{}", addV ? "v" : "", major, minor, patch);
     }
 };
-Version appVersion = {0, 0, 0};
+Version appVersion = {0, 1, 0};
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -201,7 +212,7 @@ private:
             .set_app_version(appVersion.major, appVersion.major, appVersion.patch)
             .request_validation_layers()
             .use_default_debug_messenger()
-            .require_api_version(1, 4, 0)
+            .require_api_version(1, 3, 0)
             .build()
             .value();
 
@@ -246,15 +257,16 @@ private:
             .maintenance5 = VK_TRUE,
         };
         
-        physicalDevice = vkb::PhysicalDeviceSelector{instance}
-                             .set_minimum_version(1, 3)
+        auto selector = vkb::PhysicalDeviceSelector{instance}
+                             .set_minimum_version(1, 4)
                              .set_required_features(deviceFeatures)
                              .set_required_features_12(features12)
                              .set_required_features_13(features13)
                              .set_required_features_14(features14)
                              .set_surface(surface)
-                             .select()
-                             .value();
+                             .allow_any_gpu_device_type(false)
+                             .prefer_gpu_device_type(vkb::PreferredDeviceType::discrete);
+        physicalDevice = selector.select().value();
 
         checkDeviceCapabilities();
 
@@ -263,23 +275,36 @@ private:
         graphicsQueueFamily = device.get_queue_index(vkb::QueueType::graphics).value();
         graphicsQueue = device.get_queue(vkb::QueueType::graphics).value();
 
-        { // Init VMA
-            const auto vulkanFunctions = VmaVulkanFunctions{
+        auto names = selector.select_device_names().value();
+        for(auto name : names) {
+            std::println("selector  device name: {}", name);
+        }
+        std::println("physicalDevice name: {}", physicalDevice.name);
+
+        // { // Init VMA
+            const auto vulkanFunctions = VmaVulkanFunctions {
                 .vkGetInstanceProcAddr = vkGetInstanceProcAddr,
-                    .vkGetDeviceProcAddr = vkGetDeviceProcAddr,
+                .vkGetDeviceProcAddr = vkGetDeviceProcAddr,
             };
 
-            const auto allocatorInfo = VmaAllocatorCreateInfo{
+            const auto allocatorInfo = VmaAllocatorCreateInfo {
                 .flags = VMA_ALLOCATOR_CREATE_BUFFER_DEVICE_ADDRESS_BIT,
-                    .physicalDevice = physicalDevice,
-                    .device = device,
-                    .pVulkanFunctions = &vulkanFunctions,
-                    .instance = instance,
+                .physicalDevice = physicalDevice,
+                .device = device,
+                .pVulkanFunctions = &vulkanFunctions,
+                .instance = instance,
             };
             vmaCreateAllocator(&allocatorInfo, &allocator);
-        }
+        // }
+
+
+
+
+
+
 
         // createInstanceBuffer();
+        return 0;
     }
 
     [[nodiscard]] GPUBuffer createBuffer(

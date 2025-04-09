@@ -97,10 +97,11 @@ if vulkan.found()
     volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
   endif
   volk_subproj = cmake.subproject('volk', options: volk_opts)
-  volk_dep = declare_dependency(compile_args: ['-DVK_NO_PROTOTYPES'],
-                            include_directories: volk_subproj.include_directories('volk'),
-                            link_with: volk_subproj.target('volk'),
-                            dependencies: vulkan)
+  volk_dep = declare_dependency(
+    compile_args: ['-DVK_NO_PROTOTYPES'],
+    include_directories: volk_subproj.include_directories('volk'),
+    link_with: volk_subproj.target('volk'),
+    dependencies: vulkan)
 endif
 
 sdl_opts = cmake.subproject_options()
