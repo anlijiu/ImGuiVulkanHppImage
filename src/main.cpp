@@ -24,6 +24,12 @@
 #include <print>
 #include <fmt/format.h>
 
+#include <vulkan/vk_enum_string_helper.h>
+
+#include <tracy/TracyVulkan.hpp>
+
+#include "Init.h"
+
 #define VK_CHECK(call)                 \
     do {                               \
         VkResult result_ = call;       \
@@ -35,6 +41,8 @@ const int HEIGHT = 600;
 const int NUM_RECTANGLES = 500;
 
 inline constexpr std::uint32_t FRAME_OVERLAP = 2;
+static constexpr auto NO_TIMEOUT = std::numeric_limits<std::uint64_t>::max();
+
 const char* appName = "test";
 
 struct Version {
@@ -69,14 +77,207 @@ struct GPUBuffer {
     VkDeviceAddress address{0};
 };
 
-struct FrameData {
-    VkSemaphore swapchainSemaphore;
-    VkSemaphore renderSemaphore;
-    VkFence renderFence;
-};
-
 class Swapchain {
+public:
+    struct FrameData {
+        VkSemaphore swapchainSemaphore;
+        VkSemaphore renderSemaphore;
+        VkFence renderFence;
+    };
 
+    void initSyncStructures(VkDevice device)
+    {
+        const auto fenceCreateInfo = VkFenceCreateInfo {
+            .sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO,
+            .flags = VK_FENCE_CREATE_SIGNALED_BIT,
+        };
+        const auto semaphoreCreateInfo = VkSemaphoreCreateInfo{
+            .sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO,
+        };
+        for (std::uint32_t i = 0; i < FRAME_OVERLAP; ++i) {
+            VK_CHECK(vkCreateFence(device, &fenceCreateInfo, nullptr, &frames[i].renderFence));
+            VK_CHECK(vkCreateSemaphore(device, &semaphoreCreateInfo, nullptr, &frames[i].swapchainSemaphore));
+            VK_CHECK(vkCreateSemaphore(device, &semaphoreCreateInfo, nullptr, &frames[i].renderSemaphore));
+        }
+    }
+    void create(
+        const vkb::Device& device,
+        VkFormat swapchainFormat,
+        std::uint32_t width,
+        std::uint32_t height,
+        bool vSync)
+    {
+        assert(swapchainFormat == VK_FORMAT_B8G8R8A8_SRGB && "TODO: test other formats");
+        // vSync = false;
+
+        auto res = vkb::SwapchainBuilder{device}
+        .set_desired_format(VkSurfaceFormatKHR{
+                .format = swapchainFormat,
+                .colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
+                })
+        .add_image_usage_flags(VK_IMAGE_USAGE_TRANSFER_DST_BIT)
+            .set_desired_present_mode(
+                    vSync ? VK_PRESENT_MODE_FIFO_KHR : VK_PRESENT_MODE_IMMEDIATE_KHR)
+            .set_desired_extent(width, height)
+            .build();
+        if (!res.has_value()) {
+            throw std::runtime_error(fmt::format(
+                        "failed to create swapchain: error = {}, vk result = {}",
+                        res.full_error().type.message(),
+                        string_VkResult(res.full_error().vk_result)));
+        }
+        swapchain = res.value();
+
+        images = swapchain.get_images().value();
+        imageViews = swapchain.get_image_views().value();
+
+        // TODO: if re-creation of swapchain is supported, don't forget to call
+        // vkutil::initSwapchainViews here.
+    }
+    void recreate(
+        const vkb::Device& device,
+        VkFormat swapchainFormat,
+        std::uint32_t width,
+        std::uint32_t height,
+        bool vSync)
+    {
+        assert(swapchain);
+
+        assert(swapchainFormat == VK_FORMAT_B8G8R8A8_SRGB && "TODO: test other formats");
+        auto res = vkb::SwapchainBuilder{device}
+        .set_old_swapchain(swapchain)
+            .set_desired_format(VkSurfaceFormatKHR{
+                    .format = swapchainFormat,
+                    .colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR,
+                    })
+        .add_image_usage_flags(VK_IMAGE_USAGE_TRANSFER_DST_BIT)
+            .set_desired_present_mode(
+                    vSync ? VK_PRESENT_MODE_FIFO_KHR : VK_PRESENT_MODE_IMMEDIATE_KHR)
+            .set_desired_extent(width, height)
+            .build();
+        if (!res.has_value()) {
+            throw std::runtime_error(fmt::format(
+                        "failed to create swapchain: error = {}, vk result = {}",
+                        res.full_error().type.message(),
+                        string_VkResult(res.full_error().vk_result)));
+        }
+        vkb::destroy_swapchain(swapchain);
+
+        for (auto imageView : imageViews) {
+            vkDestroyImageView(device, imageView, nullptr);
+        }
+
+        swapchain = res.value();
+
+        images = swapchain.get_images().value();
+        imageViews = swapchain.get_image_views().value();
+
+        dirty = false;
+    }
+
+    void cleanup(VkDevice device)
+    {
+        for (auto& frame : frames) {
+            vkDestroyFence(device, frame.renderFence, nullptr);
+            vkDestroySemaphore(device, frame.swapchainSemaphore, nullptr);
+            vkDestroySemaphore(device, frame.renderSemaphore, nullptr);
+        }
+
+        { // destroy swapchain and its views
+            for (auto imageView : imageViews) {
+                vkDestroyImageView(device, imageView, nullptr);
+            }
+            imageViews.clear();
+
+            vkb::destroy_swapchain(swapchain);
+        }
+    }
+
+    VkExtent2D getExtent() const { return swapchain.extent; }
+
+    const std::vector<VkImage>& getImages() { return images; };
+
+    void beginFrame(VkDevice device, std::size_t frameIndex) const
+    {
+        auto& frame = frames[frameIndex];
+        VK_CHECK(vkWaitForFences(device, 1, &frame.renderFence, true, NO_TIMEOUT));
+    }
+
+    void resetFences(VkDevice device, std::size_t frameIndex) const
+    {
+        auto& frame = frames[frameIndex];
+        VK_CHECK(vkResetFences(device, 1, &frame.renderFence));
+    }
+
+    // returns the image and its index
+    std::pair<VkImage, std::uint32_t> acquireImage(VkDevice device, std::size_t frameIndex)
+    {
+        std::uint32_t swapchainImageIndex{};
+        const auto result = vkAcquireNextImageKHR(
+                device,
+                swapchain,
+                NO_TIMEOUT,
+                frames[frameIndex].swapchainSemaphore,
+                VK_NULL_HANDLE,
+                &swapchainImageIndex);
+        if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR) {
+            dirty = true;
+            return {images[swapchainImageIndex], swapchainImageIndex};
+        } else if (result != VK_SUCCESS) {
+            throw std::runtime_error("failed to acquire swap chain image!");
+        }
+
+        return {images[swapchainImageIndex], swapchainImageIndex};
+    }
+
+    void submitAndPresent(
+        VkCommandBuffer cmd,
+        VkQueue graphicsQueue,
+        std::size_t frameIndex,
+        std::uint32_t swapchainImageIndex)
+    {
+        const auto& frame = frames[frameIndex];
+
+        { // submit
+            const auto submitInfo = VkCommandBufferSubmitInfo{
+                .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_SUBMIT_INFO,
+                    .commandBuffer = cmd,
+            };
+            const auto waitInfo = vkinit::semaphoreSubmitInfo(
+                    VK_PIPELINE_STAGE_2_COLOR_ATTACHMENT_OUTPUT_BIT_KHR, frame.swapchainSemaphore);
+            const auto signalInfo = vkinit::
+                semaphoreSubmitInfo(VK_PIPELINE_STAGE_2_ALL_GRAPHICS_BIT, frame.renderSemaphore);
+
+            const auto submit = vkinit::submitInfo(&submitInfo, &waitInfo, &signalInfo);
+            VK_CHECK(vkQueueSubmit2(graphicsQueue, 1, &submit, frame.renderFence));
+        }
+
+        { // present
+            const auto presentInfo = VkPresentInfoKHR{
+                .sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR,
+                    .waitSemaphoreCount = 1,
+                    .pWaitSemaphores = &frame.renderSemaphore,
+                    .swapchainCount = 1,
+                    .pSwapchains = &swapchain.swapchain,
+                    .pImageIndices = &swapchainImageIndex,
+            };
+
+            auto res = vkQueuePresentKHR(graphicsQueue, &presentInfo);
+            if (res != VK_SUCCESS) {
+                if (res != VK_SUBOPTIMAL_KHR) {
+                    fmt::println("failed to present: {}", string_VkResult(res));
+                }
+                dirty = true;
+            }
+        }
+    }
+
+    VkImageView getImageView(std::size_t swapchainImageIndex)
+    {
+        return imageViews[swapchainImageIndex];
+    }
+
+    bool needsRecreation() const { return dirty; }
 private:
 
     //飞行帧
@@ -89,6 +290,12 @@ private:
 
 class VulkanApp {
 public:
+    struct FrameData {
+        VkCommandPool commandPool;
+        VkCommandBuffer mainCommandBuffer;
+        TracyVkCtx tracyVkCtx;
+    };
+
     void run() {
         initWindow();
         initVulkan();
@@ -117,6 +324,7 @@ private:
     VkSampleCountFlagBits highestSupportedSamples{VK_SAMPLE_COUNT_1_BIT};
     float maxSamplerAnisotropy{1.f};
 
+    bool vSync{true};
 
     // VkCommandPool commandPool;
     // VkCommandBuffer commandBuffer;
@@ -300,11 +508,34 @@ private:
 
 
 
+        swapchain.initSyncStructures(device);
 
 
+        int w, h;
+        glfwGetFramebufferSize(window, &w, &h); 
+        swapchainFormat = VK_FORMAT_B8G8R8A8_SRGB;
+        swapchain.create(device, swapchainFormat, (std::uint32_t)w, (std::uint32_t)h, vSync);
+
+        createCommandBuffers();
 
         // createInstanceBuffer();
         return 0;
+    }
+
+
+    void createCommandBuffers()
+    {
+        const auto poolCreateInfo = vkinit::
+            commandPoolCreateInfo(VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, graphicsQueueFamily);
+
+        for (std::uint32_t i = 0; i < FRAME_OVERLAP; ++i) {
+            auto& commandPool = frames[i].commandPool;
+            VK_CHECK(vkCreateCommandPool(device, &poolCreateInfo, nullptr, &commandPool));
+
+            const auto cmdAllocInfo = vkinit::commandBufferAllocateInfo(commandPool, 1);
+            auto& mainCommandBuffer = frames[i].mainCommandBuffer;
+            VK_CHECK(vkAllocateCommandBuffers(device, &cmdAllocInfo, &mainCommandBuffer));
+        }
     }
 
     [[nodiscard]] GPUBuffer createBuffer(

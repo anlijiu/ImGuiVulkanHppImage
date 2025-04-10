@@ -38,6 +38,14 @@ else
 endif
 cmake_msvc_lib += 'DLL'
 
+cpp_args = [
+  '-DVULKAN_HPP_NO_NODISCARD_WARNINGS',
+  '-DVULKAN_HPP_DISPATCH_LOADER_DYNAMIC=1',
+  '-DVMA_VULKAN_VERSION=1003000',
+  '-DVMA_STATIC_VULKAN_FUNCTIONS=0',
+  '-DVMA_DYNAMIC_VULKAN_FUNCTIONS=1',
+  '-DVK_NO_PROTOTYPES'
+]
 
 # glslc = find_program('glslc')
 # 
@@ -146,6 +154,7 @@ fmt_dep = cmake.subproject('fmt').get_variable('fmt_dep')
 glfw_proj = cmake.subproject('glfw')
 glfw_dep = glfw_proj.dependency('glfw')
 
+tracy_dep = subproject('tracy').get_variable('tracy_dep')
 
 vk_bootstrap_opts = cmake.subproject_options()
 vk_bootstrap_opts.add_cmake_defines({'VK_BOOTSTRAP_TEST': false})
@@ -167,14 +176,16 @@ app_deps = [
   volk_dep,
   glfw_dep,
   glm_dep,
+  tracy_dep,
 ]
 
-sources = files('src/main.cpp')
+sources = files('src/main.cpp', 'src/Init.cpp')
 
 executable('m',
   sources,
   include_directories : incdir,
   dependencies : app_deps,
+  cpp_args: cpp_args
 )
 
 Asources = files('src/mainA.cpp')
