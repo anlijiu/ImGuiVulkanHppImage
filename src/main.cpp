@@ -29,6 +29,9 @@
 #include <tracy/TracyVulkan.hpp>
 
 #include "Init.h"
+#include "Util.h"
+#include "Color.h"
+#include "GPUImage.h"
 
 #define VK_CHECK(call)                 \
     do {                               \
@@ -288,12 +291,23 @@ private:
     bool dirty{false};
 };
 
+using ImageId = std::uint32_t;
+static const auto NULL_IMAGE_ID = std::numeric_limits<std::uint32_t>::max();
+
 class VulkanApp {
 public:
     struct FrameData {
         VkCommandPool commandPool;
         VkCommandBuffer mainCommandBuffer;
         TracyVkCtx tracyVkCtx;
+    };
+
+    struct EndFrameProps {
+        const LinearColor clearColor{0.f, 0.f, 0.f, 1.f};
+        bool copyImageIntoSwapchain{true};
+        glm::ivec4 drawImageBlitRect{}; // where to blit draw image to
+        bool drawImageLinearBlit{true}; // if false - nearest filter will be used
+        bool drawImGui{true};
     };
 
     void run() {
@@ -325,6 +339,12 @@ private:
     float maxSamplerAnisotropy{1.f};
 
     bool vSync{true};
+
+
+    ImageId gameScreenDrawImageId{NULL_IMAGE_ID}; // image to which game pixels are drawn to
+    ImageId finalDrawImageId{NULL_IMAGE_ID}; // id of image which is drawn to the window
+
+    VkFormat drawImageFormat{VK_FORMAT_R16G16B16A16_SFLOAT};
 
     // VkCommandPool commandPool;
     // VkCommandBuffer commandBuffer;
@@ -363,6 +383,9 @@ private:
     std::vector<uint16_t> indices = {0, 1, 2, 2, 3, 0};
 
     std::vector<InstanceData> instances;
+
+
+    VkExtent2D getSwapchainExtent() const { return swapchain.getExtent(); }
 
 
     void checkDeviceCapabilities()
@@ -538,6 +561,130 @@ private:
         }
     }
 
+    VkCommandBuffer beginFrame()
+    {
+        swapchain.beginFrame(device, getCurrentFrameIndex());
+
+        const auto& frame = getCurrentFrame();
+        const auto& cmd = frame.mainCommandBuffer;
+        const auto cmdBeginInfo = VkCommandBufferBeginInfo{
+            .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
+                .flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT,
+        };
+        VK_CHECK(vkBeginCommandBuffer(cmd, &cmdBeginInfo));
+
+        return cmd;
+    }
+
+    void endFrame(VkCommandBuffer cmd, const GPUImage& drawImage, const EndFrameProps& props)
+    {
+        // get swapchain image
+        const auto [swapchainImage, swapchainImageIndex] =
+            swapchain.acquireImage(device, getCurrentFrameIndex());
+        if (swapchainImage == VK_NULL_HANDLE) {
+            return;
+        }
+
+        // Fences are reset here to prevent the deadlock in case swapchain becomes dirty
+        swapchain.resetFences(device, getCurrentFrameIndex());
+
+        auto swapchainLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+
+        {
+            // clear swapchain image
+            VkImageSubresourceRange clearRange =
+                vkinit::imageSubresourceRange(VK_IMAGE_ASPECT_COLOR_BIT);
+            vkutil::transitionImage(cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_GENERAL);
+            swapchainLayout = VK_IMAGE_LAYOUT_GENERAL;
+
+            const auto clearValue = VkClearColorValue{
+                {props.clearColor.r, props.clearColor.g, props.clearColor.b, props.clearColor.a}};
+            vkCmdClearColorImage(
+                    cmd, swapchainImage, VK_IMAGE_LAYOUT_GENERAL, &clearValue, 1, &clearRange);
+        }
+
+        if (props.copyImageIntoSwapchain) {
+            // copy from draw image into swapchain
+            vkutil::transitionImage(
+                    cmd,
+                    drawImage.image,
+                    VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL,
+                    VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+            vkutil::transitionImage(
+                    cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+            swapchainLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+
+            const auto filter = props.drawImageLinearBlit ? VK_FILTER_LINEAR : VK_FILTER_NEAREST;
+            if (props.drawImageBlitRect != glm::ivec4{}) {
+                vkutil::copyImageToImage(
+                        cmd,
+                        drawImage.image,
+                        swapchainImage,
+                        drawImage.getExtent2D(),
+                        props.drawImageBlitRect.x,
+                        props.drawImageBlitRect.y,
+                        props.drawImageBlitRect.z,
+                        props.drawImageBlitRect.w,
+                        filter);
+            } else {
+                // will stretch image to swapchain
+                vkutil::copyImageToImage(
+                        cmd,
+                        drawImage.image,
+                        swapchainImage,
+                        drawImage.getExtent2D(),
+                        getSwapchainExtent(),
+                        filter);
+            }
+        }
+
+        // if (props.drawImGui) {
+        //     vkutil::transitionImage(
+        //             cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL);
+        //     swapchainLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+        // 
+        //     { // draw Dear ImGui
+        //         ZoneScopedN("ImGui draw");
+        //         TracyVkZoneC(getTracyVkCtx(), cmd, "ImGui", tracy::Color::VioletRed);
+        //         vkutil::cmdBeginLabel(cmd, "Draw Dear ImGui");
+        //         imGuiBackend.draw(
+        //                 cmd, *this, swapchain.getImageView(swapchainImageIndex), swapchain.getExtent());
+        //         vkutil::cmdEndLabel(cmd);
+        //     }
+        // }
+
+        // prepare for present
+        vkutil::transitionImage(cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
+        swapchainLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+        {
+            // TODO: don't collect every frame?
+            auto& frame = getCurrentFrame();
+            TracyVkCollect(frame.tracyVkCtx, frame.mainCommandBuffer);
+        }
+
+        VK_CHECK(vkEndCommandBuffer(cmd));
+
+        swapchain.submitAndPresent(cmd, graphicsQueue, getCurrentFrameIndex(), swapchainImageIndex);
+
+        frameNumber++;
+    }
+
+    FrameData& getCurrentFrame()
+    {
+        return frames[getCurrentFrameIndex()];
+    }
+
+    const TracyVkCtx& getTracyVkCtx() const
+    {
+        return frames[getCurrentFrameIndex()].tracyVkCtx;
+    }
+
+    std::uint32_t getCurrentFrameIndex() const
+    {
+        return frameNumber % FRAME_OVERLAP;
+    }
+
     [[nodiscard]] GPUBuffer createBuffer(
         std::size_t allocSize,
         VkBufferUsageFlags usage,
@@ -615,10 +762,158 @@ private:
     }
     */
 
+    ImageId createDrawImage(
+            VkFormat format,
+            glm::ivec2 size,
+            const char* debugName,
+            ImageId imageId = NULL_IMAGE_ID)
+    {
+        assert(size.x > 0 && size.y > 0);
+        const auto extent = VkExtent3D{
+            .width = (std::uint32_t)size.x,
+                .height = (std::uint32_t)size.y,
+                .depth = 1,
+        };
+
+        VkImageUsageFlags usages{};
+        usages |= VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
+        usages |= VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+        usages |= VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+        usages |= VK_IMAGE_USAGE_SAMPLED_BIT;
+
+        const auto createImageInfo = vkutil::CreateImageInfo{
+            .format = format,
+                .usage = usages,
+                .extent = extent,
+        };
+        return createImage(createImageInfo, debugName, nullptr, imageId);
+    }
+
+
+    ImageId createImage(
+            const vkutil::CreateImageInfo& createInfo,
+            const char* debugName,
+            void* pixelData,
+            ImageId imageId)
+    {
+        auto image = createImageRaw(createInfo);
+        if (debugName) {
+            vkutil::addDebugLabel(device, image.image, debugName);
+            image.debugName = debugName;
+        }
+        if (pixelData) {
+            uploadImageData(image, pixelData);
+        }
+        if (imageId != NULL_IMAGE_ID) {
+            return imageCache.addImage(imageId, std::move(image));
+        }
+        return addImageToCache(std::move(image));
+    }
+
+
+    GPUImage createImageRaw(
+            const vkutil::CreateImageInfo& createInfo,
+            std::optional<VmaAllocationCreateInfo> customAllocationCreateInfo) const
+    {
+        std::uint32_t mipLevels = 1;
+        if (createInfo.mipMap) {
+            const auto maxExtent = std::max(createInfo.extent.width, createInfo.extent.height);
+            mipLevels = (std::uint32_t)std::floor(std::log2(maxExtent)) + 1;
+        }
+
+        if (createInfo.isCubemap) {
+            assert(createInfo.numLayers % 6 == 0);
+            assert(!createInfo.mipMap);
+            assert((createInfo.flags & VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT) != 0);
+        }
+
+        auto imgInfo = VkImageCreateInfo{
+            .sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO,
+                .flags = createInfo.flags,
+                .imageType = VK_IMAGE_TYPE_2D,
+                .format = createInfo.format,
+                .extent = createInfo.extent,
+                .mipLevels = mipLevels,
+                .arrayLayers = createInfo.numLayers,
+                .samples = createInfo.samples,
+                .tiling = createInfo.tiling,
+                .usage = createInfo.usage,
+        };
+
+        static const auto defaultAllocInfo = VmaAllocationCreateInfo{
+            .usage = VMA_MEMORY_USAGE_AUTO,
+                .requiredFlags = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+        };
+        const auto allocInfo = customAllocationCreateInfo.has_value() ?
+            customAllocationCreateInfo.value() :
+            defaultAllocInfo;
+
+        GPUImage image{};
+        image.format = createInfo.format;
+        image.usage = createInfo.usage;
+        image.extent = createInfo.extent;
+        image.mipLevels = mipLevels;
+        image.numLayers = createInfo.numLayers;
+        image.isCubemap = createInfo.isCubemap;
+
+        VK_CHECK(
+                vmaCreateImage(allocator, &imgInfo, &allocInfo, &image.image, &image.allocation, nullptr));
+
+        // create view only when usage flags allow it
+        bool shouldCreateView = ((createInfo.usage & VK_IMAGE_USAGE_SAMPLED_BIT) != 0) ||
+            ((createInfo.usage & VK_IMAGE_USAGE_STORAGE_BIT) != 0) ||
+            ((createInfo.usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT) != 0) ||
+            ((createInfo.usage & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT) != 0);
+
+        if (shouldCreateView) {
+            VkImageAspectFlags aspectFlag = VK_IMAGE_ASPECT_COLOR_BIT;
+            if (createInfo.format == VK_FORMAT_D32_SFLOAT) { // TODO: support other depth formats
+                aspectFlag = VK_IMAGE_ASPECT_DEPTH_BIT;
+            }
+
+            auto viewType =
+                createInfo.numLayers == 1 ? VK_IMAGE_VIEW_TYPE_2D : VK_IMAGE_VIEW_TYPE_2D_ARRAY;
+            if (createInfo.isCubemap && createInfo.numLayers == 6) {
+                viewType = VK_IMAGE_VIEW_TYPE_CUBE;
+            }
+
+            const auto viewCreateInfo = VkImageViewCreateInfo{
+                .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
+                    .image = image.image,
+                    .viewType = viewType,
+                    .format = createInfo.format,
+                    .subresourceRange =
+                        VkImageSubresourceRange{
+                            .aspectMask = aspectFlag,
+                            .baseMipLevel = 0,
+                            .levelCount = mipLevels,
+                            .baseArrayLayer = 0,
+                            .layerCount = createInfo.numLayers,
+                        },
+            };
+
+            VK_CHECK(vkCreateImageView(device, &viewCreateInfo, nullptr, &image.imageView));
+        }
+
+        return image;
+    }
+
+    void drawFrame() {
+        auto cmd = beginFrame();
+
+        gameScreenDrawImageId = createDrawImage(drawImageFormat, glm::ivec2{100, 100}, "game screen draw image");
+
+        finalDrawImageId = createDrawImage(
+        drawImageFormat, glm::ivec2{100 , 100}, "final draw image", finalDrawImageId);
+        endFrame();
+    }
+
     void mainLoop() {
         while (!glfwWindowShouldClose(window)) {
             glfwPollEvents();
+            drawFrame();
         }
+        vkDeviceWaitIdle(device);
     }
 
     void cleanup() {

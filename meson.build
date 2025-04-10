@@ -179,7 +179,12 @@ app_deps = [
   tracy_dep,
 ]
 
-sources = files('src/main.cpp', 'src/Init.cpp')
+sources = files(
+  'src/main.cpp',
+  'src/Init.cpp',
+  'src/Util.cpp',
+  'src/Color.cpp',
+)
 
 executable('m',
   sources,
