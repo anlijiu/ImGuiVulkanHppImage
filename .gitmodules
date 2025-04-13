@@ -3,7 +3,7 @@
 	url = git@github.com:libsdl-org/SDL.git
 	branch = main
 [submodule "subprojects/imgui"]
-	path = subprojects/imgui
+	path = externals/imgui
 	url = git@github.com:ocornut/imgui.git
 	branch = docking
 [submodule "subprojects/vk-bootstrap"]

@@ -156,6 +156,41 @@ glfw_dep = glfw_proj.dependency('glfw')
 
 tracy_dep = subproject('tracy').get_variable('tracy_dep')
 
+freetype2_dep = subproject('freetype2').get_variable('freetype_dep')
+
+imgui_inc = include_directories(
+  './externals/imgui',
+  './externals/imgui/backends',
+  './externals/imgui/misc/cpp',
+  './externals/imgui/misc/freetype'
+)
+imgui_sources = [
+  './externals/imgui/imgui.cpp',
+  './externals/imgui/imgui_draw.cpp',
+  './externals/imgui/imgui_widgets.cpp',
+  './externals/imgui/imgui_demo.cpp',
+  './externals/imgui/imgui_tables.cpp',
+  './externals/imgui/backends/imgui_impl_glfw.cpp',
+  './externals/imgui/backends/imgui_impl_vulkan.cpp',
+  './externals/imgui/misc/cpp/imgui_stdlib.cpp',
+  './externals/imgui/misc/freetype/imgui_freetype.cpp',
+]
+
+imgui_dll_defs = ['-DIMGUI_API=__attribute__((visibility("default")))']
+if host_machine.system() == 'windows'
+  imgui_dll_defs += '-DIMGUI_API=@0@'.format(get_option('default_library') != 'static' ? '__declspec(dllexport)' : '')
+endif
+imgui = static_library('imgui',
+                  imgui_sources,
+                  include_directories: imgui_inc,
+                  install: false,
+                  cpp_args: imgui_dll_defs,
+                  gnu_symbol_visibility: 'inlineshidden',
+                  dependencies: [vulkan, glfw_dep, freetype2_dep ]
+                  )
+
+imgui_dep = declare_dependency(link_with: imgui, include_directories: imgui_inc)
+
 vk_bootstrap_opts = cmake.subproject_options()
 vk_bootstrap_opts.add_cmake_defines({'VK_BOOTSTRAP_TEST': false})
 vk_bootstrap_proj = cmake.subproject('vk-bootstrap', options: vk_bootstrap_opts)
@@ -177,6 +212,7 @@ app_deps = [
   glfw_dep,
   glm_dep,
   tracy_dep,
+  imgui_dep,
 ]
 
 sources = files(
@@ -205,6 +241,14 @@ Bsources = files('src/mainB.cpp')
 
 executable('m2',
   Bsources,
+  include_directories : incdir,
+  dependencies : app_deps,
+)
+
+
+Csources = files('src/test1/main.cpp')
+executable('m3',
+  Csources,
   include_directories : incdir,
   dependencies : app_deps,
 )
