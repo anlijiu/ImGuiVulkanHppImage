@@ -79,8 +79,9 @@ VulkanSDK = '/home/an/VulkanSDK/1.4.309.0/x86_64/'
 vulkan_dep = declare_dependency(
     include_directories : include_directories(
       VulkanSDK + 'include',
-      VulkanSDK + 'include/' + 'glslang',
-      VulkanSDK + 'include/' + 'spirv',
+      VulkanSDK + 'include/vulkan',
+      VulkanSDK + 'include/glslang',
+      VulkanSDK + 'include/spirv',
     ),
     version : '1.4',
     link_args : [
@@ -198,7 +199,7 @@ vk_bootstrap_dep = vk_bootstrap_proj.dependency('vk-bootstrap')
 
 # message('CMake targets:\n - ' + '\n - '.join(cmake.subproject('VulkanMemoryAllocator-Hpp').target_list()))
 
-vma_dep = cmake.subproject('VulkanMemoryAllocator').dependency('VulkanMemoryAllocator')
+# vma_dep = cmake.subproject('VulkanMemoryAllocator').dependency('VulkanMemoryAllocator')
 
 glm_proj = cmake.subproject('glm')
 glm_dep = glm_proj.dependency('glm')
@@ -206,13 +207,14 @@ glm_dep = glm_proj.dependency('glm')
 
 app_deps = [
   fmt_dep,
-  vma_dep,
+  # vma_dep,
   vk_bootstrap_dep,
   volk_dep,
   glfw_dep,
   glm_dep,
   tracy_dep,
   imgui_dep,
+  vulkan_dep,
 ]
 
 sources = files(
@@ -250,5 +252,22 @@ Csources = files('src/test1/main.cpp')
 executable('m3',
   Csources,
   include_directories : incdir,
+  dependencies : app_deps,
+)
+
+Dsources = files('src/test2/main.cpp')
+executable('m4',
+  Dsources,
+  include_directories: include_directories('src/test2', 'src/test2/TinyVulkan'),
+  dependencies : app_deps,
+)
+
+Esources = files(
+  'src/test3/app.cpp', 'src/test3/lve_device.cpp', 'src/test3/lve_model.cpp', 'src/test3/lve_pipeline.cpp',
+  'src/test3/lve_swap_chain.cpp',  'src/test3/lve_window.cpp', 'src/test3/main.cpp', 'src/test3/volk_init.cpp'
+)
+executable('m5',
+  Esources,
+  include_directories: include_directories('src/test3'),
   dependencies : app_deps,
 )

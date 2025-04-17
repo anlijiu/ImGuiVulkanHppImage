@@ -1,9 +1,309 @@
 [
   {
     "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
-    "command": "/usr/bin/cc -Isubprojects/volk/libvolk.a.p -Isubprojects/volk -I../subprojects/volk -I/usr/include -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -DVK_NO_PROTOTYPES -MD -MQ subprojects/volk/libvolk.a.p/volk.c.o -MF subprojects/volk/libvolk.a.p/volk.c.o.d -o subprojects/volk/libvolk.a.p/volk.c.o -c ../subprojects/volk/volk.c",
+    "command": "/usr/bin/cc -Isubprojects/volk/libvolk.a.p -Isubprojects/volk -I../subprojects/volk -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -DVK_NO_PROTOTYPES -MD -MQ subprojects/volk/libvolk.a.p/volk.c.o -MF subprojects/volk/libvolk.a.p/volk.c.o.d -o subprojects/volk/libvolk.a.p/volk.c.o -c ../subprojects/volk/volk.c",
     "file": "../subprojects/volk/volk.c",
     "output": "subprojects/volk/libvolk.a.p/volk.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libtest_main.a.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/libtest_main.a.p/test_test-main.cc.o -MF subprojects/fmt/libtest_main.a.p/test_test-main.cc.o.d -o subprojects/fmt/libtest_main.a.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/libtest_main.a.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libtest_main.a.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/libtest_main.a.p/test_gtest-extra.cc.o -MF subprojects/fmt/libtest_main.a.p/test_gtest-extra.cc.o.d -o subprojects/fmt/libtest_main.a.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/libtest_main.a.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libtest_main.a.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/libtest_main.a.p/test_util.cc.o -MF subprojects/fmt/libtest_main.a.p/test_util.cc.o.d -o subprojects/fmt/libtest_main.a.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/libtest_main.a.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libfmt.a.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -MD -MQ subprojects/fmt/libfmt.a.p/src_format.cc.o -MF subprojects/fmt/libfmt.a.p/src_format.cc.o.d -o subprojects/fmt/libfmt.a.p/src_format.cc.o -c ../subprojects/fmt/src/format.cc",
+    "file": "../subprojects/fmt/src/format.cc",
+    "output": "subprojects/fmt/libfmt.a.p/src_format.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libfmt.a.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -MD -MQ subprojects/fmt/libfmt.a.p/src_os.cc.o -MF subprojects/fmt/libfmt.a.p/src_os.cc.o.d -o subprojects/fmt/libfmt.a.p/src_os.cc.o -c ../subprojects/fmt/src/os.cc",
+    "file": "../subprojects/fmt/src/os.cc",
+    "output": "subprojects/fmt/libfmt.a.p/src_os.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/libgtest.a.p -Isubprojects/fmt -I../subprojects/fmt -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/libgtest.a.p/test_gtest_gmock-gtest-all.cc.o -MF subprojects/fmt/libgtest.a.p/test_gtest_gmock-gtest-all.cc.o.d -o subprojects/fmt/libgtest.a.p/test_gtest_gmock-gtest-all.cc.o -c ../subprojects/fmt/test/gtest/gmock-gtest-all.cc",
+    "file": "../subprojects/fmt/test/gtest/gmock-gtest-all.cc",
+    "output": "subprojects/fmt/libgtest.a.p/test_gtest_gmock-gtest-all.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/args_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/args_test.p/test_args-test.cc.o -MF subprojects/fmt/args_test.p/test_args-test.cc.o.d -o subprojects/fmt/args_test.p/test_args-test.cc.o -c ../subprojects/fmt/test/args-test.cc",
+    "file": "../subprojects/fmt/test/args-test.cc",
+    "output": "subprojects/fmt/args_test.p/test_args-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/assert_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/assert_test.p/test_assert-test.cc.o -MF subprojects/fmt/assert_test.p/test_assert-test.cc.o.d -o subprojects/fmt/assert_test.p/test_assert-test.cc.o -c ../subprojects/fmt/test/assert-test.cc",
+    "file": "../subprojects/fmt/test/assert-test.cc",
+    "output": "subprojects/fmt/assert_test.p/test_assert-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/base_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/base_test.p/test_base-test.cc.o -MF subprojects/fmt/base_test.p/test_base-test.cc.o.d -o subprojects/fmt/base_test.p/test_base-test.cc.o -c ../subprojects/fmt/test/base-test.cc",
+    "file": "../subprojects/fmt/test/base-test.cc",
+    "output": "subprojects/fmt/base_test.p/test_base-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/chrono_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/chrono_test.p/test_chrono-test.cc.o -MF subprojects/fmt/chrono_test.p/test_chrono-test.cc.o.d -o subprojects/fmt/chrono_test.p/test_chrono-test.cc.o -c ../subprojects/fmt/test/chrono-test.cc",
+    "file": "../subprojects/fmt/test/chrono-test.cc",
+    "output": "subprojects/fmt/chrono_test.p/test_chrono-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/color_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/color_test.p/test_color-test.cc.o -MF subprojects/fmt/color_test.p/test_color-test.cc.o.d -o subprojects/fmt/color_test.p/test_color-test.cc.o -c ../subprojects/fmt/test/color-test.cc",
+    "file": "../subprojects/fmt/test/color-test.cc",
+    "output": "subprojects/fmt/color_test.p/test_color-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/compile_fp_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/compile_fp_test.p/test_compile-fp-test.cc.o -MF subprojects/fmt/compile_fp_test.p/test_compile-fp-test.cc.o.d -o subprojects/fmt/compile_fp_test.p/test_compile-fp-test.cc.o -c ../subprojects/fmt/test/compile-fp-test.cc",
+    "file": "../subprojects/fmt/test/compile-fp-test.cc",
+    "output": "subprojects/fmt/compile_fp_test.p/test_compile-fp-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/compile_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/compile_test.p/test_compile-test.cc.o -MF subprojects/fmt/compile_test.p/test_compile-test.cc.o.d -o subprojects/fmt/compile_test.p/test_compile-test.cc.o -c ../subprojects/fmt/test/compile-test.cc",
+    "file": "../subprojects/fmt/test/compile-test.cc",
+    "output": "subprojects/fmt/compile_test.p/test_compile-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/enforce_checks_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_ENFORCE_COMPILE_STRING -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/enforce_checks_test.p/test_enforce-checks-test.cc.o -MF subprojects/fmt/enforce_checks_test.p/test_enforce-checks-test.cc.o.d -o subprojects/fmt/enforce_checks_test.p/test_enforce-checks-test.cc.o -c ../subprojects/fmt/test/enforce-checks-test.cc",
+    "file": "../subprojects/fmt/test/enforce-checks-test.cc",
+    "output": "subprojects/fmt/enforce_checks_test.p/test_enforce-checks-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/test_format-impl-test.cc.o -MF subprojects/fmt/format_impl_test.p/test_format-impl-test.cc.o.d -o subprojects/fmt/format_impl_test.p/test_format-impl-test.cc.o -c ../subprojects/fmt/test/format-impl-test.cc",
+    "file": "../subprojects/fmt/test/format-impl-test.cc",
+    "output": "subprojects/fmt/format_impl_test.p/test_format-impl-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/test_header-only-test.cc.o -MF subprojects/fmt/format_impl_test.p/test_header-only-test.cc.o.d -o subprojects/fmt/format_impl_test.p/test_header-only-test.cc.o -c ../subprojects/fmt/test/header-only-test.cc",
+    "file": "../subprojects/fmt/test/header-only-test.cc",
+    "output": "subprojects/fmt/format_impl_test.p/test_header-only-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/test_test-main.cc.o -MF subprojects/fmt/format_impl_test.p/test_test-main.cc.o.d -o subprojects/fmt/format_impl_test.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/format_impl_test.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/test_gtest-extra.cc.o -MF subprojects/fmt/format_impl_test.p/test_gtest-extra.cc.o.d -o subprojects/fmt/format_impl_test.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/format_impl_test.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/test_util.cc.o -MF subprojects/fmt/format_impl_test.p/test_util.cc.o.d -o subprojects/fmt/format_impl_test.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/format_impl_test.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_impl_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_impl_test.p/src_os.cc.o -MF subprojects/fmt/format_impl_test.p/src_os.cc.o.d -o subprojects/fmt/format_impl_test.p/src_os.cc.o -c ../subprojects/fmt/src/os.cc",
+    "file": "../subprojects/fmt/src/os.cc",
+    "output": "subprojects/fmt/format_impl_test.p/src_os.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/format_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/format_test.p/test_format-test.cc.o -MF subprojects/fmt/format_test.p/test_format-test.cc.o.d -o subprojects/fmt/format_test.p/test_format-test.cc.o -c ../subprojects/fmt/test/format-test.cc",
+    "file": "../subprojects/fmt/test/format-test.cc",
+    "output": "subprojects/fmt/format_test.p/test_format-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/gtest_extra_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/gtest_extra_test.p/test_gtest-extra-test.cc.o -MF subprojects/fmt/gtest_extra_test.p/test_gtest-extra-test.cc.o.d -o subprojects/fmt/gtest_extra_test.p/test_gtest-extra-test.cc.o -c ../subprojects/fmt/test/gtest-extra-test.cc",
+    "file": "../subprojects/fmt/test/gtest-extra-test.cc",
+    "output": "subprojects/fmt/gtest_extra_test.p/test_gtest-extra-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/no_builtin_types_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/no_builtin_types_test.p/test_no-builtin-types-test.cc.o -MF subprojects/fmt/no_builtin_types_test.p/test_no-builtin-types-test.cc.o.d -o subprojects/fmt/no_builtin_types_test.p/test_no-builtin-types-test.cc.o -c ../subprojects/fmt/test/no-builtin-types-test.cc",
+    "file": "../subprojects/fmt/test/no-builtin-types-test.cc",
+    "output": "subprojects/fmt/no_builtin_types_test.p/test_no-builtin-types-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/no_builtin_types_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/no_builtin_types_test.p/test_test-main.cc.o -MF subprojects/fmt/no_builtin_types_test.p/test_test-main.cc.o.d -o subprojects/fmt/no_builtin_types_test.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/no_builtin_types_test.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/no_builtin_types_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/no_builtin_types_test.p/test_gtest-extra.cc.o -MF subprojects/fmt/no_builtin_types_test.p/test_gtest-extra.cc.o.d -o subprojects/fmt/no_builtin_types_test.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/no_builtin_types_test.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/no_builtin_types_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/no_builtin_types_test.p/test_util.cc.o -MF subprojects/fmt/no_builtin_types_test.p/test_util.cc.o.d -o subprojects/fmt/no_builtin_types_test.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/no_builtin_types_test.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/no_builtin_types_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/no_builtin_types_test.p/src_os.cc.o -MF subprojects/fmt/no_builtin_types_test.p/src_os.cc.o.d -o subprojects/fmt/no_builtin_types_test.p/src_os.cc.o -c ../subprojects/fmt/src/os.cc",
+    "file": "../subprojects/fmt/src/os.cc",
+    "output": "subprojects/fmt/no_builtin_types_test.p/src_os.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/os_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/os_test.p/test_os-test.cc.o -MF subprojects/fmt/os_test.p/test_os-test.cc.o.d -o subprojects/fmt/os_test.p/test_os-test.cc.o -c ../subprojects/fmt/test/os-test.cc",
+    "file": "../subprojects/fmt/test/os-test.cc",
+    "output": "subprojects/fmt/os_test.p/test_os-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/ostream_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/ostream_test.p/test_ostream-test.cc.o -MF subprojects/fmt/ostream_test.p/test_ostream-test.cc.o.d -o subprojects/fmt/ostream_test.p/test_ostream-test.cc.o -c ../subprojects/fmt/test/ostream-test.cc",
+    "file": "../subprojects/fmt/test/ostream-test.cc",
+    "output": "subprojects/fmt/ostream_test.p/test_ostream-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/perf_sanity.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -MD -MQ subprojects/fmt/perf_sanity.p/test_perf-sanity.cc.o -MF subprojects/fmt/perf_sanity.p/test_perf-sanity.cc.o.d -o subprojects/fmt/perf_sanity.p/test_perf-sanity.cc.o -c ../subprojects/fmt/test/perf-sanity.cc",
+    "file": "../subprojects/fmt/test/perf-sanity.cc",
+    "output": "subprojects/fmt/perf_sanity.p/test_perf-sanity.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/posix_mock_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/posix_mock_test.p/test_posix-mock-test.cc.o -MF subprojects/fmt/posix_mock_test.p/test_posix-mock-test.cc.o.d -o subprojects/fmt/posix_mock_test.p/test_posix-mock-test.cc.o -c ../subprojects/fmt/test/posix-mock-test.cc",
+    "file": "../subprojects/fmt/test/posix-mock-test.cc",
+    "output": "subprojects/fmt/posix_mock_test.p/test_posix-mock-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/posix_mock_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/posix_mock_test.p/src_format.cc.o -MF subprojects/fmt/posix_mock_test.p/src_format.cc.o.d -o subprojects/fmt/posix_mock_test.p/src_format.cc.o -c ../subprojects/fmt/src/format.cc",
+    "file": "../subprojects/fmt/src/format.cc",
+    "output": "subprojects/fmt/posix_mock_test.p/src_format.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/posix_mock_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/posix_mock_test.p/test_test-main.cc.o -MF subprojects/fmt/posix_mock_test.p/test_test-main.cc.o.d -o subprojects/fmt/posix_mock_test.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/posix_mock_test.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/posix_mock_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/posix_mock_test.p/test_gtest-extra.cc.o -MF subprojects/fmt/posix_mock_test.p/test_gtest-extra.cc.o.d -o subprojects/fmt/posix_mock_test.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/posix_mock_test.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/posix_mock_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/posix_mock_test.p/test_util.cc.o -MF subprojects/fmt/posix_mock_test.p/test_util.cc.o.d -o subprojects/fmt/posix_mock_test.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/posix_mock_test.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/printf_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/printf_test.p/test_printf-test.cc.o -MF subprojects/fmt/printf_test.p/test_printf-test.cc.o.d -o subprojects/fmt/printf_test.p/test_printf-test.cc.o -c ../subprojects/fmt/test/printf-test.cc",
+    "file": "../subprojects/fmt/test/printf-test.cc",
+    "output": "subprojects/fmt/printf_test.p/test_printf-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/ranges_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/ranges_test.p/test_ranges-test.cc.o -MF subprojects/fmt/ranges_test.p/test_ranges-test.cc.o.d -o subprojects/fmt/ranges_test.p/test_ranges-test.cc.o -c ../subprojects/fmt/test/ranges-test.cc",
+    "file": "../subprojects/fmt/test/ranges-test.cc",
+    "output": "subprojects/fmt/ranges_test.p/test_ranges-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/ranges_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/ranges_test.p/test_ranges-odr-test.cc.o -MF subprojects/fmt/ranges_test.p/test_ranges-odr-test.cc.o.d -o subprojects/fmt/ranges_test.p/test_ranges-odr-test.cc.o -c ../subprojects/fmt/test/ranges-odr-test.cc",
+    "file": "../subprojects/fmt/test/ranges-odr-test.cc",
+    "output": "subprojects/fmt/ranges_test.p/test_ranges-odr-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/scan_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HAVE_STRPTIME -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/scan_test.p/test_scan-test.cc.o -MF subprojects/fmt/scan_test.p/test_scan-test.cc.o.d -o subprojects/fmt/scan_test.p/test_scan-test.cc.o -c ../subprojects/fmt/test/scan-test.cc",
+    "file": "../subprojects/fmt/test/scan-test.cc",
+    "output": "subprojects/fmt/scan_test.p/test_scan-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/scan_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HAVE_STRPTIME -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/scan_test.p/test_test-main.cc.o -MF subprojects/fmt/scan_test.p/test_test-main.cc.o.d -o subprojects/fmt/scan_test.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/scan_test.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/scan_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HAVE_STRPTIME -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/scan_test.p/test_gtest-extra.cc.o -MF subprojects/fmt/scan_test.p/test_gtest-extra.cc.o.d -o subprojects/fmt/scan_test.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/scan_test.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/scan_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HAVE_STRPTIME -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/scan_test.p/test_util.cc.o -MF subprojects/fmt/scan_test.p/test_util.cc.o.d -o subprojects/fmt/scan_test.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/scan_test.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/scan_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HAVE_STRPTIME -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/scan_test.p/src_os.cc.o -MF subprojects/fmt/scan_test.p/src_os.cc.o.d -o subprojects/fmt/scan_test.p/src_os.cc.o -c ../subprojects/fmt/src/os.cc",
+    "file": "../subprojects/fmt/src/os.cc",
+    "output": "subprojects/fmt/scan_test.p/src_os.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/std_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/std_test.p/test_std-test.cc.o -MF subprojects/fmt/std_test.p/test_std-test.cc.o.d -o subprojects/fmt/std_test.p/test_std-test.cc.o -c ../subprojects/fmt/test/std-test.cc",
+    "file": "../subprojects/fmt/test/std-test.cc",
+    "output": "subprojects/fmt/std_test.p/test_std-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/unicode_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/unicode_test.p/test_unicode-test.cc.o -MF subprojects/fmt/unicode_test.p/test_unicode-test.cc.o.d -o subprojects/fmt/unicode_test.p/test_unicode-test.cc.o -c ../subprojects/fmt/test/unicode-test.cc",
+    "file": "../subprojects/fmt/test/unicode-test.cc",
+    "output": "subprojects/fmt/unicode_test.p/test_unicode-test.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/unicode_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/unicode_test.p/test_test-main.cc.o -MF subprojects/fmt/unicode_test.p/test_test-main.cc.o.d -o subprojects/fmt/unicode_test.p/test_test-main.cc.o -c ../subprojects/fmt/test/test-main.cc",
+    "file": "../subprojects/fmt/test/test-main.cc",
+    "output": "subprojects/fmt/unicode_test.p/test_test-main.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/unicode_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/unicode_test.p/test_gtest-extra.cc.o -MF subprojects/fmt/unicode_test.p/test_gtest-extra.cc.o.d -o subprojects/fmt/unicode_test.p/test_gtest-extra.cc.o -c ../subprojects/fmt/test/gtest-extra.cc",
+    "file": "../subprojects/fmt/test/gtest-extra.cc",
+    "output": "subprojects/fmt/unicode_test.p/test_gtest-extra.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/unicode_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/unicode_test.p/test_util.cc.o -MF subprojects/fmt/unicode_test.p/test_util.cc.o.d -o subprojects/fmt/unicode_test.p/test_util.cc.o -c ../subprojects/fmt/test/util.cc",
+    "file": "../subprojects/fmt/test/util.cc",
+    "output": "subprojects/fmt/unicode_test.p/test_util.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/unicode_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DFMT_HEADER_ONLY=1 -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/unicode_test.p/src_os.cc.o -MF subprojects/fmt/unicode_test.p/src_os.cc.o.d -o subprojects/fmt/unicode_test.p/src_os.cc.o -c ../subprojects/fmt/src/os.cc",
+    "file": "../subprojects/fmt/src/os.cc",
+    "output": "subprojects/fmt/unicode_test.p/src_os.cc.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/fmt/xchar_test.p -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem../subprojects/fmt/test/gtest -O3 -DNDEBUG -fvisibility=hidden -fvisibility-inlines-hidden -DGTEST_HAS_STD_WSTRING=1 -D_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING=1 -MD -MQ subprojects/fmt/xchar_test.p/test_xchar-test.cc.o -MF subprojects/fmt/xchar_test.p/test_xchar-test.cc.o.d -o subprojects/fmt/xchar_test.p/test_xchar-test.cc.o -c ../subprojects/fmt/test/xchar-test.cc",
+    "file": "../subprojects/fmt/test/xchar-test.cc",
+    "output": "subprojects/fmt/xchar_test.p/test_xchar-test.cc.o"
   },
   {
     "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
@@ -415,20 +715,416 @@
   },
   {
     "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
-    "command": "/usr/bin/c++ -Isubprojects/vk-bootstrap/libvk_bootstrap.a.p -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -I../subprojects/vk-bootstrap/src -I/usr/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wconversion -Wsign-conversion -MD -MQ subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -MF subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o.d -o subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -c ../subprojects/vk-bootstrap/src/VkBootstrap.cpp",
+    "command": "/usr/bin/c++ -Isubprojects/tracy/libtracy.so.p -Isubprojects/tracy -I../subprojects/tracy -I../subprojects/tracy/public -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -fPIC -pthread -DTRACY_EXPORTS -DTRACY_ENABLE -MD -MQ subprojects/tracy/libtracy.so.p/public_TracyClient.cpp.o -MF subprojects/tracy/libtracy.so.p/public_TracyClient.cpp.o.d -o subprojects/tracy/libtracy.so.p/public_TracyClient.cpp.o -c ../subprojects/tracy/public/TracyClient.cpp",
+    "file": "../subprojects/tracy/public/TracyClient.cpp",
+    "output": "subprojects/tracy/libtracy.so.p/public_TracyClient.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbase.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbase.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbase.c.o -c ../subprojects/freetype-2.13.3/src/base/ftbase.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftbase.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbase.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftinit.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftinit.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftinit.c.o -c ../subprojects/freetype-2.13.3/src/base/ftinit.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftinit.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftinit.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_truetype_truetype.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_truetype_truetype.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_truetype_truetype.c.o -c ../subprojects/freetype-2.13.3/src/truetype/truetype.c",
+    "file": "../subprojects/freetype-2.13.3/src/truetype/truetype.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_truetype_truetype.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type1_type1.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type1_type1.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type1_type1.c.o -c ../subprojects/freetype-2.13.3/src/type1/type1.c",
+    "file": "../subprojects/freetype-2.13.3/src/type1/type1.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type1_type1.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cff_cff.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cff_cff.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cff_cff.c.o -c ../subprojects/freetype-2.13.3/src/cff/cff.c",
+    "file": "../subprojects/freetype-2.13.3/src/cff/cff.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cff_cff.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cid_type1cid.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cid_type1cid.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cid_type1cid.c.o -c ../subprojects/freetype-2.13.3/src/cid/type1cid.c",
+    "file": "../subprojects/freetype-2.13.3/src/cid/type1cid.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cid_type1cid.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pfr_pfr.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pfr_pfr.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pfr_pfr.c.o -c ../subprojects/freetype-2.13.3/src/pfr/pfr.c",
+    "file": "../subprojects/freetype-2.13.3/src/pfr/pfr.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pfr_pfr.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type42_type42.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type42_type42.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type42_type42.c.o -c ../subprojects/freetype-2.13.3/src/type42/type42.c",
+    "file": "../subprojects/freetype-2.13.3/src/type42/type42.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_type42_type42.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_winfonts_winfnt.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_winfonts_winfnt.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_winfonts_winfnt.c.o -c ../subprojects/freetype-2.13.3/src/winfonts/winfnt.c",
+    "file": "../subprojects/freetype-2.13.3/src/winfonts/winfnt.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_winfonts_winfnt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pcf_pcf.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pcf_pcf.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pcf_pcf.c.o -c ../subprojects/freetype-2.13.3/src/pcf/pcf.c",
+    "file": "../subprojects/freetype-2.13.3/src/pcf/pcf.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pcf_pcf.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bdf_bdf.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bdf_bdf.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bdf_bdf.c.o -c ../subprojects/freetype-2.13.3/src/bdf/bdf.c",
+    "file": "../subprojects/freetype-2.13.3/src/bdf/bdf.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bdf_bdf.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sfnt_sfnt.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sfnt_sfnt.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sfnt_sfnt.c.o -c ../subprojects/freetype-2.13.3/src/sfnt/sfnt.c",
+    "file": "../subprojects/freetype-2.13.3/src/sfnt/sfnt.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sfnt_sfnt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_autofit_autofit.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_autofit_autofit.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_autofit_autofit.c.o -c ../subprojects/freetype-2.13.3/src/autofit/autofit.c",
+    "file": "../subprojects/freetype-2.13.3/src/autofit/autofit.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_autofit_autofit.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pshinter_pshinter.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pshinter_pshinter.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pshinter_pshinter.c.o -c ../subprojects/freetype-2.13.3/src/pshinter/pshinter.c",
+    "file": "../subprojects/freetype-2.13.3/src/pshinter/pshinter.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_pshinter_pshinter.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_smooth_smooth.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_smooth_smooth.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_smooth_smooth.c.o -c ../subprojects/freetype-2.13.3/src/smooth/smooth.c",
+    "file": "../subprojects/freetype-2.13.3/src/smooth/smooth.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_smooth_smooth.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_raster_raster.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_raster_raster.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_raster_raster.c.o -c ../subprojects/freetype-2.13.3/src/raster/raster.c",
+    "file": "../subprojects/freetype-2.13.3/src/raster/raster.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_raster_raster.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_svg_svg.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_svg_svg.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_svg_svg.c.o -c ../subprojects/freetype-2.13.3/src/svg/svg.c",
+    "file": "../subprojects/freetype-2.13.3/src/svg/svg.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_svg_svg.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sdf_sdf.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sdf_sdf.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sdf_sdf.c.o -c ../subprojects/freetype-2.13.3/src/sdf/sdf.c",
+    "file": "../subprojects/freetype-2.13.3/src/sdf/sdf.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_sdf_sdf.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cache_ftcache.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cache_ftcache.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cache_ftcache.c.o -c ../subprojects/freetype-2.13.3/src/cache/ftcache.c",
+    "file": "../subprojects/freetype-2.13.3/src/cache/ftcache.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_cache_ftcache.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_gzip_ftgzip.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_gzip_ftgzip.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_gzip_ftgzip.c.o -c ../subprojects/freetype-2.13.3/src/gzip/ftgzip.c",
+    "file": "../subprojects/freetype-2.13.3/src/gzip/ftgzip.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_gzip_ftgzip.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_lzw_ftlzw.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_lzw_ftlzw.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_lzw_ftlzw.c.o -c ../subprojects/freetype-2.13.3/src/lzw/ftlzw.c",
+    "file": "../subprojects/freetype-2.13.3/src/lzw/ftlzw.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_lzw_ftlzw.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psaux_psaux.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psaux_psaux.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psaux_psaux.c.o -c ../subprojects/freetype-2.13.3/src/psaux/psaux.c",
+    "file": "../subprojects/freetype-2.13.3/src/psaux/psaux.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psaux_psaux.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psnames_psnames.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psnames_psnames.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psnames_psnames.c.o -c ../subprojects/freetype-2.13.3/src/psnames/psnames.c",
+    "file": "../subprojects/freetype-2.13.3/src/psnames/psnames.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_psnames_psnames.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbbox.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbbox.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbbox.c.o -c ../subprojects/freetype-2.13.3/src/base/ftbbox.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftbbox.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbbox.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbdf.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbdf.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbdf.c.o -c ../subprojects/freetype-2.13.3/src/base/ftbdf.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftbdf.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbdf.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbitmap.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbitmap.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbitmap.c.o -c ../subprojects/freetype-2.13.3/src/base/ftbitmap.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftbitmap.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftbitmap.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftcid.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftcid.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftcid.c.o -c ../subprojects/freetype-2.13.3/src/base/ftcid.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftcid.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftcid.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftfstype.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftfstype.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftfstype.c.o -c ../subprojects/freetype-2.13.3/src/base/ftfstype.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftfstype.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftfstype.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgasp.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgasp.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgasp.c.o -c ../subprojects/freetype-2.13.3/src/base/ftgasp.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftgasp.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgasp.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftglyph.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftglyph.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftglyph.c.o -c ../subprojects/freetype-2.13.3/src/base/ftglyph.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftglyph.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftglyph.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgxval.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgxval.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgxval.c.o -c ../subprojects/freetype-2.13.3/src/base/ftgxval.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftgxval.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftgxval.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftmm.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftmm.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftmm.c.o -c ../subprojects/freetype-2.13.3/src/base/ftmm.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftmm.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftmm.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftotval.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftotval.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftotval.c.o -c ../subprojects/freetype-2.13.3/src/base/ftotval.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftotval.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftotval.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpatent.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpatent.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpatent.c.o -c ../subprojects/freetype-2.13.3/src/base/ftpatent.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftpatent.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpatent.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpfr.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpfr.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpfr.c.o -c ../subprojects/freetype-2.13.3/src/base/ftpfr.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftpfr.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftpfr.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftstroke.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftstroke.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftstroke.c.o -c ../subprojects/freetype-2.13.3/src/base/ftstroke.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftstroke.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftstroke.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftsynth.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftsynth.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftsynth.c.o -c ../subprojects/freetype-2.13.3/src/base/ftsynth.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftsynth.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftsynth.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_fttype1.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_fttype1.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_fttype1.c.o -c ../subprojects/freetype-2.13.3/src/base/fttype1.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/fttype1.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_fttype1.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftwinfnt.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftwinfnt.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftwinfnt.c.o -c ../subprojects/freetype-2.13.3/src/base/ftwinfnt.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftwinfnt.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftwinfnt.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/builds_unix_ftsystem.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/builds_unix_ftsystem.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/builds_unix_ftsystem.c.o -c ../subprojects/freetype-2.13.3/builds/unix/ftsystem.c",
+    "file": "../subprojects/freetype-2.13.3/builds/unix/ftsystem.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/builds_unix_ftsystem.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftdebug.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftdebug.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftdebug.c.o -c ../subprojects/freetype-2.13.3/src/base/ftdebug.c",
+    "file": "../subprojects/freetype-2.13.3/src/base/ftdebug.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_base_ftdebug.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/cc -Isubprojects/freetype-2.13.3/libfreetype.so.6.20.2.p -Isubprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3 -I../subprojects/freetype-2.13.3/include -I/usr/include/libpng16 -fvisibility=hidden -fdiagnostics-color=always -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu23 -g -fPIC '-DFT_CONFIG_MODULES_H=<ftmodule.h>' -DFT2_BUILD_LIBRARY=1 '-DFT_CONFIG_OPTIONS_H=<ftoption.h>' '-DFT_CONFIG_CONFIG_H=<ftconfig.h>' -MD -MQ subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bzip2_ftbzip2.c.o -MF subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bzip2_ftbzip2.c.o.d -o subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bzip2_ftbzip2.c.o -c ../subprojects/freetype-2.13.3/src/bzip2/ftbzip2.c",
+    "file": "../subprojects/freetype-2.13.3/src/bzip2/ftbzip2.c",
+    "output": "subprojects/freetype-2.13.3/libfreetype.so.6.20.2.p/src_bzip2_ftbzip2.c.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_imgui.cpp.o -MF libimgui.a.p/externals_imgui_imgui.cpp.o.d -o libimgui.a.p/externals_imgui_imgui.cpp.o -c ../externals/imgui/imgui.cpp",
+    "file": "../externals/imgui/imgui.cpp",
+    "output": "libimgui.a.p/externals_imgui_imgui.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_imgui_draw.cpp.o -MF libimgui.a.p/externals_imgui_imgui_draw.cpp.o.d -o libimgui.a.p/externals_imgui_imgui_draw.cpp.o -c ../externals/imgui/imgui_draw.cpp",
+    "file": "../externals/imgui/imgui_draw.cpp",
+    "output": "libimgui.a.p/externals_imgui_imgui_draw.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_imgui_widgets.cpp.o -MF libimgui.a.p/externals_imgui_imgui_widgets.cpp.o.d -o libimgui.a.p/externals_imgui_imgui_widgets.cpp.o -c ../externals/imgui/imgui_widgets.cpp",
+    "file": "../externals/imgui/imgui_widgets.cpp",
+    "output": "libimgui.a.p/externals_imgui_imgui_widgets.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_imgui_demo.cpp.o -MF libimgui.a.p/externals_imgui_imgui_demo.cpp.o.d -o libimgui.a.p/externals_imgui_imgui_demo.cpp.o -c ../externals/imgui/imgui_demo.cpp",
+    "file": "../externals/imgui/imgui_demo.cpp",
+    "output": "libimgui.a.p/externals_imgui_imgui_demo.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_imgui_tables.cpp.o -MF libimgui.a.p/externals_imgui_imgui_tables.cpp.o.d -o libimgui.a.p/externals_imgui_imgui_tables.cpp.o -c ../externals/imgui/imgui_tables.cpp",
+    "file": "../externals/imgui/imgui_tables.cpp",
+    "output": "libimgui.a.p/externals_imgui_imgui_tables.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_backends_imgui_impl_glfw.cpp.o -MF libimgui.a.p/externals_imgui_backends_imgui_impl_glfw.cpp.o.d -o libimgui.a.p/externals_imgui_backends_imgui_impl_glfw.cpp.o -c ../externals/imgui/backends/imgui_impl_glfw.cpp",
+    "file": "../externals/imgui/backends/imgui_impl_glfw.cpp",
+    "output": "libimgui.a.p/externals_imgui_backends_imgui_impl_glfw.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_backends_imgui_impl_vulkan.cpp.o -MF libimgui.a.p/externals_imgui_backends_imgui_impl_vulkan.cpp.o.d -o libimgui.a.p/externals_imgui_backends_imgui_impl_vulkan.cpp.o -c ../externals/imgui/backends/imgui_impl_vulkan.cpp",
+    "file": "../externals/imgui/backends/imgui_impl_vulkan.cpp",
+    "output": "libimgui.a.p/externals_imgui_backends_imgui_impl_vulkan.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_misc_cpp_imgui_stdlib.cpp.o -MF libimgui.a.p/externals_imgui_misc_cpp_imgui_stdlib.cpp.o.d -o libimgui.a.p/externals_imgui_misc_cpp_imgui_stdlib.cpp.o -c ../externals/imgui/misc/cpp/imgui_stdlib.cpp",
+    "file": "../externals/imgui/misc/cpp/imgui_stdlib.cpp",
+    "output": "libimgui.a.p/externals_imgui_misc_cpp_imgui_stdlib.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Ilibimgui.a.p -I. -I.. -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -I../subprojects/freetype-2.13.3/include -fvisibility=hidden -fvisibility-inlines-hidden -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -fPIC '-DIMGUI_API=__attribute__((visibility(\"default\")))' -MD -MQ libimgui.a.p/externals_imgui_misc_freetype_imgui_freetype.cpp.o -MF libimgui.a.p/externals_imgui_misc_freetype_imgui_freetype.cpp.o.d -o libimgui.a.p/externals_imgui_misc_freetype_imgui_freetype.cpp.o -c ../externals/imgui/misc/freetype/imgui_freetype.cpp",
+    "file": "../externals/imgui/misc/freetype/imgui_freetype.cpp",
+    "output": "libimgui.a.p/externals_imgui_misc_freetype_imgui_freetype.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Isubprojects/vk-bootstrap/libvk_bootstrap.a.p -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -Wconversion -Wsign-conversion -MD -MQ subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -MF subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o.d -o subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o -c ../subprojects/vk-bootstrap/src/VkBootstrap.cpp",
     "file": "../subprojects/vk-bootstrap/src/VkBootstrap.cpp",
     "output": "subprojects/vk-bootstrap/libvk_bootstrap.a.p/src_VkBootstrap.cpp.o"
   },
   {
     "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
-    "command": "/usr/bin/c++ -Isubprojects/glm/libglm.a.p -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -MD -MQ subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -MF subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o.d -o subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -c ../subprojects/glm/glm/detail/glm.cpp",
+    "command": "/usr/bin/c++ -Isubprojects/glm/libglm.a.p -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-c++98-compat -Wno-c++98-compat-pedantic -MD -MQ subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -MF subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o.d -o subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o -c ../subprojects/glm/glm/detail/glm.cpp",
     "file": "../subprojects/glm/glm/detail/glm.cpp",
     "output": "subprojects/glm/libglm.a.p/glm_detail_glm.cpp.o"
   },
   {
     "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
-    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/VulkanMemoryAllocator/include -Isubprojects/VulkanMemoryAllocator/__CMake_build -I../subprojects/VulkanMemoryAllocator/__CMake_build -Isubprojects/VulkanMemoryAllocator -I../subprojects/VulkanMemoryAllocator -I../subprojects/vk-bootstrap/src -I/usr/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -MD -MQ m.p/src_main.cpp.o -MF m.p/src_main.cpp.o.d -o m.p/src_main.cpp.o -c ../src/main.cpp",
+    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -DVULKAN_HPP_NO_NODISCARD_WARNINGS -DVULKAN_HPP_DISPATCH_LOADER_DYNAMIC=1 -DVMA_VULKAN_VERSION=1003000 -DVMA_STATIC_VULKAN_FUNCTIONS=0 -DVMA_DYNAMIC_VULKAN_FUNCTIONS=1 -DVK_NO_PROTOTYPES -MD -MQ m.p/src_main.cpp.o -MF m.p/src_main.cpp.o.d -o m.p/src_main.cpp.o -c ../src/main.cpp",
     "file": "../src/main.cpp",
     "output": "m.p/src_main.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -DVULKAN_HPP_NO_NODISCARD_WARNINGS -DVULKAN_HPP_DISPATCH_LOADER_DYNAMIC=1 -DVMA_VULKAN_VERSION=1003000 -DVMA_STATIC_VULKAN_FUNCTIONS=0 -DVMA_DYNAMIC_VULKAN_FUNCTIONS=1 -DVK_NO_PROTOTYPES -MD -MQ m.p/src_Init.cpp.o -MF m.p/src_Init.cpp.o.d -o m.p/src_Init.cpp.o -c ../src/Init.cpp",
+    "file": "../src/Init.cpp",
+    "output": "m.p/src_Init.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -DVULKAN_HPP_NO_NODISCARD_WARNINGS -DVULKAN_HPP_DISPATCH_LOADER_DYNAMIC=1 -DVMA_VULKAN_VERSION=1003000 -DVMA_STATIC_VULKAN_FUNCTIONS=0 -DVMA_DYNAMIC_VULKAN_FUNCTIONS=1 -DVK_NO_PROTOTYPES -MD -MQ m.p/src_Util.cpp.o -MF m.p/src_Util.cpp.o.d -o m.p/src_Util.cpp.o -c ../src/Util.cpp",
+    "file": "../src/Util.cpp",
+    "output": "m.p/src_Util.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -DVULKAN_HPP_NO_NODISCARD_WARNINGS -DVULKAN_HPP_DISPATCH_LOADER_DYNAMIC=1 -DVMA_VULKAN_VERSION=1003000 -DVMA_STATIC_VULKAN_FUNCTIONS=0 -DVMA_DYNAMIC_VULKAN_FUNCTIONS=1 -DVK_NO_PROTOTYPES -MD -MQ m.p/src_Color.cpp.o -MF m.p/src_Color.cpp.o.d -o m.p/src_Color.cpp.o -c ../src/Color.cpp",
+    "file": "../src/Color.cpp",
+    "output": "m.p/src_Color.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im1.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m1.p/src_mainA.cpp.o -MF m1.p/src_mainA.cpp.o.d -o m1.p/src_mainA.cpp.o -c ../src/mainA.cpp",
+    "file": "../src/mainA.cpp",
+    "output": "m1.p/src_mainA.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im2.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m2.p/src_mainB.cpp.o -MF m2.p/src_mainB.cpp.o.d -o m2.p/src_mainB.cpp.o -c ../src/mainB.cpp",
+    "file": "../src/mainB.cpp",
+    "output": "m2.p/src_mainB.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im3.p -I. -I.. -I../src -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m3.p/src_test1_main.cpp.o -MF m3.p/src_test1_main.cpp.o.d -o m3.p/src_test1_main.cpp.o -c ../src/test1/main.cpp",
+    "file": "../src/test1/main.cpp",
+    "output": "m3.p/src_test1_main.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im4.p -I. -I.. -I../src/test2 -I../src/test2/TinyVulkan -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m4.p/src_test2_main.cpp.o -MF m4.p/src_test2_main.cpp.o.d -o m4.p/src_test2_main.cpp.o -c ../src/test2/main.cpp",
+    "file": "../src/test2/main.cpp",
+    "output": "m4.p/src_test2_main.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_app.cpp.o -MF m5.p/src_test3_app.cpp.o.d -o m5.p/src_test3_app.cpp.o -c ../src/test3/app.cpp",
+    "file": "../src/test3/app.cpp",
+    "output": "m5.p/src_test3_app.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_lve_device.cpp.o -MF m5.p/src_test3_lve_device.cpp.o.d -o m5.p/src_test3_lve_device.cpp.o -c ../src/test3/lve_device.cpp",
+    "file": "../src/test3/lve_device.cpp",
+    "output": "m5.p/src_test3_lve_device.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_lve_model.cpp.o -MF m5.p/src_test3_lve_model.cpp.o.d -o m5.p/src_test3_lve_model.cpp.o -c ../src/test3/lve_model.cpp",
+    "file": "../src/test3/lve_model.cpp",
+    "output": "m5.p/src_test3_lve_model.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_lve_pipeline.cpp.o -MF m5.p/src_test3_lve_pipeline.cpp.o.d -o m5.p/src_test3_lve_pipeline.cpp.o -c ../src/test3/lve_pipeline.cpp",
+    "file": "../src/test3/lve_pipeline.cpp",
+    "output": "m5.p/src_test3_lve_pipeline.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_lve_swap_chain.cpp.o -MF m5.p/src_test3_lve_swap_chain.cpp.o.d -o m5.p/src_test3_lve_swap_chain.cpp.o -c ../src/test3/lve_swap_chain.cpp",
+    "file": "../src/test3/lve_swap_chain.cpp",
+    "output": "m5.p/src_test3_lve_swap_chain.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_lve_window.cpp.o -MF m5.p/src_test3_lve_window.cpp.o.d -o m5.p/src_test3_lve_window.cpp.o -c ../src/test3/lve_window.cpp",
+    "file": "../src/test3/lve_window.cpp",
+    "output": "m5.p/src_test3_lve_window.cpp.o"
+  },
+  {
+    "directory": "/home/an/workspace/c/imgui/ImGuiVulkanHppImage/build",
+    "command": "/usr/bin/c++ -Im5.p -I. -I.. -I../src/test3 -I../subprojects/fmt/include -Isubprojects/fmt/__CMake_build -I../subprojects/fmt/__CMake_build -Isubprojects/fmt -I../subprojects/fmt -I../subprojects/vk-bootstrap/src -I/home/an/VulkanSDK/1.4.309.0/x86_64/include -Isubprojects/vk-bootstrap/__CMake_build -I../subprojects/vk-bootstrap/__CMake_build -Isubprojects/vk-bootstrap -I../subprojects/vk-bootstrap -Isubprojects/volk -I../subprojects/volk -Isubprojects/volk/__CMake_build -I../subprojects/volk/__CMake_build -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/vulkan -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/glslang -I/home/an/VulkanSDK/1.4.309.0/x86_64/include/spirv -I../subprojects/glfw/include -I../subprojects/glfw/src -Isubprojects/glfw/__CMake_build/src -I../subprojects/glfw/__CMake_build/src -Isubprojects/glfw/__CMake_build -I../subprojects/glfw/__CMake_build -Isubprojects/glfw -I../subprojects/glfw -Isubprojects/glm -I../subprojects/glm -Isubprojects/glm/__CMake_build -I../subprojects/glm/__CMake_build -I../subprojects/tracy/public -I../externals/imgui -I../externals/imgui/backends -I../externals/imgui/misc/cpp -I../externals/imgui/misc/freetype -fdiagnostics-color=always -D_GLIBCXX_ASSERTIONS=1 -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -std=gnu++26 -g -Wno-nullability-completeness -DTRACY_ENABLE -DTRACY_IMPORTS -DVK_NO_PROTOTYPES -Wall -Wextra -Wconversion -Wsign-conversion -isystem/home/an/VulkanSDK/1.4.309.0/x86_64/include -MD -MQ m5.p/src_test3_main.cpp.o -MF m5.p/src_test3_main.cpp.o.d -o m5.p/src_test3_main.cpp.o -c ../src/test3/main.cpp",
+    "file": "../src/test3/main.cpp",
+    "output": "m5.p/src_test3_main.cpp.o"
   }
 ]
