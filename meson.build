@@ -74,43 +74,43 @@ incdir = include_directories('src')
 cmake = import('cmake')
 
 
-vulkan = not_found
-libglslang = not_found
+VulkanSDK = '/home/an/VulkanSDK/1.4.309.0/x86_64/'
 
+vulkan_dep = declare_dependency(
+    include_directories : include_directories(
+      VulkanSDK + 'include',
+      VulkanSDK + 'include/' + 'glslang',
+      VulkanSDK + 'include/' + 'spirv',
+    ),
+    version : '1.4',
+    link_args : [
+    '-L' + VulkanSDK + 'lib' ,
+    '-lvulkan',
+    '-lglslang',
+    '-lMachineIndependent',
+    '-lGenericCodeGen',
+    '-lSPIRV',
+    ]
+)
+
+# if host_os == 'windows'
+#   vulkan = declare_dependency(compile_args: ['-DVK_USE_PLATFORM_WIN32_KHR'])
+# elif host_os == 'linux'
+#   vulkan = dependency('vulkan')
+# endif
+
+volk_opts = cmake.subproject_options()
+volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
 if host_os == 'windows'
-  vulkan = declare_dependency(compile_args: ['-DVK_USE_PLATFORM_WIN32_KHR'])
-elif host_os == 'linux'
-  vulkan = dependency('vulkan')
+  volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
 endif
 
-if vulkan.found()
-  libglslang = cpp_compiler.find_library('glslang', required: false)
-  if not libglslang.found()
-    # FIXME: Get spirv-tools to enable opt.
-    glslang_opts = cmake.subproject_options()
-    glslang_opts.add_cmake_defines({'ENABLE_OPT': false, 'ENABLE_HLSL': false})
-    glslang_subpro = cmake.subproject('glslang', options: glslang_opts)
-    libglslang = declare_dependency(link_with: [
-          glslang_subpro.target('glslang'),
-          glslang_subpro.target('MachineIndependent'),
-          glslang_subpro.target('GenericCodeGen'),
-          glslang_subpro.target('SPIRV'),
-        ], include_directories: glslang_subpro.include_directories('glslang')
-      )
-  endif
-
-  volk_opts = cmake.subproject_options()
-  volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
-  if host_os == 'windows'
-    volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
-  endif
-  volk_subproj = cmake.subproject('volk', options: volk_opts)
-  volk_dep = declare_dependency(
-    compile_args: ['-DVK_NO_PROTOTYPES'],
-    include_directories: volk_subproj.include_directories('volk'),
-    link_with: volk_subproj.target('volk'),
-    dependencies: vulkan)
-endif
+volk_subproj = cmake.subproject('volk', options: volk_opts)
+volk_dep = declare_dependency(
+  compile_args: ['-DVK_NO_PROTOTYPES'],
+  include_directories: volk_subproj.include_directories('volk'),
+  link_with: volk_subproj.target('volk'),
+  dependencies: vulkan_dep)
 
 sdl_opts = cmake.subproject_options()
 sdl_opts.add_cmake_defines({
@@ -186,7 +186,7 @@ imgui = static_library('imgui',
                   install: false,
                   cpp_args: imgui_dll_defs,
                   gnu_symbol_visibility: 'inlineshidden',
-                  dependencies: [vulkan, glfw_dep, freetype2_dep ]
+                  dependencies: [vulkan_dep, glfw_dep, freetype2_dep ]
                   )
 
 imgui_dep = declare_dependency(link_with: imgui, include_directories: imgui_inc)

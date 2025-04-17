@@ -1938,6 +1938,10 @@ int imgui_initialization(Init& init, RenderData& data) {
     init_info.ImageCount = image_count;
     init_info.MSAASamples = VK_SAMPLE_COUNT_1_BIT;
     init_info.UseDynamicRendering = true;
+    init_info.PipelineRenderingCreateInfo = { VK_STRUCTURE_TYPE_PIPELINE_RENDERING_CREATE_INFO };
+    init_info.PipelineRenderingCreateInfo.colorAttachmentCount = 1;
+    init_info.PipelineRenderingCreateInfo.pColorAttachmentFormats = &init.swapchain.image_format;
+    init_info.PipelineRenderingCreateInfo.depthAttachmentFormat = VK_FORMAT_D24_UNORM_S8_UINT; //VK_FORMAT_B8G8R8A8_SRGB;
     // init_info.ColorAttachmentFormat = init.swapchain.image_format;
     ImGui_ImplVulkan_Init(&init_info);
 

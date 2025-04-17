@@ -2,7 +2,7 @@
 	path = subprojects/SDL
 	url = git@github.com:libsdl-org/SDL.git
 	branch = main
-[submodule "subprojects/imgui"]
+[submodule "externals/imgui"]
 	path = externals/imgui
 	url = git@github.com:ocornut/imgui.git
 	branch = docking
@@ -31,3 +31,7 @@
     path = subprojects/tracy
     url = git@github.com:wolfpld/tracy
     branch = master
+[submodule "submodule.externals/imgui.path"]
+	path = externals/imgui
+	url = git@github.com:ocornut/imgui.git
+	branch = docking
