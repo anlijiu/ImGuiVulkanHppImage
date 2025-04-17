@@ -9,7 +9,7 @@
 #define VMA_STATIC_VULKAN_FUNCTIONS 0
 #define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
 #define VMA_DEBUG_LOG
-#include "vk_mem_alloc.h"
+#include "vma/vk_mem_alloc.h"
 
 #include "VkBootstrap.h"
 
@@ -905,7 +905,7 @@ private:
 
         finalDrawImageId = createDrawImage(
         drawImageFormat, glm::ivec2{100 , 100}, "final draw image", finalDrawImageId);
-        endFrame();
+        endFrame(cmd, );
     }
 
     void mainLoop() {

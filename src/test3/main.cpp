@@ -1,3 +1,11 @@
+
+#define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
+
+#include <volk.h>
+
+#include <VkBootstrap.h>
+
 #include "app.hpp"
 
 #include <iostream>
@@ -5,6 +13,7 @@
 #include <iostream>
 
 int main() {
+    volkInitialize();
     lve::App app{};
 
     try{

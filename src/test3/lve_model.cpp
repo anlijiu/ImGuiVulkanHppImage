@@ -4,7 +4,6 @@
 #include <cassert>
 #include <cstddef>
 #include <cstring>
-#include <vulkan/vulkan_core.h>
 
 namespace lve {
 

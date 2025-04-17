@@ -1,5 +1,6 @@
 #pragma once
 
+#include <volk.h>
 #include "lve_window.hpp"
 
 // std lib headers

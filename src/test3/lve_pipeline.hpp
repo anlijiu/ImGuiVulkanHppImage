@@ -1,7 +1,6 @@
 #pragma once
 
 #include "lve_device.hpp"
-
 // std
 #include <string>
 #include <vector>

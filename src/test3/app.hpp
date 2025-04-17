@@ -1,4 +1,12 @@
 #pragma once
+
+#define VK_NO_PROTOTYPES
+#define VMA_IMPLEMENTATION
+#define VMA_VULKAN_VERSION 1003000 // Vulkan 1.3
+#define VMA_STATIC_VULKAN_FUNCTIONS 0
+#define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
+
+
 #include "lve_window.hpp"
 #include "lve_pipeline.hpp"
 #include "lve_device.hpp"

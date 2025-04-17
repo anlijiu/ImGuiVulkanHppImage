@@ -1,6 +1,5 @@
 #include "lve_device.hpp"
 
-#include <volk.h>
 // std headers
 #include <cstring>
 #include <iostream>

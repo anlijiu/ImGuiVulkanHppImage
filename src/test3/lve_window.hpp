@@ -1,15 +1,7 @@
 #pragma once
 
-#include "volk.h"
-
-#define VMA_IMPLEMENTATION
-#define VMA_VULKAN_VERSION 1003000 // Vulkan 1.3
-#define VMA_STATIC_VULKAN_FUNCTIONS 0
-#define VMA_DYNAMIC_VULKAN_FUNCTIONS 1
-
+#include <volk.h>
 #include <cstdint>
-#include <vulkan/vulkan_core.h>
-#define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <string>
 

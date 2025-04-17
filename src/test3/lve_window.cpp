@@ -2,7 +2,6 @@
 #include <GLFW/glfw3.h>
 #include <stdexcept>
 #include <string>
-#include <vulkan/vulkan_core.h>
 
 namespace lve {
 

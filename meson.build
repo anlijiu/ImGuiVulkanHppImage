@@ -80,6 +80,7 @@ vulkan_dep = declare_dependency(
     include_directories : include_directories(
       VulkanSDK + 'include',
       VulkanSDK + 'include/vulkan',
+      VulkanSDK + 'include/volk',
       VulkanSDK + 'include/glslang',
       VulkanSDK + 'include/spirv',
     ),
@@ -88,6 +89,7 @@ vulkan_dep = declare_dependency(
     '-L' + VulkanSDK + 'lib' ,
     '-lvulkan',
     '-lglslang',
+    '-lvolk',
     '-lMachineIndependent',
     '-lGenericCodeGen',
     '-lSPIRV',
@@ -100,18 +102,18 @@ vulkan_dep = declare_dependency(
 #   vulkan = dependency('vulkan')
 # endif
 
-volk_opts = cmake.subproject_options()
-volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
-if host_os == 'windows'
-  volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
-endif
-
-volk_subproj = cmake.subproject('volk', options: volk_opts)
-volk_dep = declare_dependency(
-  compile_args: ['-DVK_NO_PROTOTYPES'],
-  include_directories: volk_subproj.include_directories('volk'),
-  link_with: volk_subproj.target('volk'),
-  dependencies: vulkan_dep)
+# volk_opts = cmake.subproject_options()
+# volk_opts.add_cmake_defines({'VOLK_STATIC_DEFINES': 'VK_NO_PROTOTYPES'})
+# if host_os == 'windows'
+#   volk_opts.append_compile_args('c', '-DVK_USE_PLATFORM_WIN32_KHR=1')
+# endif
+# 
+# volk_subproj = cmake.subproject('volk', options: volk_opts)
+# volk_dep = declare_dependency(
+#   compile_args: ['-DVK_NO_PROTOTYPES', '-DVOLK_STATIC_DEFINES'],
+#   include_directories: volk_subproj.include_directories('volk'),
+#   link_with: volk_subproj.target('volk'),
+#   dependencies: vulkan_dep)
 
 sdl_opts = cmake.subproject_options()
 sdl_opts.add_cmake_defines({
@@ -206,15 +208,15 @@ glm_dep = glm_proj.dependency('glm')
 
 
 app_deps = [
+  vulkan_dep,
   fmt_dep,
   # vma_dep,
   vk_bootstrap_dep,
-  volk_dep,
+  # volk_dep,
   glfw_dep,
   glm_dep,
   tracy_dep,
   imgui_dep,
-  vulkan_dep,
 ]
 
 sources = files(
@@ -263,8 +265,14 @@ executable('m4',
 )
 
 Esources = files(
-  'src/test3/app.cpp', 'src/test3/lve_device.cpp', 'src/test3/lve_model.cpp', 'src/test3/lve_pipeline.cpp',
-  'src/test3/lve_swap_chain.cpp',  'src/test3/lve_window.cpp', 'src/test3/main.cpp', 'src/test3/volk_init.cpp'
+  'src/test3/app.cpp',
+  'src/test3/lve_device.cpp',
+  'src/test3/lve_model.cpp',
+  'src/test3/lve_pipeline.cpp',
+  'src/test3/lve_swap_chain.cpp',
+  'src/test3/lve_window.cpp',
+  'src/test3/main.cpp',
+  'src/test3/volk_init.cpp'
 )
 executable('m5',
   Esources,
