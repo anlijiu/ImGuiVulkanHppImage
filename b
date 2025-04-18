@@ -7,5 +7,5 @@ meson setup build  --native-file=native.build
 # meson compile -C build m
 
 meson compile -C build m3
-# meson compile -C build m4
+meson compile -C build m4
 meson compile -C build m5

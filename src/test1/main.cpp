@@ -289,6 +289,8 @@ int device_initialization(Init& init) {
         .set_required_features_12(vulkan_12_features)
         .set_required_features_13(vulkan_13_features)
         .add_required_extension(VK_KHR_PUSH_DESCRIPTOR_EXTENSION_NAME)
+        .allow_any_gpu_device_type(false)
+        .prefer_gpu_device_type(vkb::PreferredDeviceType::discrete)
         .select();
     if (!phys_device_ret) {
         std::cout << phys_device_ret.error().message() << "\n";

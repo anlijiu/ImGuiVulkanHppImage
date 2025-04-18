@@ -257,7 +257,7 @@ executable('m3',
   dependencies : app_deps,
 )
 
-Dsources = files('src/test2/main.cpp')
+Dsources = files('src/test2/volk_init.cpp', 'src/test2/main.cpp')
 executable('m4',
   Dsources,
   include_directories: include_directories('src/test2', 'src/test2/TinyVulkan'),

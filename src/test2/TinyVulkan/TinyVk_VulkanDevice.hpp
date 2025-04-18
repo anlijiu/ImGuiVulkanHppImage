@@ -2,6 +2,7 @@
 #ifndef TINYVK_TINYVKVULKANDEVICE
 #define TINYVK_TINYVKVULKANDEVICE
 
+    #include <volk.h>
 	#include "./TinyVulkan.hpp"
 	
 	namespace TINYVULKAN_NAMESPACE {
@@ -92,6 +93,7 @@
 				VkResult result = vkCreateInstance(&createInfo, VK_NULL_HANDLE, &instance);
 				if (result != VK_SUCCESS)
 					throw TinyVkRuntimeError("TinyVulkan: Failed to create Vulkan instance! " + result);
+                volkLoadInstance(instance);
 
 				#if TVK_VALIDATION_LAYERS
 					result = CreateDebugUtilsMessengerEXT(instance, &debugCreateInfo, VK_NULL_HANDLE, &debugMessenger);
@@ -212,6 +214,7 @@
 				if (vkCreateDevice(physicalDevice, &createInfo, VK_NULL_HANDLE, &logicalDevice) != VK_SUCCESS)
 					throw TinyVkRuntimeError("TinyVulkan: Failed to create logical device! Missing extension or queue family!");
 
+                volkLoadDevice(logicalDevice);
 				#if TVK_VALIDATION_LAYERS
 					std::cout << "TinyVulkan: " << deviceExtensions.size() << " device extensions supported." << std::endl;
 					for (const auto& extension : deviceExtensions) std::cout << '\t' << extension << std::endl;
@@ -220,7 +223,14 @@
 			
 			/// @brief Creates the VMAllocator for AMD's GPU memory handling API.
 			void CreateVMAllocator() {
-				VmaAllocatorCreateInfo allocatorCreateInfo {};
+                // Init Vma functions
+                const auto vulkanFunctions = VmaVulkanFunctions {
+                    .vkGetInstanceProcAddr = vkGetInstanceProcAddr,
+                    .vkGetDeviceProcAddr = vkGetDeviceProcAddr,
+                };
+				VmaAllocatorCreateInfo allocatorCreateInfo {
+                    .pVulkanFunctions = &vulkanFunctions,
+                };
 				allocatorCreateInfo.vulkanApiVersion = TVK_RENDERER_VERSION;
 				allocatorCreateInfo.physicalDevice = physicalDevice;
 				allocatorCreateInfo.device = logicalDevice;

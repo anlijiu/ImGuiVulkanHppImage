@@ -1,3 +1,6 @@
+#include <volk.h>
+#include <thread>
+
 #define TINYVK_ALLOWS_POLLING_GAMEPADS
 #include "./TinyVulkan/TinyVulkan.hpp"
 using namespace tinyvk;
@@ -17,6 +20,8 @@ const TinyVkVertexDescription vertexDescription = TinyVkVertex::GetVertexDescrip
 const std::vector<VkDescriptorSetLayoutBinding> pushDescriptorLayouts = { TinyVkGraphicsPipeline::SelectPushDescriptorLayoutBinding(0, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, VK_SHADER_STAGE_VERTEX_BIT, 1) };
 
 int32_t TINYVULKAN_WINDOWMAIN {
+    volkInitialize();
+
     TinyVkWindow window("Sample Application", 1920, 1080, true, false);
     TinyVkVulkanDevice vkdevice("Sample Application", false, rdeviceTypes, &window);    
     TinyVkCommandPool commandPool(vkdevice, false);
