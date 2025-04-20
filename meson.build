@@ -279,3 +279,14 @@ executable('m5',
   include_directories: include_directories('src/test3'),
   dependencies : app_deps,
 )
+
+
+Fsources = files(
+  'src/test4/App.cpp',
+  'src/test4/main.cpp',
+)
+executable('m6',
+  Fsources,
+  include_directories: include_directories('src/test4'),
+  dependencies : app_deps,
+)

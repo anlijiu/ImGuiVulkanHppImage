@@ -12,21 +12,40 @@
 class App
 {
 public:
+    struct Params {
+        // Either windowSize or renderSize should be set
+        // You can also load them in loadAppSettings before they're used
+        glm::ivec2 windowSize{}; // default window size
+        glm::ivec2 renderSize{}; // size of presented draw image
+
+        std::string appName{"test 4 Application"};
+        std::string windowTitle; // if not set, set to appName
+        Version version{};
+
+        std::string sourceSubDirName;
+        // needed for finding dev files in source directory
+        // they should be stored in ${EDBR_SOURCE_ROOT}/games/<sourceSubDirName>/dev/
+    };
     App ();
     virtual ~App ();
 
+    void init(const Params& ps);
     void run();
+    void cleanup();
+
+protected:
+    virtual void loadAppSettings(){};
+    virtual void loadDevSettings(const std::filesystem::path& configPath);
+
+    // GfxDevice gfxDevice;
+
+    GLFWwindow* window{nullptr};
+
+    Params params;
 
 private:
-    GLFWwindow* window;
 
     bool vSync{true};
-    glm::ivec2 windowSize{}; // default window size
-    glm::ivec2 renderSize{}; // size of presented draw image
-    std::string appName{"Test4 Application"};
-    std::string windowTitle; // if not set, set to appName
-    Version version{};
-    std::string sourceSubDirName;
 
     bool isRunning{false};
     bool gamePaused{false};
