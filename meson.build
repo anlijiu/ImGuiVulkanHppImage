@@ -157,6 +157,13 @@ fmt_dep = cmake.subproject('fmt').get_variable('fmt_dep')
 glfw_proj = cmake.subproject('glfw')
 glfw_dep = glfw_proj.dependency('glfw')
 
+# use std::format over bundled fmt::format
+cmake_opt_var = cmake.subproject_options()
+# cmake_opt_var.add_cmake_defines({'SPDLOG_FMT_EXTERNAL': 'On'})
+# cmake_opt_var.add_cmake_defines({'CMAKE_PREFIX_PATH': meson.project_build_root() / 'subprojects' / 'fmt' / '__CMake_build'})
+spdlog_proj = cmake.subproject('spdlog', required: true, options: cmake_opt_var)
+spdlog_dep = spdlog_proj.dependency('spdlog')
+
 tracy_dep = subproject('tracy').get_variable('tracy_dep')
 
 freetype2_dep = subproject('freetype2').get_variable('freetype_dep')
@@ -217,6 +224,7 @@ app_deps = [
   glm_dep,
   tracy_dep,
   imgui_dep,
+  spdlog_dep,
 ]
 
 sources = files(
@@ -282,6 +290,9 @@ executable('m5',
 
 
 Fsources = files(
+  'src/test4/VolkInit.cpp',
+  'src/test4/VmaInit.cpp',
+  'src/test4/GfxDevice.cpp',
   'src/test4/App.cpp',
   'src/test4/main.cpp',
 )
@@ -289,4 +300,5 @@ executable('m6',
   Fsources,
   include_directories: include_directories('src/test4'),
   dependencies : app_deps,
+  cpp_args: cpp_args
 )

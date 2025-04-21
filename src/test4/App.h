@@ -7,6 +7,7 @@
 #include <glm/glm.hpp>
 #include <filesystem>
 
+#include "GfxDevice.h"
 #include "Version.h"
 
 class App
@@ -40,6 +41,8 @@ protected:
     // GfxDevice gfxDevice;
 
     GLFWwindow* window{nullptr};
+
+    GfxDevice gfxDevice;
 
     Params params;
 

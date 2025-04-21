@@ -26,8 +26,8 @@ void App::init(const Params& ps) {
     std::print("windowTitle {}\n", params.windowTitle);
 
     glfwInit();
-    // glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    // glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     window = glfwCreateWindow(params.windowSize.x, params.windowSize.y, params.windowTitle.c_str(), NULL, NULL);
       // 设置窗口位置
@@ -35,6 +35,9 @@ void App::init(const Params& ps) {
 
     // make the context of the specified window current on the calling thread
     glfwMakeContextCurrent(window);
+
+
+    gfxDevice.init(window, params.appName.c_str(), params.version, vSync);
 }
 
 void App::run() {
