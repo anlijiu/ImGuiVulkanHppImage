@@ -2,10 +2,12 @@
 #include "GfxDevice.h"
 
 #include "Util.h"
+#include "Init.h"
 
 #include <vma/vk_mem_alloc.h>
 #include <iostream>
 #include <GLFW/glfw3.h>
+
 
 GfxDevice::GfxDevice() {}
 
@@ -14,10 +16,56 @@ GfxDevice::~GfxDevice() {}
 void GfxDevice::init(GLFWwindow* window, const char* appName, const Version& version, bool vSync) {
 
     initVulkan(window, appName, version);
+
+    // executor = createImmediateExecutor();
+
+    swapchain.initSyncStructures(device);
+
+    this->vSync = vSync;
+
+    // [Mac OS 和 glfw 上的高 DPI 缩放](https://github.com/ocornut/imgui/issues/5081)
+    int winWidth, winHeight;
+    glfwGetWindowSize(window, &winWidth, &winHeight); // 逻辑尺寸 例如可能是 800x600
+
+    int fbWidth, fbHeight;
+    glfwGetFramebufferSize(window, &fbWidth, &fbHeight); // 物理像素 例如可能是 1600x1200
+                                                                        //
+    swapchainFormat = VK_FORMAT_B8G8R8A8_SRGB;
+    swapchain.create(device, swapchainFormat, (std::uint32_t)fbWidth, (std::uint32_t)fbHeight, vSync);
+
+    createCommandBuffers();
 }
 
-void GfxDevice::recreateSwapchain(std::uint32_t swapchainWidth, std::uint32_t swapchainHeight) {
+VkCommandBuffer GfxDevice::beginFrame()
+{
+    swapchain.beginFrame(device, getCurrentFrameIndex());
 
+    const auto& frame = getCurrentFrame();
+    const auto& cmd = frame.mainCommandBuffer;
+    const auto cmdBeginInfo = VkCommandBufferBeginInfo{
+        .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
+        .flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT,
+    };
+    VK_CHECK(vkBeginCommandBuffer(cmd, &cmdBeginInfo));
+
+    return cmd;
+}
+
+void GfxDevice::waitIdle() const
+{
+    VK_CHECK(vkDeviceWaitIdle(device));
+}
+
+void GfxDevice::recreateSwapchain(std::uint32_t swapchainWidth, std::uint32_t swapchainHeight)
+{
+    assert(swapchainWidth != 0 && swapchainHeight != 0);
+    waitIdle();
+    swapchain.recreate(
+        device,
+        swapchainFormat,
+        (std::uint32_t)swapchainWidth,
+        (std::uint32_t)swapchainHeight,
+        vSync);
 }
 
 void GfxDevice::initVulkan(GLFWwindow* window, const char* appName, const Version& appVersion) {
@@ -128,4 +176,36 @@ void GfxDevice::checkDeviceCapabilities()
             }
         }
     }
+}
+
+void GfxDevice::createCommandBuffers()
+{
+    const auto poolCreateInfo = vkinit::
+        commandPoolCreateInfo(VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT, graphicsQueueFamily);
+
+    for (std::uint32_t i = 0; i < graphics::FRAME_OVERLAP; ++i) {
+        auto& commandPool = frames[i].commandPool;
+        VK_CHECK(vkCreateCommandPool(device, &poolCreateInfo, nullptr, &commandPool));
+
+        const auto cmdAllocInfo = vkinit::commandBufferAllocateInfo(commandPool, 1);
+        auto& mainCommandBuffer = frames[i].mainCommandBuffer;
+        VK_CHECK(vkAllocateCommandBuffers(device, &cmdAllocInfo, &mainCommandBuffer));
+    }
+}
+
+GfxDevice::FrameData& GfxDevice::getCurrentFrame()
+{
+    return frames[getCurrentFrameIndex()];
+}
+
+
+std::uint32_t GfxDevice::getCurrentFrameIndex() const
+{
+    return frameNumber % graphics::FRAME_OVERLAP;
+}
+
+
+void GfxDevice::cleanup()
+{
+
 }

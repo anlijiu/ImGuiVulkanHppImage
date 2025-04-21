@@ -293,6 +293,10 @@ Fsources = files(
   'src/test4/VolkInit.cpp',
   'src/test4/VmaInit.cpp',
   'src/test4/GfxDevice.cpp',
+  'src/test4/BindlessSetManager.cpp',
+  'src/test4/Util.cpp',
+  'src/test4/Init.cpp',
+  'src/test4/Swapchain.cpp',
   'src/test4/App.cpp',
   'src/test4/main.cpp',
 )
