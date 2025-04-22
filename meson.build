@@ -210,7 +210,9 @@ vk_bootstrap_dep = vk_bootstrap_proj.dependency('vk-bootstrap')
 
 # vma_dep = cmake.subproject('VulkanMemoryAllocator').dependency('VulkanMemoryAllocator')
 
-glm_proj = cmake.subproject('glm')
+glm_opts = cmake.subproject_options()
+glm_opts.add_cmake_defines({'GLM_ENABLE_EXPERIMENTAL': true})
+glm_proj = cmake.subproject('glm', options: glm_opts)
 glm_dep = glm_proj.dependency('glm')
 
 
@@ -290,6 +292,9 @@ executable('m5',
 
 
 Fsources = files(
+  'src/test4/Math/IndexRange2.cpp',
+  'src/test4/Math/Transform.cpp',
+  'src/test4/Math/Util.cpp',
   'src/test4/VolkInit.cpp',
   'src/test4/VmaInit.cpp',
   'src/test4/GfxDevice.cpp',
@@ -297,9 +302,21 @@ Fsources = files(
   'src/test4/Util.cpp',
   'src/test4/Init.cpp',
   'src/test4/Swapchain.cpp',
+  'src/test4/MeshPipeline.cpp',
+  'src/test4/FrustumCulling.cpp',
+  'src/test4/ImageCache.cpp',
+  'src/test4/ImageLoader.cpp',
+  'src/test4/MipMapGeneration.cpp',
+  'src/test4/VulkanImmediateExecutor.cpp',
+  'src/test4/Camera.cpp',
+  'src/test4/MeshCache.cpp',
+  'src/test4/Pipelines.cpp',
+  'src/test4/Renderer.cpp',
   'src/test4/App.cpp',
   'src/test4/main.cpp',
 )
+
+
 executable('m6',
   Fsources,
   include_directories: include_directories('src/test4'),

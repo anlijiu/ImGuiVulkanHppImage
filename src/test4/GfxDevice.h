@@ -15,11 +15,21 @@
 #include <glm/vec2.hpp>
 
 #include "Color.h"
+#include "Common.h"
+#include "ImageCache.h"
 #include "Version.h"
 #include "Swapchain.h"
-#include "GPUImage.h"
+#include "VulkanImmediateExecutor.h"
+
+
+namespace vkutil
+{
+struct CreateImageInfo;
+}
 
 struct GLFWwindow;
+struct GPUBuffer;
+struct GPUImage;
 
 class GfxDevice
 {
@@ -53,8 +63,74 @@ public:
     void endFrame(VkCommandBuffer cmd, const GPUImage& drawImage, const EndFrameProps& props);
     void cleanup();
 
+    [[nodiscard]] GPUBuffer createBuffer(
+        std::size_t allocSize,
+        VkBufferUsageFlags usage,
+        VmaMemoryUsage memoryUsage = VMA_MEMORY_USAGE_AUTO) const;
+    [[nodiscard]] VkDeviceAddress getBufferAddress(const GPUBuffer& buffer) const;
+    void destroyBuffer(const GPUBuffer& buffer) const;
+
+    bool deviceSupportsSamplingCount(VkSampleCountFlagBits sample) const;
+    VkSampleCountFlagBits getMaxSupportedSamplingCount() const;
+    float getMaxAnisotropy() const { return maxSamplerAnisotropy; }
+
+    VulkanImmediateExecutor createImmediateExecutor() const;
+    void immediateSubmit(std::function<void(VkCommandBuffer)>&& f) const;
+
     void waitIdle() const;
 
+    BindlessSetManager& getBindlessSetManager();
+    VkDescriptorSetLayout getBindlessDescSetLayout() const;
+    const VkDescriptorSet& getBindlessDescSet() const;
+    void bindBindlessDescSet(VkCommandBuffer cmd, VkPipelineLayout layout) const;
+
+    VmaAllocator getAllocator() const { return allocator; }
+public:
+    [[nodiscard]] ImageId createImage(
+        const vkutil::CreateImageInfo& createInfo,
+        const char* debugName = nullptr,
+        void* pixelData = nullptr,
+        ImageId imageId = NULL_IMAGE_ID);
+
+    // create a color image which can be used as a draw target
+    [[nodiscard]] ImageId createDrawImage(
+        VkFormat format,
+        glm::ivec2 size,
+        const char* debugName,
+        ImageId imageId = NULL_IMAGE_ID);
+
+    [[nodiscard]] ImageId loadImageFromFile(
+        const std::filesystem::path& path,
+        VkFormat format = VK_FORMAT_R8G8B8A8_SRGB,
+        VkImageUsageFlags usage = VK_IMAGE_USAGE_SAMPLED_BIT,
+        bool mipMap = false);
+
+    ImageId addImageToCache(GPUImage image);
+
+    [[nodiscard]] const GPUImage& getImage(ImageId id) const;
+    void uploadImageData(const GPUImage& image, void* pixelData, std::uint32_t layer = 0) const;
+
+    ImageId getWhiteTextureID() { return whiteImageId; }
+
+    // createImageRaw is mostly intended for low level usage. In most cases,
+    // createImage should be preferred as it will automatically
+    // add the image to bindless set
+    [[nodiscard]] GPUImage createImageRaw(
+        const vkutil::CreateImageInfo& createInfo,
+        std::optional<VmaAllocationCreateInfo> customAllocationInfo = std::nullopt) const;
+    // loadImageFromFileRaw is mostly intended for low level usage. In most cases,
+    // loadImageFromFile should be preferred as it will automatically
+    // add the image to bindless set
+    [[nodiscard]] GPUImage loadImageFromFileRaw(
+        const std::filesystem::path& path,
+        VkFormat format,
+        VkImageUsageFlags usage,
+        bool mipMap) const;
+    // destroyImage should only be called on images not beloning to image cache / bindless set
+    void destroyImage(const GPUImage& image) const;
+
+    // for dev tools only - don't use directly
+    const ImageCache& getImageCache() const { return imageCache; }
 public:
     VkDevice getDevice() const { return device; }
 
@@ -67,6 +143,7 @@ public:
 
     VkFormat getSwapchainFormat() const { return swapchainFormat; }
     bool needsSwapchainRecreate() const { return swapchain.needsRecreation(); }
+
 private:
     void initVulkan(GLFWwindow* window, const char* appName, const Version& appVersion);
     void checkDeviceCapabilities();
@@ -90,11 +167,17 @@ private:
     std::array<FrameData, graphics::FRAME_OVERLAP> frames{};
     std::uint32_t frameNumber{0};
 
+    VulkanImmediateExecutor executor;
 
 
     VkSampleCountFlagBits supportedSampleCounts;
     VkSampleCountFlagBits highestSupportedSamples{VK_SAMPLE_COUNT_1_BIT};
     float maxSamplerAnisotropy{1.f};
+
+    ImageCache imageCache;
+
+    ImageId whiteImageId{NULL_IMAGE_ID};
+    ImageId errorImageId{NULL_IMAGE_ID};
 
     bool vSync{true};
 };

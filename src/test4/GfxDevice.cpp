@@ -9,7 +9,17 @@
 #include <GLFW/glfw3.h>
 
 
-GfxDevice::GfxDevice() {}
+#include "GPUBuffer.h"
+#include "GPUImage.h"
+#include "Init.h"
+#include "Pipelines.h"
+#include "Util.h"
+
+#include "ImageLoader.h"
+#include "MipMapGeneration.h"
+
+GfxDevice::GfxDevice() : imageCache(*this)
+{}
 
 GfxDevice::~GfxDevice() {}
 
@@ -17,7 +27,7 @@ void GfxDevice::init(GLFWwindow* window, const char* appName, const Version& ver
 
     initVulkan(window, appName, version);
 
-    // executor = createImmediateExecutor();
+    executor = createImmediateExecutor();
 
     swapchain.initSyncStructures(device);
 
@@ -34,6 +44,37 @@ void GfxDevice::init(GLFWwindow* window, const char* appName, const Version& ver
     swapchain.create(device, swapchainFormat, (std::uint32_t)fbWidth, (std::uint32_t)fbHeight, vSync);
 
     createCommandBuffers();
+
+    imageCache.bindlessSetManager.init(device, getMaxAnisotropy());
+
+    { // create white texture
+        std::uint32_t pixel = 0xFFFFFFFF;
+        whiteImageId = createImage(
+            {
+                .format = VK_FORMAT_R8G8B8A8_UNORM,
+                .usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT,
+                .extent = VkExtent3D{1, 1, 1},
+            },
+            "white texture",
+            &pixel);
+    }
+
+    { // create error texture (black/magenta checker)
+        const auto black = 0xFF000000;
+        const auto magenta = 0xFFFF00FF;
+
+        std::array<std::uint32_t, 4> pixels{black, magenta, magenta, black};
+        errorImageId = createImage(
+            {
+                .format = VK_FORMAT_R8G8B8A8_UNORM,
+                .usage = VK_IMAGE_USAGE_SAMPLED_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT |
+                         VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
+                .extent = VkExtent3D{2, 2, 1},
+            },
+            "error texture",
+            pixels.data());
+        imageCache.setErrorImageId(errorImageId);
+    }
 }
 
 VkCommandBuffer GfxDevice::beginFrame()
@@ -50,6 +91,19 @@ VkCommandBuffer GfxDevice::beginFrame()
 
     return cmd;
 }
+
+VulkanImmediateExecutor GfxDevice::createImmediateExecutor() const
+{
+    VulkanImmediateExecutor executor;
+    executor.init(device, graphicsQueueFamily, graphicsQueue);
+    return executor;
+}
+
+void GfxDevice::immediateSubmit(std::function<void(VkCommandBuffer)>&& f) const
+{
+    executor.immediateSubmit(std::move(f));
+}
+
 
 void GfxDevice::waitIdle() const
 {
@@ -204,8 +258,302 @@ std::uint32_t GfxDevice::getCurrentFrameIndex() const
     return frameNumber % graphics::FRAME_OVERLAP;
 }
 
+bool GfxDevice::deviceSupportsSamplingCount(VkSampleCountFlagBits sample) const
+{
+    return (supportedSampleCounts & sample) != 0;
+}
+
+VkSampleCountFlagBits GfxDevice::getMaxSupportedSamplingCount() const
+{
+    return highestSupportedSamples;
+}
+
+BindlessSetManager& GfxDevice::getBindlessSetManager()
+{
+    return imageCache.bindlessSetManager;
+}
+
+VkDescriptorSetLayout GfxDevice::getBindlessDescSetLayout() const
+{
+    return imageCache.bindlessSetManager.getDescSetLayout();
+}
+
+const VkDescriptorSet& GfxDevice::getBindlessDescSet() const
+{
+    return imageCache.bindlessSetManager.getDescSet();
+}
+
+void GfxDevice::bindBindlessDescSet(VkCommandBuffer cmd, VkPipelineLayout layout) const
+{
+    vkCmdBindDescriptorSets(
+        cmd,
+        VK_PIPELINE_BIND_POINT_GRAPHICS,
+        layout,
+        0,
+        1,
+        &imageCache.bindlessSetManager.getDescSet(),
+        0,
+        nullptr);
+}
 
 void GfxDevice::cleanup()
 {
 
+}
+
+ImageId GfxDevice::createImage(
+    const vkutil::CreateImageInfo& createInfo,
+    const char* debugName,
+    void* pixelData,
+    ImageId imageId)
+{
+    auto image = createImageRaw(createInfo);
+    if (debugName) {
+        vkutil::addDebugLabel(device, image.image, debugName);
+        image.debugName = debugName;
+    }
+    if (pixelData) {
+        uploadImageData(image, pixelData);
+    }
+    if (imageId != NULL_IMAGE_ID) {
+        return imageCache.addImage(imageId, std::move(image));
+    }
+    return addImageToCache(std::move(image));
+}
+
+ImageId GfxDevice::createDrawImage(
+    VkFormat format,
+    glm::ivec2 size,
+    const char* debugName,
+    ImageId imageId)
+{
+    assert(size.x > 0 && size.y > 0);
+    const auto extent = VkExtent3D{
+        .width = (std::uint32_t)size.x,
+        .height = (std::uint32_t)size.y,
+        .depth = 1,
+    };
+
+    VkImageUsageFlags usages{};
+    usages |= VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
+    usages |= VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+    usages |= VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
+    usages |= VK_IMAGE_USAGE_SAMPLED_BIT;
+
+    const auto createImageInfo = vkutil::CreateImageInfo{
+        .format = format,
+        .usage = usages,
+        .extent = extent,
+    };
+    return createImage(createImageInfo, debugName, nullptr, imageId);
+}
+
+ImageId GfxDevice::loadImageFromFile(
+    const std::filesystem::path& path,
+    VkFormat format,
+    VkImageUsageFlags usage,
+    bool mipMap)
+{
+    return imageCache.loadImageFromFile(path, format, usage, mipMap);
+}
+
+const GPUImage& GfxDevice::getImage(ImageId id) const
+{
+    return imageCache.getImage(id);
+}
+
+ImageId GfxDevice::addImageToCache(GPUImage img)
+{
+    return imageCache.addImage(std::move(img));
+}
+
+GPUImage GfxDevice::createImageRaw(
+    const vkutil::CreateImageInfo& createInfo,
+    std::optional<VmaAllocationCreateInfo> customAllocationCreateInfo) const
+{
+    std::uint32_t mipLevels = 1;
+    if (createInfo.mipMap) {
+        const auto maxExtent = std::max(createInfo.extent.width, createInfo.extent.height);
+        mipLevels = (std::uint32_t)std::floor(std::log2(maxExtent)) + 1;
+    }
+
+    if (createInfo.isCubemap) {
+        assert(createInfo.numLayers % 6 == 0);
+        assert(!createInfo.mipMap);
+        assert((createInfo.flags & VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT) != 0);
+    }
+
+    auto imgInfo = VkImageCreateInfo{
+        .sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO,
+        .flags = createInfo.flags,
+        .imageType = VK_IMAGE_TYPE_2D,
+        .format = createInfo.format,
+        .extent = createInfo.extent,
+        .mipLevels = mipLevels,
+        .arrayLayers = createInfo.numLayers,
+        .samples = createInfo.samples,
+        .tiling = createInfo.tiling,
+        .usage = createInfo.usage,
+    };
+
+    static const auto defaultAllocInfo = VmaAllocationCreateInfo{
+        .usage = VMA_MEMORY_USAGE_AUTO,
+        .requiredFlags = VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+    };
+    const auto allocInfo = customAllocationCreateInfo.has_value() ?
+                               customAllocationCreateInfo.value() :
+                               defaultAllocInfo;
+
+    GPUImage image{};
+    image.format = createInfo.format;
+    image.usage = createInfo.usage;
+    image.extent = createInfo.extent;
+    image.mipLevels = mipLevels;
+    image.numLayers = createInfo.numLayers;
+    image.isCubemap = createInfo.isCubemap;
+
+    VK_CHECK(
+        vmaCreateImage(allocator, &imgInfo, &allocInfo, &image.image, &image.allocation, nullptr));
+
+    // create view only when usage flags allow it
+    bool shouldCreateView = ((createInfo.usage & VK_IMAGE_USAGE_SAMPLED_BIT) != 0) ||
+                            ((createInfo.usage & VK_IMAGE_USAGE_STORAGE_BIT) != 0) ||
+                            ((createInfo.usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT) != 0) ||
+                            ((createInfo.usage & VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT) != 0);
+
+    if (shouldCreateView) {
+        VkImageAspectFlags aspectFlag = VK_IMAGE_ASPECT_COLOR_BIT;
+        if (createInfo.format == VK_FORMAT_D32_SFLOAT) { // TODO: support other depth formats
+            aspectFlag = VK_IMAGE_ASPECT_DEPTH_BIT;
+        }
+
+        auto viewType =
+            createInfo.numLayers == 1 ? VK_IMAGE_VIEW_TYPE_2D : VK_IMAGE_VIEW_TYPE_2D_ARRAY;
+        if (createInfo.isCubemap && createInfo.numLayers == 6) {
+            viewType = VK_IMAGE_VIEW_TYPE_CUBE;
+        }
+
+        const auto viewCreateInfo = VkImageViewCreateInfo{
+            .sType = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO,
+            .image = image.image,
+            .viewType = viewType,
+            .format = createInfo.format,
+            .subresourceRange =
+                VkImageSubresourceRange{
+                    .aspectMask = aspectFlag,
+                    .baseMipLevel = 0,
+                    .levelCount = mipLevels,
+                    .baseArrayLayer = 0,
+                    .layerCount = createInfo.numLayers,
+                },
+        };
+
+        VK_CHECK(vkCreateImageView(device, &viewCreateInfo, nullptr, &image.imageView));
+    }
+
+    return image;
+}
+
+void GfxDevice::uploadImageData(const GPUImage& image, void* pixelData, std::uint32_t layer) const
+{
+    int numChannels = 4;
+    if (image.format == VK_FORMAT_R8_UNORM) {
+        // FIXME: support more types
+        numChannels = 1;
+    }
+    const auto dataSize =
+        image.extent.depth * image.extent.width * image.extent.height * numChannels;
+
+    const auto uploadBuffer = createBuffer(dataSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT);
+    memcpy(uploadBuffer.info.pMappedData, pixelData, dataSize);
+
+    executor.immediateSubmit([&](VkCommandBuffer cmd) {
+        assert(
+            (image.usage & VK_IMAGE_USAGE_TRANSFER_DST_BIT) != 0 &&
+            "Image needs to have VK_IMAGE_USAGE_TRANSFER_DST_BIT to upload data to it");
+        vkutil::transitionImage(
+            cmd, image.image, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+
+        const auto copyRegion = VkBufferImageCopy{
+            .bufferOffset = 0,
+            .bufferRowLength = 0,
+            .bufferImageHeight = 0,
+            .imageSubresource =
+                {
+                    .aspectMask = VK_IMAGE_ASPECT_COLOR_BIT,
+                    .mipLevel = 0,
+                    .baseArrayLayer = layer,
+                    .layerCount = 1,
+                },
+            .imageExtent = image.extent,
+        };
+
+        vkCmdCopyBufferToImage(
+            cmd,
+            uploadBuffer.buffer,
+            image.image,
+            VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+            1,
+            &copyRegion);
+
+        if (image.mipLevels > 1) {
+            assert(
+                (image.usage & VK_IMAGE_USAGE_TRANSFER_DST_BIT) != 0 &&
+                (image.usage & VK_IMAGE_USAGE_TRANSFER_SRC_BIT) != 0 &&
+                "Image needs to have VK_IMAGE_USAGE_TRANSFER_{DST,SRC}_BIT to generate mip maps");
+            graphics::generateMipmaps(
+                cmd,
+                image.image,
+                VkExtent2D{image.extent.width, image.extent.height},
+                image.mipLevels);
+        } else {
+            vkutil::transitionImage(
+                cmd,
+                image.image,
+                VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+        }
+    });
+
+    destroyBuffer(uploadBuffer);
+}
+
+GPUImage GfxDevice::loadImageFromFileRaw(
+    const std::filesystem::path& path,
+    VkFormat format,
+    VkImageUsageFlags usage,
+    bool mipMap) const
+{
+    auto data = util::loadImage(path);
+    if (!data.pixels) {
+        fmt::println("[error] failed to load image from '{}'", path.string());
+        return getImage(errorImageId);
+    }
+
+    auto image = createImageRaw({
+        .format = format,
+        .usage = usage | //
+                 VK_IMAGE_USAGE_TRANSFER_DST_BIT | // for uploading pixel data to image
+                 VK_IMAGE_USAGE_TRANSFER_SRC_BIT, // for generating mips
+        .extent =
+            VkExtent3D{
+                .width = (std::uint32_t)data.width,
+                .height = (std::uint32_t)data.height,
+                .depth = 1,
+            },
+        .mipMap = mipMap,
+    });
+    uploadImageData(image, data.pixels);
+
+    image.debugName = path.string();
+    vkutil::addDebugLabel(device, image.image, path.string().c_str());
+
+    return image;
+}
+
+void GfxDevice::destroyImage(const GPUImage& image) const
+{
+    vkDestroyImageView(device, image.imageView, nullptr);
+    vmaDestroyImage(allocator, image.image, image.allocation);
+    // TODO: if image has bindless id, update the set
 }
