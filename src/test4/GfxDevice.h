@@ -169,6 +169,7 @@ private:
 
     VulkanImmediateExecutor executor;
 
+    // VulkanImGuiBackend imGuiBackend;
 
     VkSampleCountFlagBits supportedSampleCounts;
     VkSampleCountFlagBits highestSupportedSamples{VK_SAMPLE_COUNT_1_BIT};

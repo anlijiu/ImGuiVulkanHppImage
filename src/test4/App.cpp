@@ -1,5 +1,21 @@
 #include "App.h"
 #include <print>
+#include <chrono>
+
+static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+
+    auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
+
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+}
+
+static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
+    // 处理鼠标移动
+}
 
 App::App() {
 
@@ -36,15 +52,79 @@ void App::init(const Params& ps) {
     // make the context of the specified window current on the calling thread
     glfwMakeContextCurrent(window);
 
+    // 设置回调上下文为 this 指针 , 
+    // 这样真实回调发生的时候，就可以拿到 App 指针
+    glfwSetWindowUserPointer(window, this);
+
+    // 设置键盘回调
+    glfwSetKeyCallback(window, key_callback);
+
+    // 设置鼠标回调
+    glfwSetCursorPosCallback(window, mouse_callback);
 
     gfxDevice.init(window, params.appName.c_str(), params.version, vSync);
 }
 
-void App::run() {
-    while (!glfwWindowShouldClose(window)) {
-        glfwPollEvents();
+void App::customDraw() {
 
-        glfwSwapBuffers(window);
+}
+
+void App::run() {
+    // Fix your timestep! game loop
+    const float FPS = 60.f;
+    const float dt = 1.f / FPS;
+
+    auto prevTime = std::chrono::high_resolution_clock::now();
+    float accumulator = dt; // so that we get at least 1 update before render
+    while (!glfwWindowShouldClose(window)) {
+        const auto newTime = std::chrono::high_resolution_clock::now();
+        frameTime = std::chrono::duration<float>(newTime - prevTime).count();
+
+        if (frameTime > 0.07f && frameTime < 5.f) { // if >=5.f - debugging?
+            printf("frame drop, time: %.4f\n", frameTime);
+        }
+
+        accumulator += frameTime;
+        prevTime = newTime;
+
+        // moving average
+        float newFPS = 1.f / frameTime;
+        if (newFPS == std::numeric_limits<float>::infinity()) {
+            // can happen when frameTime == 0
+            newFPS = 0;
+        }
+        avgFPS = std::lerp(avgFPS, newFPS, 0.1f);
+
+        if (accumulator > 10 * dt) { // game stopped for debug
+            accumulator = dt;
+        }
+
+        while (accumulator >= dt) {
+            ZoneScopedN("Tick");
+
+            glfwPollEvents();
+
+            if (gfxDevice.needsSwapchainRecreate()) {
+                gfxDevice.recreateSwapchain(params.windowSize.x, params.windowSize.y);
+                onWindowResize();
+            }
+
+        }
+        if (!gfxDevice.needsSwapchainRecreate()) {
+            customDraw();
+        }
+        FrameMark;
+
+        if (frameLimit) {
+            // Delay to not overload the CPU
+            const auto now = std::chrono::high_resolution_clock::now();
+            const auto frameTime = std::chrono::duration<float>(now - prevTime).count();
+            if (dt > frameTime) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<std::uint32_t>(dt - frameTime)));
+            }
+        }
+ 
+        // glfwSwapBuffers(window);
         // int res = draw_frame(init, render_data);
         // if (res != 0) {
         //     std::cout << "failed to draw frame \n";
@@ -54,6 +134,7 @@ void App::run() {
 }
 
 void App::cleanup() {
+    gfxDevice.cleanup();
 
 }
 

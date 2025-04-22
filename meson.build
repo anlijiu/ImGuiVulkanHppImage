@@ -44,7 +44,8 @@ cpp_args = [
   '-DVMA_VULKAN_VERSION=1003000',
   '-DVMA_STATIC_VULKAN_FUNCTIONS=0',
   '-DVMA_DYNAMIC_VULKAN_FUNCTIONS=1',
-  '-DVK_NO_PROTOTYPES'
+  '-DVK_NO_PROTOTYPES',
+  '-DGLM_ENABLE_EXPERIMENTAL'
 ]
 
 # glslc = find_program('glslc')
@@ -152,6 +153,8 @@ sdl_opts.append_compile_args('c', '-Dhid_darwin_set_open_exclusive(x)=;')
 # sdl_proj = cmake.subproject('SDL', options: sdl_opts, required: true)
 # sdl_dep = sdl_proj.dependency('SDL3')
 
+stb_dep = subproject('stb').get_variable('stb_dep')
+
 fmt_dep = cmake.subproject('fmt').get_variable('fmt_dep')
 
 glfw_proj = cmake.subproject('glfw')
@@ -227,6 +230,7 @@ app_deps = [
   tracy_dep,
   imgui_dep,
   spdlog_dep,
+  stb_dep,
 ]
 
 sources = files(

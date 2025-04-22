@@ -7,6 +7,7 @@
 #include <vma/vk_mem_alloc.h>
 #include <iostream>
 #include <GLFW/glfw3.h>
+#include <tracy/Tracy.hpp>
 
 
 #include "GPUBuffer.h"
@@ -74,6 +75,18 @@ void GfxDevice::init(GLFWwindow* window, const char* appName, const Version& ver
             "error texture",
             pixels.data());
         imageCache.setErrorImageId(errorImageId);
+    }
+
+    // Dear ImGui
+    // ImGui::CreateContext();
+    // auto& io = ImGui::GetIO();
+    // io.ConfigWindowsMoveFromTitleBarOnly = true;
+    // imGuiBackend.init(*this, swapchainFormat);
+    // ImGui_ImplSDL2_InitForVulkan(window);
+
+    for (std::size_t i = 0; i < graphics::FRAME_OVERLAP; ++i) {
+        frames[i].tracyVkCtx =
+            TracyVkContext(physicalDevice, device, graphicsQueue, frames[i].mainCommandBuffer);
     }
 }
 
@@ -247,6 +260,11 @@ void GfxDevice::createCommandBuffers()
     }
 }
 
+void GfxDevice::destroyBuffer(const GPUBuffer& buffer) const
+{
+    vmaDestroyBuffer(allocator, buffer.buffer, buffer.allocation);
+}
+
 GfxDevice::FrameData& GfxDevice::getCurrentFrame()
 {
     return frames[getCurrentFrameIndex()];
@@ -296,10 +314,158 @@ void GfxDevice::bindBindlessDescSet(VkCommandBuffer cmd, VkPipelineLayout layout
         nullptr);
 }
 
+void GfxDevice::endFrame(VkCommandBuffer cmd, const GPUImage& drawImage, const EndFrameProps& props)
+{
+    // get swapchain image
+    const auto [swapchainImage, swapchainImageIndex] =
+        swapchain.acquireImage(device, getCurrentFrameIndex());
+    if (swapchainImage == VK_NULL_HANDLE) {
+        return;
+    }
+
+    // Fences are reset here to prevent the deadlock in case swapchain becomes dirty
+    swapchain.resetFences(device, getCurrentFrameIndex());
+
+    auto swapchainLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+
+    {
+        // clear swapchain image
+        VkImageSubresourceRange clearRange =
+            vkinit::imageSubresourceRange(VK_IMAGE_ASPECT_COLOR_BIT);
+        vkutil::transitionImage(cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_GENERAL);
+        swapchainLayout = VK_IMAGE_LAYOUT_GENERAL;
+
+        const auto clearValue = VkClearColorValue{
+            {props.clearColor.r, props.clearColor.g, props.clearColor.b, props.clearColor.a}};
+        vkCmdClearColorImage(
+            cmd, swapchainImage, VK_IMAGE_LAYOUT_GENERAL, &clearValue, 1, &clearRange);
+    }
+
+    if (props.copyImageIntoSwapchain) {
+        // copy from draw image into swapchain
+        vkutil::transitionImage(
+            cmd,
+            drawImage.image,
+            VK_IMAGE_LAYOUT_ATTACHMENT_OPTIMAL,
+            VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+        vkutil::transitionImage(
+            cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+        swapchainLayout = VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL;
+
+        const auto filter = props.drawImageLinearBlit ? VK_FILTER_LINEAR : VK_FILTER_NEAREST;
+        if (props.drawImageBlitRect != glm::ivec4{}) {
+            vkutil::copyImageToImage(
+                cmd,
+                drawImage.image,
+                swapchainImage,
+                drawImage.getExtent2D(),
+                props.drawImageBlitRect.x,
+                props.drawImageBlitRect.y,
+                props.drawImageBlitRect.z,
+                props.drawImageBlitRect.w,
+                filter);
+        } else {
+            // will stretch image to swapchain
+            vkutil::copyImageToImage(
+                cmd,
+                drawImage.image,
+                swapchainImage,
+                drawImage.getExtent2D(),
+                getSwapchainExtent(),
+                filter);
+        }
+    }
+
+    // if (props.drawImGui) {
+    //     vkutil::transitionImage(
+    //         cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL);
+    //     swapchainLayout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+    // 
+    //     { // draw Dear ImGui
+    //         ZoneScopedN("ImGui draw");
+    //         TracyVkZoneC(getTracyVkCtx(), cmd, "ImGui", tracy::Color::VioletRed);
+    //         vkutil::cmdBeginLabel(cmd, "Draw Dear ImGui");
+    //         imGuiBackend.draw(
+    //             cmd, *this, swapchain.getImageView(swapchainImageIndex), swapchain.getExtent());
+    //         vkutil::cmdEndLabel(cmd);
+    //     }
+    // }
+
+    // prepare for present
+    vkutil::transitionImage(cmd, swapchainImage, swapchainLayout, VK_IMAGE_LAYOUT_PRESENT_SRC_KHR);
+    swapchainLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+
+    {
+        // TODO: don't collect every frame?
+        auto& frame = getCurrentFrame();
+        TracyVkCollect(frame.tracyVkCtx, frame.mainCommandBuffer);
+    }
+
+    VK_CHECK(vkEndCommandBuffer(cmd));
+
+    swapchain.submitAndPresent(cmd, graphicsQueue, getCurrentFrameIndex(), swapchainImageIndex);
+
+    frameNumber++;
+}
+
+
 void GfxDevice::cleanup()
 {
+    imageCache.destroyImages();
+    imageCache.bindlessSetManager.cleanup(device);
 
+    for (auto& frame : frames) {
+        vkDestroyCommandPool(device, frame.commandPool, 0);
+        TracyVkDestroy(frame.tracyVkCtx);
+    }
+
+    // cleanup Dear ImGui
+    // imGuiBackend.cleanup(*this);
+    // ImGui_ImplSDL2_Shutdown();
+    // ImGui::DestroyContext();
+
+    swapchain.cleanup(device);
+
+    executor.cleanup(device);
+
+    vkb::destroy_surface(instance, surface);
+    vmaDestroyAllocator(allocator);
+    vkb::destroy_device(device);
+    vkb::destroy_instance(instance);
 }
+
+GPUBuffer GfxDevice::createBuffer(
+    std::size_t allocSize,
+    VkBufferUsageFlags usage,
+    VmaMemoryUsage memoryUsage) const
+{
+    const auto bufferInfo = VkBufferCreateInfo{
+        .sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO,
+        .size = allocSize,
+        .usage = usage,
+    };
+
+    const auto allocInfo = VmaAllocationCreateInfo{
+        .flags = VMA_ALLOCATION_CREATE_MAPPED_BIT |
+                 // TODO: allow to set VMA_ALLOCATION_CREATE_HOST_ACCESS_RANDOM_BIT when needed
+                 VMA_ALLOCATION_CREATE_HOST_ACCESS_SEQUENTIAL_WRITE_BIT,
+        .usage = memoryUsage,
+    };
+
+    GPUBuffer buffer{};
+    VK_CHECK(vmaCreateBuffer(
+        allocator, &bufferInfo, &allocInfo, &buffer.buffer, &buffer.allocation, &buffer.info));
+    if ((usage & VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT) != 0) {
+        const auto deviceAdressInfo = VkBufferDeviceAddressInfo{
+            .sType = VK_STRUCTURE_TYPE_BUFFER_DEVICE_ADDRESS_INFO,
+            .buffer = buffer.buffer,
+        };
+        buffer.address = vkGetBufferDeviceAddress(device, &deviceAdressInfo);
+    }
+
+    return buffer;
+}
+
 
 ImageId GfxDevice::createImage(
     const vkutil::CreateImageInfo& createInfo,

@@ -34,6 +34,9 @@ public:
     void run();
     void cleanup();
 
+    virtual void onWindowResize(){};
+    virtual void customDraw();
+
 protected:
     virtual void loadAppSettings(){};
     virtual void loadDevSettings(const std::filesystem::path& configPath);
