@@ -1,6 +1,7 @@
 #include "App.h"
 #include <print>
 #include <chrono>
+#include "spdlog/spdlog.h"
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -17,9 +18,16 @@ static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     // 处理鼠标移动
 }
 
+static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
+    spdlog::info("framebufferResizeCallback width: {}, height:{} ", width, height);
+    auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
+    // 设置标志： resize 了
+    // app->framebufferResized = true;
+}
+
 App::App() {
 
-    std::print("App::App\n");
+    spdlog::info("App::App");
 }
 
 App::~App() {
@@ -43,7 +51,6 @@ void App::init(const Params& ps) {
 
     glfwInit();
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
     window = glfwCreateWindow(params.windowSize.x, params.windowSize.y, params.windowTitle.c_str(), NULL, NULL);
       // 设置窗口位置
@@ -61,6 +68,9 @@ void App::init(const Params& ps) {
 
     // 设置鼠标回调
     glfwSetCursorPosCallback(window, mouse_callback);
+
+    // 实际检测调整大小，我们可以使用glfwSetFramebufferSizeCallbackGLFW 框架中的函数来设置回调：
+    glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
     gfxDevice.init(window, params.appName.c_str(), params.version, vSync);
 }

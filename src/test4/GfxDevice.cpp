@@ -9,6 +9,8 @@
 #include <GLFW/glfw3.h>
 #include <tracy/Tracy.hpp>
 
+#include "spdlog/spdlog.h"
+
 
 #include "GPUBuffer.h"
 #include "GPUImage.h"
@@ -151,7 +153,7 @@ void GfxDevice::initVulkan(GLFWwindow* window, const char* appName, const Versio
     volkLoadInstance(instance);
 
     if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
-        std::cout << "Failed to create Vulkan surface: check GLFW_NO_API " << std::endl;
+        spdlog::error("Failed to create Vulkan surface: check GLFW_NO_API");
         std::exit(0);
     }
 
@@ -192,6 +194,8 @@ void GfxDevice::initVulkan(GLFWwindow* window, const char* appName, const Versio
 
     checkDeviceCapabilities();
 
+    spdlog::info("choose physicalDevice {}", physicalDevice.name);
+    
     device = vkb::DeviceBuilder{physicalDevice}.build().value();
 
     graphicsQueueFamily = device.get_queue_index(vkb::QueueType::graphics).value();
