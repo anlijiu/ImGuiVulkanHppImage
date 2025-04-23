@@ -188,6 +188,8 @@ void GfxDevice::initVulkan(GLFWwindow* window, const char* appName, const Versio
                          .set_required_features(deviceFeatures)
                          .set_required_features_12(features12)
                          .set_required_features_13(features13)
+                         .allow_any_gpu_device_type(false)
+                         .prefer_gpu_device_type(vkb::PreferredDeviceType::discrete)
                          .set_surface(surface)
                          .select()
                          .value();
@@ -278,6 +280,11 @@ GfxDevice::FrameData& GfxDevice::getCurrentFrame()
 std::uint32_t GfxDevice::getCurrentFrameIndex() const
 {
     return frameNumber % graphics::FRAME_OVERLAP;
+}
+
+const TracyVkCtx& GfxDevice::getTracyVkCtx() const
+{
+    return frames[getCurrentFrameIndex()].tracyVkCtx;
 }
 
 bool GfxDevice::deviceSupportsSamplingCount(VkSampleCountFlagBits sample) const

@@ -135,6 +135,7 @@ public:
     VkDevice getDevice() const { return device; }
 
     std::uint32_t getCurrentFrameIndex() const;
+    const TracyVkCtx& getTracyVkCtx() const;
     VkExtent2D getSwapchainExtent() const { return swapchain.getExtent(); }
     glm::ivec2 getSwapchainSize() const
     {

@@ -35,21 +35,25 @@ public:
     void cleanup();
 
     virtual void onWindowResize(){};
-    virtual void customDraw();
 
+    virtual void customInit() = 0;                                                                                                                               
+    virtual void customUpdate(float dt) = 0;
+    virtual void customDraw() = 0;
+    virtual void customCleanup() = 0;
+
+    const Version& getVersion() const { return params.version; }
+
+    virtual ImageId getMainDrawImageId() const { return NULL_IMAGE_ID; }
 protected:
     virtual void loadAppSettings(){};
     virtual void loadDevSettings(const std::filesystem::path& configPath);
 
-    // GfxDevice gfxDevice;
+    GfxDevice gfxDevice;
 
     GLFWwindow* window{nullptr};
 
-    GfxDevice gfxDevice;
-
     Params params;
 
-private:
 
     bool vSync{true};
 
@@ -65,6 +69,10 @@ private:
     float frameTime{0.f};
     float avgFPS{0.f};
 
+private:
+    void handleBaseDevInput();
+
+    // std::unique_ptr<IAudioManager> audioManager;
 };
 
 #endif // _APP_H_

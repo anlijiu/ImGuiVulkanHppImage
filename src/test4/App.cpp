@@ -144,10 +144,28 @@ void App::run() {
 }
 
 void App::cleanup() {
+    customCleanup();
+
     gfxDevice.cleanup();
 
+
+    glfwDestroyWindow(window);
+
+    glfwTerminate();
 }
 
 void App::loadDevSettings(const std::filesystem::path& configPath) {
 
+}
+
+void App::handleBaseDevInput()
+{
+    // if (inputManager.getKeyboard().wasJustPressed(SDL_SCANCODE_F11)) {
+    //     const auto mainImageId = getMainDrawImageId();
+    //     if (mainImageId != NULL_IMAGE_ID) {
+    //         screenshotTaker.takeScreenshot(gfxDevice, mainImageId);
+    //     } else {
+    //         fmt::println("[dev] can't take screenshot: getMainDrawImageId returned NULL_IMAGE_ID");
+    //     }
+    // }
 }

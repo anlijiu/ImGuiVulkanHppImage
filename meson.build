@@ -316,6 +316,9 @@ Fsources = files(
   'src/test4/MeshCache.cpp',
   'src/test4/Pipelines.cpp',
   'src/test4/Renderer.cpp',
+  'src/test4/NBuffer.cpp',
+  'src/test4/Letterbox.cpp',
+  'src/test4/Game1.cpp',
   'src/test4/App.cpp',
   'src/test4/main.cpp',
 )
