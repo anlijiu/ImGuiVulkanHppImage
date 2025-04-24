@@ -1,6 +1,7 @@
 #include "Game1.h"
 #include "Letterbox.h"
 #include "Util.h"
+#include "CPUMesh.h"
 
 #include "spdlog/spdlog.h"
 
@@ -24,6 +25,51 @@ void Game1::customInit()
 
     samples = gfxDevice.getMaxSupportedSamplingCount(); // needs to be called before
     meshPipeline.init(gfxDevice, drawImageFormat, depthImageFormat, samples);
+
+    struct VertexWithColor
+    {
+        float x, y, z, w;   // Vertex Position
+        float r, g, b, a;   // Color format Red, Green, Blue, Alpha
+    };
+
+    struct Vertex {
+        glm::vec3 position;
+        float uv_x{};
+        glm::vec3 normal;
+        float uv_y{};
+        glm::vec4 tangent;
+    };
+
+    const std::vector<Vertex> squareData =
+    {
+        { .position = glm::vec3 { -0.5f,  0.5f, 1.0f } }, 
+        { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } }, 
+        { .position = glm::vec3 { 1.0f, 1.0f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0, 1.0f } },
+        { .position = glm::vec3 { 0.5f, 0.5f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } },
+        { .position = glm::vec3 { 1.0f, 0.0f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0, 1.0f } },
+        { .position = glm::vec3 { 0.5f, -0.5f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 0.0f, 1.0f } },
+        { .position = glm::vec3 { 1.0f, 1.0, 1.0f } },
+        { .position = glm::vec3 { -0.5f, -0.5f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } },
+        { .position = glm::vec3 { 0.0f, 1.0, 1.0f } },
+    };
+    // 6 个顶点索引，对应两个三角形，即绘制一个矩形（实际是正方形）
+    std::vector<uint32_t> squareIndices = { 0,3,1, 3,2,1 }; // 6 indices
+ 
+    CPUMesh mesh{.name = "square"};
+    mesh.indices = squareIndices;
+    mesh.vertices.resize(squareData.size());
+    for (std::size_t i = 0; i < squareData.size(); ++i) {
+        mesh.vertices[i].position = squareData[i].position;
+    }
+    meshCache.addMesh(gfxDevice, mesh);
+
 }
 
 void Game1::onWindowResize()
@@ -124,11 +170,8 @@ void Game1::customDraw()
             finalDrawImage.getExtent2D(),
             gfxDevice,
             meshCache,
-            materialCache,
             camera,
-            sceneDataBuffer.getBuffer(),
-            meshDrawCommands,
-            sortedMeshDrawCommands);
+            sceneDataBuffer.getBuffer());
 
         vkCmdEndRendering(cmd);
         vkutil::cmdEndLabel(cmd);

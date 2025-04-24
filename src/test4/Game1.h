@@ -5,9 +5,9 @@
 
 #include "App.h"
 #include "Camera.h"
-#include "MeshCache.h"
+#include "MeshCache1.h"
 #include "MaterialCache.h"
-#include "MeshPipeline.h"
+#include "MeshPipeline1.h"
 #include "MeshDrawCommand.h"
 #include "NBuffer.h"
 
@@ -32,7 +32,7 @@ private:
     float cameraFar{200.f};
     float cameraFovX{glm::radians(45.f)};
 
-    MeshCache meshCache;
+    MeshCache1 meshCache;
     MaterialCache materialCache;
     std::vector<MeshDrawCommand> meshDrawCommands;
     std::vector<std::size_t> sortedMeshDrawCommands;
@@ -47,7 +47,7 @@ private:
     ImageId gameScreenDrawImageId{NULL_IMAGE_ID}; // image to which game pixels are drawn to
     ImageId finalDrawImageId{NULL_IMAGE_ID}; // id of image which is drawn to the window
 
-    MeshPipeline meshPipeline;
+    MeshPipeline1 meshPipeline;
 
     VkSampleCountFlagBits samples{VK_SAMPLE_COUNT_1_BIT};
 
