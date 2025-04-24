@@ -12,6 +12,11 @@ glslc src/test2/shaders/passthrough_frag.frag -o build/shaders/passthrough_frag.
 
 #################################################################### 
 
+glslc src/test4/shaders/mesh.vert -o build/shaders/mesh.vert.spv
+glslc src/test4/shaders/mesh.frag -o build/shaders/mesh.frag.spv
+
+#################################################################### 
+
 dxc -spirv -T "vs_6_0" -E "mainVS" src/test1/shaders/ibl.hlsl -Fo build/shaders/ibl.hlsl.vert.spv
 dxc -spirv -T "vs_6_0" -E "mainVS" src/test1/shaders/skybox.hlsl -Fo build/shaders/skybox.hlsl.vert.spv
 

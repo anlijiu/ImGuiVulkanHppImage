@@ -1,0 +1,59 @@
+#version 460
+
+#extension GL_GOOGLE_include_directive : require
+#extension GL_EXT_buffer_reference : require
+
+#include "vertex.glsl"
+
+struct SkinningDataType {
+    ivec4 jointIds;
+    vec4 weights;
+};
+
+layout (buffer_reference, std430) readonly buffer SkinningData {
+	SkinningDataType data[];
+};
+
+layout (buffer_reference, std430) readonly buffer JointMatrices {
+	mat4 matrices[];
+};
+
+layout (push_constant) uniform constants
+{
+    JointMatrices jointMatrices;
+    uint jointMatricesStartIndex;
+    uint numVertices;
+	VertexBuffer inputBuffer;
+    SkinningData skinningData;
+	VertexBuffer outputBuffer;
+} pcs;
+
+layout (local_size_x = 256, local_size_y = 1, local_size_z = 1) in;
+
+mat4 getJointMatrix(int jointId) {
+    return pcs.jointMatrices.matrices[pcs.jointMatricesStartIndex + jointId];
+}
+
+void main()
+{
+    uint index = gl_GlobalInvocationID.x;
+    if (index >= pcs.numVertices) {
+        return;
+    }
+
+    SkinningDataType sd = pcs.skinningData.data[index];
+    mat4 skinMatrix =
+        sd.weights.x * getJointMatrix(sd.jointIds.x) +
+        sd.weights.y * getJointMatrix(sd.jointIds.y) +
+        sd.weights.z * getJointMatrix(sd.jointIds.z) +
+        sd.weights.w * getJointMatrix(sd.jointIds.w);
+
+    Vertex v = pcs.inputBuffer.vertices[index];
+    v.position = vec3(skinMatrix * vec4(v.position, 1.0));
+
+    mat3 skinMat3 = mat3(skinMatrix);
+    v.normal = skinMat3 * v.normal;
+    v.tangent.xyz = skinMat3 * v.tangent.xyz; // don't transform tangent.w
+
+    pcs.outputBuffer.vertices[index] = v;
+}

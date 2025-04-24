@@ -2,6 +2,8 @@
 #include "Letterbox.h"
 #include "Util.h"
 
+#include "spdlog/spdlog.h"
+
 void Game1::customInit()
 {
 

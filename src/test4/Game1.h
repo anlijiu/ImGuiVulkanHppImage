@@ -8,6 +8,7 @@
 #include "MeshCache.h"
 #include "MaterialCache.h"
 #include "MeshPipeline.h"
+#include "MeshDrawCommand.h"
 #include "NBuffer.h"
 
 
@@ -33,6 +34,8 @@ private:
 
     MeshCache meshCache;
     MaterialCache materialCache;
+    std::vector<MeshDrawCommand> meshDrawCommands;
+    std::vector<std::size_t> sortedMeshDrawCommands;
 
     NBuffer sceneDataBuffer;
 

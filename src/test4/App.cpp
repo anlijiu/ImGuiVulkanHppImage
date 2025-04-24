@@ -44,9 +44,21 @@ void App::init(const Params& ps) {
     std::print("windowSize x{} y{}\n", params.windowSize.x, params.windowSize.y);
     std::print("222\n");
 
+
+    if (params.windowSize == glm::ivec2{}) {
+        assert(params.renderSize != glm::ivec2{});
+        params.windowSize = params.renderSize;
+    }
+
+    if (params.renderSize == glm::ivec2{}) {
+        assert(params.windowSize != glm::ivec2{});
+        params.renderSize = params.windowSize;
+    }
+
     if (params.windowTitle.empty()) {
         params.windowTitle = params.appName;
     }
+
     std::print("windowTitle {}\n", params.windowTitle);
 
     glfwInit();
@@ -73,6 +85,8 @@ void App::init(const Params& ps) {
     glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);
 
     gfxDevice.init(window, params.appName.c_str(), params.version, vSync);
+
+    customInit();
 }
 
 void App::customDraw() {
@@ -80,6 +94,9 @@ void App::customDraw() {
 }
 
 void App::run() {
+
+    spdlog::info("App::run");
+
     // Fix your timestep! game loop
     const float FPS = 60.f;
     const float dt = 1.f / FPS;
@@ -91,7 +108,7 @@ void App::run() {
         frameTime = std::chrono::duration<float>(newTime - prevTime).count();
 
         if (frameTime > 0.07f && frameTime < 5.f) { // if >=5.f - debugging?
-            printf("frame drop, time: %.4f\n", frameTime);
+            spdlog::info("frame drop, time: {:.4f}", frameTime);
         }
 
         accumulator += frameTime;
@@ -119,7 +136,11 @@ void App::run() {
                 onWindowResize();
             }
 
+            customUpdate(dt);
+
+            accumulator -= dt;
         }
+
         if (!gfxDevice.needsSwapchainRecreate()) {
             customDraw();
         }
