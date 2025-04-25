@@ -32,15 +32,7 @@ void Game1::customInit()
         float r, g, b, a;   // Color format Red, Green, Blue, Alpha
     };
 
-    struct Vertex {
-        glm::vec3 position;
-        float uv_x{};
-        glm::vec3 normal;
-        float uv_y{};
-        glm::vec4 tangent;
-    };
-
-    const std::vector<Vertex> squareData =
+    const std::vector<CPUMesh::Vertex> squareData =
     {
         { .position = glm::vec3 { -0.5f,  0.5f, 1.0f } }, 
         { .position = glm::vec3 { 0.0f, 1.0f, 1.0f } }, 
@@ -69,7 +61,6 @@ void Game1::customInit()
         mesh.vertices[i].position = squareData[i].position;
     }
     meshCache.addMesh(gfxDevice, mesh);
-
 }
 
 void Game1::onWindowResize()

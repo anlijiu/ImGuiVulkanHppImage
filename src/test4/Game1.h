@@ -54,7 +54,7 @@ private:
     glm::vec2 playerPos;
 
     // dev
-    bool gameDrawnInWindow{false};
+    bool gameDrawnInWindow{true};
     bool drawImGui{false};
 
 };

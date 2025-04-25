@@ -2,7 +2,7 @@
 
 #include "FrustumCulling.h"
 #include "GfxDevice.h"
-#include "MaterialCache.h"
+#include "MaterialCache1.h"
 #include "MeshCache1.h"
 #include "MeshDrawCommand.h"
 #include "Init.h"
@@ -56,6 +56,7 @@ void MeshPipeline1::draw(
     VkExtent2D renderExtent,
     const GfxDevice& gfxDevice,
     const MeshCache1& meshCache,
+    const MaterialCache1& materialCache,
     const Camera& camera,
     const GPUBuffer& sceneDataBuffer)
 {

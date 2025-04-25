@@ -15,6 +15,7 @@ class Camera;
 struct GPUImage;
 struct GPUBuffer;
 struct MeshDrawCommand;
+struct MaterialCache1;
 
 class MeshPipeline1 {
 public:
@@ -30,6 +31,7 @@ public:
         VkExtent2D renderExtent,
         const GfxDevice& gfxDevice,
         const MeshCache1& meshCache,
+        const MaterialCache1& materialCache,
         const Camera& camera,
         const GPUBuffer& sceneDataBuffer);
 
