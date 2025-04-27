@@ -27,6 +27,8 @@ public:
 
 private:
 
+    void initSceneData(GfxDevice& gfxDevice);
+
     Camera camera;
     float cameraNear{1.f};
     float cameraFar{200.f};

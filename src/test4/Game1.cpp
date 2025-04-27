@@ -8,6 +8,8 @@
 void Game1::customInit()
 {
 
+    initSceneData(gfxDevice);
+
     { // create camera
         static const float aspectRatio = (float)params.renderSize.x / (float)params.renderSize.y;
 
@@ -61,6 +63,17 @@ void Game1::customInit()
         mesh.vertices[i].position = squareData[i].position;
     }
     meshCache.addMesh(gfxDevice, mesh);
+}
+
+void Game1::initSceneData(GfxDevice& gfxDevice)
+{
+    sceneDataBuffer.init(
+        gfxDevice,
+        VK_BUFFER_USAGE_STORAGE_BUFFER_BIT | VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT,
+        sizeof(GPUSceneData),
+        graphics::FRAME_OVERLAP,
+        "scene data");
+
 }
 
 void Game1::onWindowResize()

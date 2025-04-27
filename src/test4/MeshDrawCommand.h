@@ -15,7 +15,7 @@ struct MeshDrawCommand {
     MeshId meshId;
     glm::mat4 transformMatrix;
 
-    // for frustum culling
+    // for frustum culling (视锥体剔除)
     math::Sphere worldBoundingSphere;
 
     // If set - mesh will be drawn with overrideMaterialId
