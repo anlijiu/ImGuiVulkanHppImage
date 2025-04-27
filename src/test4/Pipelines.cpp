@@ -14,9 +14,11 @@ namespace vkutil
 {
 VkShaderModule loadShaderModule(const char* filePath, VkDevice device)
 {
-    std::ifstream file(filePath, std::ios::ate | std::ios::binary);
+    std::string dir = getExePath();
+    std::string fullPathString = dir + "/" + filePath;
+    std::ifstream file(fullPathString.c_str(), std::ios::ate | std::ios::binary);
     if (!file.is_open()) {
-        std::cout << "Failed to open " << filePath << std::endl;
+        std::cout << "Failed to open " << fullPathString.c_str() << std::endl;
         std::exit(1);
     }
 

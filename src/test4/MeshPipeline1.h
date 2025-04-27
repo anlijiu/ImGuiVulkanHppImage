@@ -18,6 +18,8 @@ struct MeshDrawCommand;
 struct MaterialCache1;
 
 class MeshPipeline1 {
+
+using MaterialId = std::uint32_t;
 public:
     void init(
         GfxDevice& gfxDevice,
@@ -33,7 +35,8 @@ public:
         const MeshCache1& meshCache,
         const MaterialCache1& materialCache,
         const Camera& camera,
-        const GPUBuffer& sceneDataBuffer);
+        const GPUBuffer& sceneDataBuffer,
+        const MaterialId testMaterialId);
 
 private:
     struct PushConstants {

@@ -58,7 +58,8 @@ void MeshPipeline1::draw(
     const MeshCache1& meshCache,
     const MaterialCache1& materialCache,
     const Camera& camera,
-    const GPUBuffer& sceneDataBuffer)
+    const GPUBuffer& sceneDataBuffer,
+    const MaterialId testMaterialId)
 {
     vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
     gfxDevice.bindBindlessDescSet(cmd, pipelineLayout);
@@ -91,7 +92,7 @@ void MeshPipeline1::draw(
             .transform = glm::mat4(1.0f),
             .sceneDataBuffer = sceneDataBuffer.address,
             .vertexBuffer = mesh.vertexBuffer.address,
-            .materialId = NULL_MATERIAL_ID,
+            .materialId = testMaterialId,
         };
         vkCmdPushConstants(
             cmd,

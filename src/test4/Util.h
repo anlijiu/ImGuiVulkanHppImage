@@ -5,6 +5,7 @@
 #include <optional>
 
 #include <vulkan/vulkan.h>
+#include <string>
 
 #include <glm/vec4.hpp>
 
@@ -100,5 +101,7 @@ void clearColorImage(
 
 int sampleCountToInt(VkSampleCountFlagBits count);
 const char* sampleCountToString(VkSampleCountFlagBits count);
+
+std::string getExePath();
 
 } // end of namespace vkutil

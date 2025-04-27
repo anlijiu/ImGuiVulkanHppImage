@@ -315,6 +315,7 @@ Fsources = files(
   'src/test4/Camera.cpp',
   'src/test4/MeshCache.cpp',
   'src/test4/MaterialCache.cpp',
+  'src/test4/MaterialCache1.cpp',
   'src/test4/Pipelines.cpp',
   'src/test4/Renderer.cpp',
   'src/test4/NBuffer.cpp',

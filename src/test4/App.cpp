@@ -61,7 +61,9 @@ void App::init(const Params& ps) {
 
     std::print("windowTitle {}\n", params.windowTitle);
 
+    glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND);
     glfwInit();
+
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
     window = glfwCreateWindow(params.windowSize.x, params.windowSize.y, params.windowTitle.c_str(), NULL, NULL);

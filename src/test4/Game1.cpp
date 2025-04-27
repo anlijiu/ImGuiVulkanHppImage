@@ -28,12 +28,6 @@ void Game1::customInit()
     samples = gfxDevice.getMaxSupportedSamplingCount(); // needs to be called before
     meshPipeline.init(gfxDevice, drawImageFormat, depthImageFormat, samples);
 
-    struct VertexWithColor
-    {
-        float x, y, z, w;   // Vertex Position
-        float r, g, b, a;   // Color format Red, Green, Blue, Alpha
-    };
-
     const std::vector<CPUMesh::Vertex> squareData =
     {
         { .position = glm::vec3 { -0.5f,  0.5f, 1.0f } }, 
@@ -63,6 +57,9 @@ void Game1::customInit()
         mesh.vertices[i].position = squareData[i].position;
     }
     meshCache.addMesh(gfxDevice, mesh);
+
+    Material material{ .baseColor = {1.0f, 0.0f, 0.0f, 1.0f}};
+    testMaterialId = materialCache.addMaterial(gfxDevice, material);
 }
 
 void Game1::initSceneData(GfxDevice& gfxDevice)
@@ -174,8 +171,10 @@ void Game1::customDraw()
             finalDrawImage.getExtent2D(),
             gfxDevice,
             meshCache,
+            materialCache,
             camera,
-            sceneDataBuffer.getBuffer());
+            sceneDataBuffer.getBuffer(),
+            testMaterialId);
 
         vkCmdEndRendering(cmd);
         vkutil::cmdEndLabel(cmd);

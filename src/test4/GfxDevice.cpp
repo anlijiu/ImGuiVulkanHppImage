@@ -249,6 +249,8 @@ void GfxDevice::checkDeviceCapabilities()
             }
         }
     }
+    // 先对付过去
+    highestSupportedSamples = VK_SAMPLE_COUNT_1_BIT;
 }
 
 void GfxDevice::createCommandBuffers()

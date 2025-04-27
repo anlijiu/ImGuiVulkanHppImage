@@ -5,8 +5,12 @@
 #include "GPUBuffer.h"
 #include "GPUImage.h"
 #include "Init.h"
+#include <spdlog/spdlog.h>
 
 #include <cstdint>
+#include <libgen.h>         // dirname
+#include <unistd.h>         // readlink
+#include <linux/limits.h>   // PATH_MAX
 
 namespace vkutil
 {
@@ -327,5 +331,18 @@ const char* sampleCountToString(VkSampleCountFlagBits count)
         return "Unknown";
     }
 }
+
+
+std::string getExePath() {
+    char result[PATH_MAX];
+    ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+    const char *path = nullptr;
+    if (count != -1) {
+        path = dirname(result);
+        spdlog::info("exe path :{}", path);
+    }
+    return std::string(path);
+}
+
 
 } // end of namespace vkutil
