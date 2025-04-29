@@ -2,6 +2,7 @@
 #include "Letterbox.h"
 #include "Util.h"
 #include "CPUMesh.h"
+#include "MeshDrawCommand.h"
 
 #include "spdlog/spdlog.h"
 
@@ -56,10 +57,18 @@ void Game1::customInit()
     for (std::size_t i = 0; i < squareData.size(); ++i) {
         mesh.vertices[i].position = squareData[i].position;
     }
-    meshCache.addMesh(gfxDevice, mesh);
+    MeshId id = meshCache.addMesh(gfxDevice, mesh);
 
     Material material{ .baseColor = {1.0f, 0.0f, 0.0f, 1.0f}};
     testMaterialId = materialCache.addMaterial(gfxDevice, material);
+
+    meshDrawCommands.push_back(MeshDrawCommand{
+        .meshId = id,
+        .transformMatrix = glm::mat4(1.0f),
+        .worldBoundingSphere = math::Sphere{.center = glm::vec3{0.0f, 0.0f, 0.0f, }, .radius = 360.0f}, 
+        .materialId = testMaterialId,
+        // .castShadow = castShadow,
+    });
 }
 
 void Game1::initSceneData(GfxDevice& gfxDevice)
@@ -148,6 +157,47 @@ void Game1::customDraw()
     // apply mesh Pipeline
     const auto& finalDrawImage = gfxDevice.getImage(finalDrawImageId);
 
+#if 1
+    {
+        SceneData sceneData {
+            .camera = camera,
+            .ambientColor = LinearColor::FromRGB(255, 0, 0),
+            .ambientIntensity = .5f,
+            .fogColor = LinearColor::FromRGB(0, 255, 0),
+            .fogDensity = .5f
+            // .ambientColor = level.getAmbientLightColor(),
+            // .ambientIntensity = level.getAmbientLightIntensity(),
+        };
+        // upload scene data - can only be done after shadow mapping was finished
+        const auto gpuSceneData = GPUSceneData{
+            .view = sceneData.camera.getView(),
+            .proj = sceneData.camera.getProjection(),
+            .viewProj = sceneData.camera.getViewProj(),
+            .cameraPos = glm::vec4{sceneData.camera.getPosition(), 1.f},
+            .ambientColor = LinearColorNoAlpha{sceneData.ambientColor},
+            .ambientIntensity = sceneData.ambientIntensity,
+            .fogColor = LinearColorNoAlpha{sceneData.fogColor},
+            .fogDensity = sceneData.fogDensity,
+            // .cascadeFarPlaneZs =
+            //     glm::vec4{
+            //         csmPipeline.cascadeFarPlaneZs[0],
+            //         csmPipeline.cascadeFarPlaneZs[1],
+            //         csmPipeline.cascadeFarPlaneZs[2],
+            //         0.f,
+            //     },
+            // .csmLightSpaceTMs = csmPipeline.csmLightSpaceTMs,
+            // .csmShadowMapId = (std::uint32_t)csmPipeline.getShadowMap(),
+            // .pointLightFarPlane = pointLightMaxRange,
+            // .lightsBuffer = lightDataBuffer.getBuffer().address,
+            // .numLights = (std::uint32_t)lightDataGPU.size(),
+            // .sunlightIndex = sunlightIndex,
+            .materialsBuffer = materialCache.getMaterialDataBufferAddress(),
+        };
+        sceneDataBuffer.uploadNewData(
+            cmd, gfxDevice.getCurrentFrameIndex(), (void*)&gpuSceneData, sizeof(GPUSceneData));
+    }
+#endif
+
     {
         ZoneScopedN("Geometry");
         TracyVkZoneC(gfxDevice.getTracyVkCtx(), cmd, "Geometry", tracy::Color::ForestGreen);
@@ -174,6 +224,7 @@ void Game1::customDraw()
             materialCache,
             camera,
             sceneDataBuffer.getBuffer(),
+            meshDrawCommands,
             testMaterialId);
 
         vkCmdEndRendering(cmd);

@@ -14,6 +14,14 @@
 
 class Game1 : public App {
 public:
+
+    struct SceneData {
+        const Camera& camera;
+        LinearColor ambientColor;
+        float ambientIntensity;
+        LinearColor fogColor;
+        float fogDensity;
+    };
     void customInit() override;
     void loadAppSettings() override;
     void customCleanup() override;

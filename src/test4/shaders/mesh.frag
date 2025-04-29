@@ -17,6 +17,9 @@ layout (location = 0) out vec4 outFragColor;
 
 void main()
 {
+
+	outFragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
+    return;
     MaterialData material = pcs.sceneData.materials.data[pcs.materialID];
 
     vec4 diffuse = sampleTexture2DLinear(material.diffuseTex, inUV);
@@ -110,17 +113,19 @@ void main()
     fragColor *= debugShadowsFactor(cascadeIndex);
 #endif
 
-#if 0
+#if 1
     // TANGENT DEBUG
     if (inTangent == vec4(0.0)) {
         fragColor = vec3(1.0f, 0.0f, 0.0f);
     }
+        fragColor = vec3(1.0f, 0.0f, 0.0f);
 #endif
 
-#if 1
+#if 0
     // NORMAL DEBUG
-	// fragColor = normal;
+	 fragColor = normal;
 #endif
 
 	outFragColor = vec4(fragColor, 1.0f);
+
 }

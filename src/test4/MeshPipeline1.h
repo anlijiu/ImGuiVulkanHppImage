@@ -36,6 +36,7 @@ public:
         const MaterialCache1& materialCache,
         const Camera& camera,
         const GPUBuffer& sceneDataBuffer,
+        const std::vector<MeshDrawCommand>& drawCommands,
         const MaterialId testMaterialId);
 
 private:

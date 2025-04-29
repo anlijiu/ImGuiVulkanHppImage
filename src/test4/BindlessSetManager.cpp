@@ -54,6 +54,10 @@ void BindlessSetManager::init(VkDevice device, float maxAnisotropy)
             VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT | VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT;
         const auto bindingFlags = std::array{bindlessFlags, bindlessFlags};
 
+        // 如果 VkDescriptorSetLayoutCreateInfo 的 pNext链中含有一个
+        // VkDescriptorSetLayoutBindingFlagsCreateInfo结构体，
+        // 那么该结构体将包含一个flags的数组，其中每个flags 
+        // 都会用于一个descriptor set layout binding。
         const auto flagInfo = VkDescriptorSetLayoutBindingFlagsCreateInfo{
             .sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_BINDING_FLAGS_CREATE_INFO,
             .bindingCount = (std::uint32_t)bindingFlags.size(),
