@@ -26,9 +26,9 @@ struct MaterialData {
 
 struct Material {
     LinearColor baseColor{1.f, 1.f, 1.f, 1.f};
-    float metallicFactor{0.f};
+    float metallicFactor{0.5f};
     float roughnessFactor{0.7f};
-    float emissiveFactor{0.f};
+    float emissiveFactor{0.5f};
 
     ImageId diffuseTexture{NULL_IMAGE_ID};
     ImageId normalMapTexture{NULL_IMAGE_ID};

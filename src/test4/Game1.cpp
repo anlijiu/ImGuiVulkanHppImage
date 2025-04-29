@@ -56,16 +56,24 @@ void Game1::customInit()
     mesh.vertices.resize(squareData.size());
     for (std::size_t i = 0; i < squareData.size(); ++i) {
         mesh.vertices[i].position = squareData[i].position;
+        mesh.vertices[i].normal = squareData[i].position;
+        mesh.vertices[i].tangent = glm::vec4{squareData[i].position, 0.5f};
     }
+
+
     MeshId id = meshCache.addMesh(gfxDevice, mesh);
 
-    Material material{ .baseColor = {1.0f, 0.0f, 0.0f, 1.0f}};
+    Material material{ .baseColor = {1.0f, 1.0f, 0.0f, 1.0f}};
     testMaterialId = materialCache.addMaterial(gfxDevice, material);
 
+    glm::vec4 v0{1.0f, 0.0f, 1.0f, 1.0f};
+    glm::vec4 v1{0.0f, 0.0f, 1.0f, 1.0f};
+    glm::vec4 v2{1.0f, 0.0f, 0.0f, 1.0f};
+    glm::vec4 v3{1.0f, 1.0f, 1.0f, 1.0f};
     meshDrawCommands.push_back(MeshDrawCommand{
         .meshId = id,
-        .transformMatrix = glm::mat4(1.0f),
-        .worldBoundingSphere = math::Sphere{.center = glm::vec3{0.0f, 0.0f, 0.0f, }, .radius = 360.0f}, 
+        .transformMatrix = glm::mat4(v0, v1, v2, v3),
+        .worldBoundingSphere = math::Sphere{.center = glm::vec3{1.0f, 1.0f, 0.0f, }, .radius = 360.0f}, 
         .materialId = testMaterialId,
         // .castShadow = castShadow,
     });

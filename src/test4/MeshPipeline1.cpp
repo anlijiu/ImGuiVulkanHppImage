@@ -86,14 +86,21 @@ void MeshPipeline1::draw(
     const auto frustum = edge::createFrustumFromCamera(camera);
     const auto& meshes = meshCache.allMeshes();
 
-    for(const auto& mesh : meshes) {
-        vkCmdBindIndexBuffer(cmd, mesh.indexBuffer.buffer, 0, VK_INDEX_TYPE_UINT32);
 
+    for (const auto& dc: drawCommands) {
+        const auto& mesh = meshCache.getMesh(dc.meshId);
+        if (dc.meshId != prevMeshId) {
+            prevMeshId = dc.meshId;
+            vkCmdBindIndexBuffer(cmd, mesh.indexBuffer.buffer, 0, VK_INDEX_TYPE_UINT32);
+        }
+
+        assert(dc.materialId != NULL_MATERIAL_ID);
         const auto pushConstants = PushConstants{
-            .transform = glm::mat4(1.0f),
+            .transform = dc.transformMatrix,
             .sceneDataBuffer = sceneDataBuffer.address,
-            .vertexBuffer = mesh.vertexBuffer.address,
-            .materialId = testMaterialId,
+            .vertexBuffer = dc.skinnedMesh ? dc.skinnedMesh->skinnedVertexBuffer.address :
+                                             mesh.vertexBuffer.address,
+            .materialId = dc.materialId,
         };
         vkCmdPushConstants(
             cmd,
@@ -105,6 +112,25 @@ void MeshPipeline1::draw(
 
         vkCmdDrawIndexed(cmd, mesh.numIndices, 1, 0, 0, 0);
     }
+    // for(const auto& mesh : meshes) {
+    //     vkCmdBindIndexBuffer(cmd, mesh.indexBuffer.buffer, 0, VK_INDEX_TYPE_UINT32);
+    // 
+    //     const auto pushConstants = PushConstants{
+    //         .transform = glm::mat4(1.0f),
+    //         .sceneDataBuffer = sceneDataBuffer.address,
+    //         .vertexBuffer = mesh.vertexBuffer.address,
+    //         .materialId = testMaterialId,
+    //     };
+    //     vkCmdPushConstants(
+    //         cmd,
+    //         pipelineLayout,
+    //         VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT,
+    //         0,
+    //         sizeof(PushConstants),
+    //         &pushConstants);
+    // 
+    //     vkCmdDrawIndexed(cmd, mesh.numIndices, 1, 0, 0, 0);
+    // }
 
 }
 
