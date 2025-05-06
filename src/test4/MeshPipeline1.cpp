@@ -8,6 +8,7 @@
 #include "Init.h"
 #include "Pipelines.h"
 #include "Util.h"
+#include <spdlog/spdlog.h>
 
 void MeshPipeline1::init(
     GfxDevice& gfxDevice,
@@ -17,11 +18,11 @@ void MeshPipeline1::init(
 {
     const auto& device = gfxDevice.getDevice();
 
-    const auto vertexShader = vkutil::loadShaderModule("shaders/mesh.vert.spv", device);
-    const auto fragShader = vkutil::loadShaderModule("shaders/mesh.frag.spv", device);
+    const auto vertexShader = vkutil::loadShaderModule("shaders/mesh1.vert.spv", device);
+    const auto fragShader = vkutil::loadShaderModule("shaders/mesh1.frag.spv", device);
 
-    vkutil::addDebugLabel(device, vertexShader, "mesh.vert");
-    vkutil::addDebugLabel(device, vertexShader, "mesh.frag");
+    vkutil::addDebugLabel(device, vertexShader, "mesh1.vert");
+    vkutil::addDebugLabel(device, fragShader , "mesh1.frag");
 
     const auto bufferRange = VkPushConstantRange{
         .stageFlags = VK_SHADER_STAGE_VERTEX_BIT | VK_SHADER_STAGE_FRAGMENT_BIT,
@@ -43,7 +44,8 @@ void MeshPipeline1::init(
                    .disableBlending()
                    .setColorAttachmentFormat(drawImageFormat)
                    .setDepthFormat(depthImageFormat)
-                   .enableDepthTest(true, VK_COMPARE_OP_GREATER_OR_EQUAL)
+                   // .enableDepthTest(true, VK_COMPARE_OP_GREATER_OR_EQUAL)
+                   .disableDepthTest()//禁用深度测试
                    .build(device);
     vkutil::addDebugLabel(device, pipeline, "mesh pipeline");
 
@@ -70,8 +72,8 @@ void MeshPipeline1::draw(
         .y = 0,
         .width = (float)renderExtent.width,
         .height = (float)renderExtent.height,
-        .minDepth = 0.f,
-        .maxDepth = 1.f,
+        .minDepth = 0.0f,
+        .maxDepth = 1.0f,
     };
     vkCmdSetViewport(cmd, 0, 1, &viewport);
 
@@ -79,6 +81,8 @@ void MeshPipeline1::draw(
         .offset = {},
         .extent = renderExtent,
     };
+
+    // spdlog::info("scissor  width {}    height: {}", renderExtent.width, renderExtent.height);
     vkCmdSetScissor(cmd, 0, 1, &scissor);
 
     auto prevMeshId = NULL_MESH_ID;

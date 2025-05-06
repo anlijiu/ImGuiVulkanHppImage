@@ -1,6 +1,7 @@
 #version 460
 
 #extension GL_GOOGLE_include_directive : require
+#extension GL_EXT_debug_printf : enable
 
 #include "bindless.glsl"
 #include "scene_data.glsl"
@@ -17,6 +18,13 @@ layout (location = 0) out vec4 outFragColor;
 
 void main()
 {
+
+    /* debugPrintfEXT("mesh1.frag in "); */
+    // 确保 DebugPrintf 执行
+    /* float dynamicValue = gl_FragCoord.x * 0.001; // 避免优化 */
+
+    debugPrintfEXT("pcs.materialID is %d", pcs.materialID);
+
     MaterialData material = pcs.sceneData.materials.data[pcs.materialID];
 
     vec4 diffuse = sampleTexture2DLinear(material.diffuseTex, inUV);
@@ -122,8 +130,10 @@ void main()
 	 fragColor = normal;
 #endif
 
+    /* fragColor.r = dynamicValue ; */
 	outFragColor = vec4(fragColor, 1.0f);
 
-    /* outFragColor = min(vec4(1.0), outFragColor); */
+    debugPrintfEXT("outFragColor is %1.2v4f", outFragColor);
+
 	/* outFragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f); */
 }

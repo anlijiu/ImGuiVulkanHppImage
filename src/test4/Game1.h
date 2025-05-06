@@ -10,6 +10,8 @@
 #include "MeshPipeline1.h"
 #include "MeshDrawCommand.h"
 #include "NBuffer.h"
+#include "DepthResolvePipeline.h"
+#include "PostFXPipeline.h"
 
 
 class Game1 : public App {
@@ -29,12 +31,12 @@ public:
     void customUpdate(float dt) override;
     void customDraw() override;
 
-    ImageId getMainDrawImageId() const override { return finalDrawImageId; }
+    ImageId getMainDrawImageId() const override { return drawImageId; }
 
     void onWindowResize() override;
 
 private:
-
+    void createDrawImage(GfxDevice& gfxDevice, const glm::ivec2& drawImageSize, bool firstCreate = true);
     void initSceneData(GfxDevice& gfxDevice);
 
     Camera camera;
@@ -86,17 +88,23 @@ private:
 
     VkFormat drawImageFormat{VK_FORMAT_R16G16B16A16_SFLOAT};
     VkFormat depthImageFormat{VK_FORMAT_D32_SFLOAT};
-    ImageId gameScreenDrawImageId{NULL_IMAGE_ID}; // image to which game pixels are drawn to
-    ImageId finalDrawImageId{NULL_IMAGE_ID}; // id of image which is drawn to the window
+
+    ImageId drawImageId{NULL_IMAGE_ID};
+    ImageId resolveImageId{NULL_IMAGE_ID};
+    ImageId depthImageId{NULL_IMAGE_ID};
+    ImageId resolveDepthImageId{NULL_IMAGE_ID};
+    ImageId postFXDrawImageId{NULL_IMAGE_ID};
 
     MeshPipeline1 meshPipeline;
+    DepthResolvePipeline depthResolvePipeline;
+    PostFXPipeline postFXPipeline;
 
     VkSampleCountFlagBits samples{VK_SAMPLE_COUNT_1_BIT};
 
     glm::vec2 playerPos;
 
     // dev
-    bool gameDrawnInWindow{true};
+    bool gameDrawnInWindow{false};
     bool drawImGui{false};
 
 };

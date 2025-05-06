@@ -12,8 +12,13 @@ glslc src/test2/shaders/passthrough_frag.frag -o build/shaders/passthrough_frag.
 
 #################################################################### 
 
+glslc src/test4/shaders/mesh1.vert -o build/shaders/mesh1.vert.spv
+glslc src/test4/shaders/mesh1.frag -o build/shaders/mesh1.frag.spv
 glslc src/test4/shaders/mesh.vert -o build/shaders/mesh.vert.spv
 glslc src/test4/shaders/mesh.frag -o build/shaders/mesh.frag.spv
+glslc src/test4/shaders/fullscreen_triangle.vert -o build/shaders/fullscreen_triangle.vert.spv
+glslc src/test4/shaders/depth_resolve.frag -o build/shaders/depth_resolve.frag.spv
+glslc src/test4/shaders/postfx.frag -o build/shaders/postfx.frag.spv
 
 #################################################################### 
 

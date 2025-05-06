@@ -154,7 +154,7 @@ sdl_opts.append_compile_args('c', '-Dhid_darwin_set_open_exclusive(x)=;')
 # sdl_dep = sdl_proj.dependency('SDL3')
 
 stb_dep = subproject('stb').get_variable('stb_dep')
-
+nlohmann_json_dep = subproject('nlohmann_json').get_variable('nlohmann_json_dep')
 fmt_dep = cmake.subproject('fmt').get_variable('fmt_dep')
 
 glfw_proj = cmake.subproject('glfw')
@@ -231,6 +231,7 @@ app_deps = [
   imgui_dep,
   spdlog_dep,
   stb_dep,
+  nlohmann_json_dep,
 ]
 
 sources = files(
@@ -280,6 +281,7 @@ executable('m4',
 
 Esources = files(
   'src/test3/app.cpp',
+  'src/test3/util.cpp',
   'src/test3/lve_device.cpp',
   'src/test3/lve_model.cpp',
   'src/test3/lve_pipeline.cpp',
@@ -296,6 +298,18 @@ executable('m5',
 
 
 Fsources = files(
+
+  'src/test4/Core/JsonDataLoader.cpp',
+  'src/test4/Core/JsonFile.cpp',
+  'src/test4/Core/JsonGraphics.cpp',
+  'src/test4/Core/JsonMath.cpp',
+  # 'src/test4/Input/ActionMapping.cpp',
+  # 'src/test4/Input/ButtonState.cpp',
+  # 'src/test4/Input/GamepadState.cpp',
+  # 'src/test4/Input/InputManager.cpp',
+  # 'src/test4/Input/InputStringMap.cpp',
+  # 'src/test4/Input/KeyboardState.cpp',
+  # 'src/test4/Input/MouseState.cpp',
   'src/test4/Math/IndexRange2.cpp',
   'src/test4/Math/Transform.cpp',
   'src/test4/Math/Util.cpp',
@@ -306,7 +320,10 @@ Fsources = files(
   'src/test4/Util.cpp',
   'src/test4/Init.cpp',
   'src/test4/Swapchain.cpp',
+  'src/test4/Pipelines.cpp',
   'src/test4/MeshPipeline.cpp',
+  'src/test4/DepthResolvePipeline.cpp',
+  'src/test4/PostFXPipeline.cpp',
   'src/test4/FrustumCulling.cpp',
   'src/test4/ImageCache.cpp',
   'src/test4/ImageLoader.cpp',
@@ -316,7 +333,6 @@ Fsources = files(
   'src/test4/MeshCache.cpp',
   'src/test4/MaterialCache.cpp',
   'src/test4/MaterialCache1.cpp',
-  'src/test4/Pipelines.cpp',
   'src/test4/Renderer.cpp',
   'src/test4/NBuffer.cpp',
   'src/test4/Letterbox.cpp',

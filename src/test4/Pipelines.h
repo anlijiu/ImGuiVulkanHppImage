@@ -53,6 +53,7 @@ private:
     void clear();
 
     std::vector<VkPipelineShaderStageCreateInfo> shaderStages;
+    // 从顶点生成什么图元
     VkPipelineInputAssemblyStateCreateInfo inputAssembly;
     VkPipelineRasterizationStateCreateInfo rasterizer;
     VkPipelineColorBlendAttachmentState colorBlendAttachment;

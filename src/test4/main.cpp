@@ -2,6 +2,7 @@
 #include <print>
 #include "spdlog/spdlog.h"
 #include "spdlog/version.h"
+#include "format.h"
 
 int main(int argc, char **argv) {
     std::print("main in\n");

@@ -7,15 +7,28 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 {
 
     auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
-
+    auto keyname = glfwGetKeyName(key, scancode);
+    spdlog::info("key: {}, scancode: {},  action: {},  mods: {}, keyname: {} ", key, scancode, action, mods, keyname );
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GLFW_TRUE);
 }
 
-static void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+static void mouse_button_callback(GLFWwindow* window, int key, int action, int mods) {
+
+    spdlog::info("mouse_button_callback key: {}, action: {},  mods: {}", key, action, mods);
+}
+
+static void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+
+    spdlog::info("mouse_scroll_callback xoffset: {}, yoffset: {}  ", xoffset, yoffset);
+}
+
+static void mouse_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
     auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
     // 处理鼠标移动
+    
+    spdlog::info("xpos: {}, ypos: {} ", xpos, ypos);
 }
 
 static void framebufferResizeCallback(GLFWwindow* window, int width, int height) {
@@ -80,8 +93,14 @@ void App::init(const Params& ps) {
     // 设置键盘回调
     glfwSetKeyCallback(window, key_callback);
 
-    // 设置鼠标回调
-    glfwSetCursorPosCallback(window, mouse_callback);
+    // 设置鼠标位置回调
+    glfwSetCursorPosCallback(window, mouse_position_callback);
+
+    // 设置鼠标按键回调
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
+
+    // 设置鼠标滚轮回调
+	glfwSetScrollCallback(window, mouse_scroll_callback);
 
     // 实际检测调整大小，我们可以使用glfwSetFramebufferSizeCallbackGLFW 框架中的函数来设置回调：
     glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);

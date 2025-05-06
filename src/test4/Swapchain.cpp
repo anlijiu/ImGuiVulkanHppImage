@@ -4,10 +4,12 @@
 
 #include "Init.h"
 #include "Util.h"
+#include "./format.h"
 
 #include <fmt/printf.h>
 
 #include <vulkan/vk_enum_string_helper.h>
+#include <spdlog/spdlog.h>
 
 namespace
 {
@@ -129,7 +131,11 @@ void Swapchain::cleanup(VkDevice device)
 void Swapchain::beginFrame(VkDevice device, std::size_t frameIndex) const
 {
     auto& frame = frames[frameIndex];
-    VK_CHECK(vkWaitForFences(device, 1, &frame.renderFence, true, NO_TIMEOUT));
+    auto result = vkWaitForFences(device, 1, &frame.renderFence, true, NO_TIMEOUT);
+    if(result != VK_SUCCESS) {
+        spdlog::error("Swapchain::beginFrame VK_CHECK result: {}", result);
+    }
+    VK_CHECK(result);
 }
 
 void Swapchain::resetFences(VkDevice device, std::size_t frameIndex) const

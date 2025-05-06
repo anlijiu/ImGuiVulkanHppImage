@@ -33,6 +33,7 @@ VkShaderModule loadShaderModule(const char* filePath, VkDevice device)
         .sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO,
         .codeSize = buffer.size() * sizeof(std::uint32_t),
         .pCode = buffer.data(),
+        //.flags = VK_SHADER_MODULE_CREATE_DEBUG_BIT_EXT; //避免优化 (不好使)
     };
 
     VkShaderModule shaderModule;
