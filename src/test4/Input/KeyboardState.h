@@ -19,7 +19,9 @@ public:
     void loadMapping(const JsonDataLoader& loader, ActionMapping& actionMapping);
 
     void onNewFrame();
-    void handleEvent(const SDL_Event& event, ActionMapping& actionMapping);
+    // void handleEvent(const SDL_Event& event, ActionMapping& actionMapping);
+    void handleEvent(int key, int scancode, int action, int mods, ActionMapping& actionMapping);
+
     void update(float dt, ActionMapping& actionMapping);
 
     void addActionMapping(SDL_Scancode key, ActionTagHash tag);

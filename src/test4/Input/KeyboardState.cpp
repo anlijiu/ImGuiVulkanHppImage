@@ -1,11 +1,12 @@
-#include <edbr/Input/KeyboardState.h>
+#include <Input/KeyboardState.h>
 
-#include <edbr/Input/ActionMapping.h>
-#include <edbr/Input/InputStringMap.h>
+#include <Input/ActionMapping.h>
+#include <Input/InputStringMap.h>
 
-#include <edbr/Core/JsonDataLoader.h>
+#include <Core/JsonDataLoader.h>
 
-#include <SDL_events.h>
+#include <GLFW/glfw3.h>
+// #include <SDL_events.h>
 
 void KeyboardState::loadMapping(const JsonDataLoader& loader, ActionMapping& actionMapping)
 {
@@ -41,16 +42,21 @@ void KeyboardState::onNewFrame()
     }
 }
 
-void KeyboardState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
-{
-    const auto key = event.key.keysym.scancode;
-    if (key == SDL_SCANCODE_UNKNOWN) {
-        return;
-    }
 
-    const bool isPressed = (event.type == SDL_KEYDOWN);
-    keyStates[key].pressed = isPressed;
+void KeyboardState::handleEvent(int key, int scancode, int action, int mods, ActionMapping& actionMapping) {
+     const bool isPressed = (action == GLFW_PRESS);
+     keyStates[key].pressed = isPressed;
 }
+// void KeyboardState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
+// {
+//     const auto key = event.key.keysym.scancode;
+//     if (key == SDL_SCANCODE_UNKNOWN) {
+//         return;
+//     }
+// 
+//     const bool isPressed = (event.type == SDL_KEYDOWN);
+//     keyStates[key].pressed = isPressed;
+// }
 
 void KeyboardState::update(float /*dt*/, ActionMapping& actionMapping)
 {

@@ -9,6 +9,7 @@
 
 #include "GfxDevice.h"
 #include "Version.h"
+#include "Input/InputManager.h"
 
 class App
 {
@@ -42,6 +43,7 @@ public:
     virtual void customCleanup() = 0;
 
     const Version& getVersion() const { return params.version; }
+    InputManager* getInputManager() { return &inputManager; }
 
     virtual ImageId getMainDrawImageId() const { return NULL_IMAGE_ID; }
 protected:
@@ -69,6 +71,7 @@ protected:
     float frameTime{0.f};
     float avgFPS{0.f};
 
+    InputManager inputManager;
 private:
     void handleBaseDevInput();
 

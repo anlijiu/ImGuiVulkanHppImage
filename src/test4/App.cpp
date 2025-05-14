@@ -7,6 +7,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 {
 
     auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(window));
+    app->getInputManager()->handleKeyCallback(key, scancode, action, mods);
     auto keyname = glfwGetKeyName(key, scancode);
     spdlog::info("key: {}, scancode: {},  action: {},  mods: {}, keyname: {} ", key, scancode, action, mods, keyname );
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)

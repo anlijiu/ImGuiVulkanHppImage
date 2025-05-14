@@ -7,7 +7,7 @@
 #include "Input/KeyboardState.h"
 #include "Input/MouseState.h"
 
-union SDL_Event;
+// union SDL_Event;
 
 class InputManager {
 public:
@@ -19,7 +19,8 @@ public:
         const std::filesystem::path& inputMappingPath);
 
     void onNewFrame();
-    void handleEvent(const SDL_Event& event);
+    // void handleEvent(const SDL_Event& event);
+    void handleKeyCallback(int key, int scancode, int action, int mods);
     void update(float dt);
 
     void cleanup();
@@ -38,8 +39,8 @@ public:
 private:
     enum class InputEventCategory { Keyboard, Mouse, Gamepad, None };
 
-    using SDLEventType = std::uint32_t;
-    InputEventCategory getEventCategory(SDLEventType type) const;
+    // using SDLEventType = std::uint32_t;
+    // InputEventCategory getEventCategory(SDLEventType type) const;
 
     ActionMapping actionMapping;
     KeyboardState keyboard;

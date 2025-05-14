@@ -1,5 +1,7 @@
 #include <Input/InputStringMap.h>
 
+#include <GLFW/glfw3.h>
+
 #include <unordered_map>
 
 template<typename T>
@@ -20,19 +22,26 @@ private:
     std::unordered_map<std::string, T> valueStrMap;
 };
 
-StringBimap<SDL_Scancode> initKeyboardMapSDL()
+// int toGLFWKey(const std::string& str);
+// const std::string& toString(int key);
+// 
+// int toGLFWGameControllerButton(const std::string& str);
+// 
+// int toGLFWGameControllerAxis(const std::string& str);
+
+StringBimap<int> initKeyboardMapGLFW()
 {
-    StringBimap<SDL_Scancode> bimap;
-    bimap.addMapping(SDL_SCANCODE_0, "0");
-    bimap.addMapping(SDL_SCANCODE_1, "1");
-    bimap.addMapping(SDL_SCANCODE_2, "2");
-    bimap.addMapping(SDL_SCANCODE_3, "3");
-    bimap.addMapping(SDL_SCANCODE_4, "4");
-    bimap.addMapping(SDL_SCANCODE_5, "5");
-    bimap.addMapping(SDL_SCANCODE_6, "6");
-    bimap.addMapping(SDL_SCANCODE_7, "7");
-    bimap.addMapping(SDL_SCANCODE_8, "8");
-    bimap.addMapping(SDL_SCANCODE_9, "9");
+    StringBimap<int> bimap;
+    bimap.addMapping(GLFW_KEY_0, "0");
+    bimap.addMapping(GLFW_KEY_1, "1");
+    bimap.addMapping(GLFW_KEY_2, "2");
+    bimap.addMapping(GLFW_KEY_3, "3");
+    bimap.addMapping(GLFW_KEY_4, "4");
+    bimap.addMapping(GLFW_KEY_5, "5");
+    bimap.addMapping(GLFW_KEY_6, "6");
+    bimap.addMapping(GLFW_KEY_7, "7");
+    bimap.addMapping(GLFW_KEY_8, "8");
+    bimap.addMapping(GLFW_KEY_9, "9");
     bimap.addMapping(SDL_SCANCODE_A, "A");
     // AC = application keyboard
     bimap.addMapping(SDL_SCANCODE_AC_BACK, "AC_Back");

@@ -1,8 +1,8 @@
-#include <edbr/Input/InputManager.h>
+#include <Input/InputManager.h>
 
-#include <edbr/Core/JsonFile.h>
+#include <Core/JsonFile.h>
 
-#include <SDL_events.h>
+// #include <SDL_events.h>
 #include <stdexcept>
 
 #include <fmt/format.h>
@@ -41,24 +41,30 @@ void InputManager::onNewFrame()
     gamepad.onNewFrame();
 }
 
-void InputManager::handleEvent(const SDL_Event& event)
-{
-    switch (getEventCategory(event.type)) {
-    case InputEventCategory::Keyboard:
-        usingGamepad = false;
-        keyboard.handleEvent(event, actionMapping);
-        break;
-    case InputEventCategory::Mouse:
-        mouse.handleEvent(event, actionMapping);
-        break;
-    case InputEventCategory::Gamepad:
-        usingGamepad = true;
-        gamepad.handleEvent(event, actionMapping);
-        break;
-    default:
-        break;
-    }
+void InputManager::handleKeyCallback(int key, int scancode, int action, int mods) {
+
+    usingGamepad = false;
+    keyboard.handleEvent(key, scancode, action, mods, actionMapping);
 }
+
+// void InputManager::handleEvent(const SDL_Event& event)
+// {
+//     switch (getEventCategory(event.type)) {
+//     case InputEventCategory::Keyboard:
+//         usingGamepad = false;
+//         keyboard.handleEvent(event, actionMapping);
+//         break;
+//     case InputEventCategory::Mouse:
+//         mouse.handleEvent(event, actionMapping);
+//         break;
+//     case InputEventCategory::Gamepad:
+//         usingGamepad = true;
+//         gamepad.handleEvent(event, actionMapping);
+//         break;
+//     default:
+//         break;
+//     }
+// }
 
 void InputManager::update(float dt)
 {
@@ -81,30 +87,30 @@ void InputManager::resetInput()
     gamepad.resetInput();
 }
 
-InputManager::InputEventCategory InputManager::getEventCategory(
-    InputManager::SDLEventType type) const
-{
-    switch (type) {
-    case SDL_KEYDOWN:
-    case SDL_KEYUP:
-        return InputEventCategory::Keyboard;
-        break;
-    case SDL_MOUSEBUTTONDOWN:
-    case SDL_MOUSEBUTTONUP:
-    case SDL_MOUSEWHEEL:
-    case SDL_MOUSEMOTION:
-        return InputEventCategory::Mouse;
-        break;
-    case SDL_CONTROLLERAXISMOTION:
-    case SDL_CONTROLLERBUTTONDOWN:
-    case SDL_CONTROLLERBUTTONUP:
-    case SDL_CONTROLLERDEVICEADDED:
-    case SDL_CONTROLLERDEVICEREMOVED:
-    case SDL_CONTROLLERDEVICEREMAPPED:
-        return InputEventCategory::Gamepad;
-        break;
-    default:
-        return InputEventCategory::None;
-        break;
-    }
-}
+// InputManager::InputEventCategory InputManager::getEventCategory(
+//     InputManager::SDLEventType type) const
+// {
+//     switch (type) {
+//     case SDL_KEYDOWN:
+//     case SDL_KEYUP:
+//         return InputEventCategory::Keyboard;
+//         break;
+//     case SDL_MOUSEBUTTONDOWN:
+//     case SDL_MOUSEBUTTONUP:
+//     case SDL_MOUSEWHEEL:
+//     case SDL_MOUSEMOTION:
+//         return InputEventCategory::Mouse;
+//         break;
+//     case SDL_CONTROLLERAXISMOTION:
+//     case SDL_CONTROLLERBUTTONDOWN:
+//     case SDL_CONTROLLERBUTTONUP:
+//     case SDL_CONTROLLERDEVICEADDED:
+//     case SDL_CONTROLLERDEVICEREMOVED:
+//     case SDL_CONTROLLERDEVICEREMAPPED:
+//         return InputEventCategory::Gamepad;
+//         break;
+//     default:
+//         return InputEventCategory::None;
+//         break;
+//     }
+// }
