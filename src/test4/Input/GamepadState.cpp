@@ -1,11 +1,9 @@
 #include "Input/GamepadState.h"
 
 #include "Input/ActionMapping.h"
-#include "Input/InputStringMap.h"
+#include "Input/GLFWInputStringMap.h"
 
 #include "Core/JsonDataLoader.h"
-
-#include <SDL_events.h>
 
 #include <iostream>
 
@@ -21,32 +19,33 @@ GamepadState::GamepadState()
 
 void GamepadState::init()
 {
-    int maxJoysticks = SDL_NumJoysticks();
-    for (int i = 0; i < maxJoysticks; ++i) {
-        std::cout << "Gamepad connected: id=" << i << std::endl;
-        if (!SDL_IsGameController(i)) {
-            continue;
-        }
+    for (int jid = GLFW_JOYSTICK_1; jid <= GLFW_JOYSTICK_LAST; ++jid) {
+        if (glfwJoystickIsGamepad(jid)) {
+            std::cout << "Gamepad connected: id=" << jid << std::endl;
 
-        if (i >= MAX_CONTROLLERS) {
-            break;
-        }
+            if (connectedIds[static_cast<size_t>(jid) - GLFW_JOYSTICK_1] != 0) {
+                continue;
+            }
 
-        handles[i] = SDL_GameControllerOpen(i);
-        id = i;
+            connectedIds[static_cast<size_t>(jid) - GLFW_JOYSTICK_1] = jid;
+
+            if (jid - GLFW_JOYSTICK_1 >= MAX_CONTROLLERS) {
+                break;
+            }
+        }
     }
 
     const auto allAxes = {
-        SDL_CONTROLLER_AXIS_LEFTX,
-        SDL_CONTROLLER_AXIS_LEFTY,
-        SDL_CONTROLLER_AXIS_RIGHTX,
-        SDL_CONTROLLER_AXIS_RIGHTY,
-        SDL_CONTROLLER_AXIS_TRIGGERLEFT,
-        SDL_CONTROLLER_AXIS_TRIGGERRIGHT,
+        GLFW_GAMEPAD_AXIS_LEFT_X,
+        GLFW_GAMEPAD_AXIS_LEFT_Y,
+        GLFW_GAMEPAD_AXIS_RIGHT_X,
+        GLFW_GAMEPAD_AXIS_RIGHT_Y,
+        GLFW_GAMEPAD_AXIS_LEFT_TRIGGER,
+        GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER,
     };
 
     for (auto axis : allAxes) {
-        axes.emplace(axis, Axis{axis, DEAD_ZONE, false});
+        axes.emplace(axis, Axis{axis, DEAD_ZONE / 32767.0f, false});
     }
 }
 

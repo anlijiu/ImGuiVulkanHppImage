@@ -5,17 +5,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include <SDL_gamecontroller.h>
-
-union SDL_Event;
-
+#include <GLFW/glfw3.h>
 #include "Input/ActionTagHash.h"
 #include "Input/ButtonState.h"
 
 class ActionMapping;
 
-using GamepadButton = SDL_GameControllerButton;
-using GamepadAxis = SDL_GameControllerAxis;
+using GamepadButton = int;
+using GamepadAxis = int;
 using GamepadId = int;
 
 class JsonDataLoader;
@@ -79,6 +76,7 @@ private:
 
     std::array<ButtonState, SDL_CONTROLLER_BUTTON_MAX> buttonStates;
     std::unordered_map<GamepadAxis, Axis> axes;
+    std::array<int, MAX_CONTROLLERS> connectedIds{};
 
     std::array<SDL_GameController*, MAX_CONTROLLERS> handles;
     int id{-1}; // current id of gamepad being used
@@ -88,8 +86,8 @@ private:
     std::unordered_map<ActionTagHash, std::vector<ActionTagHash>> buttonActionBindings;
     std::unordered_map<ActionTagHash, std::vector<ActionAxisMapping>> axisActionBindings;
     // Axis bindings
-    std::unordered_map<GamepadAxis, std::vector<ActionTagHash>> axisBindings;
-    std::unordered_map<GamepadButton, ButtonAxisBinding> buttonAxisBindings;
+    std::unordered_map<int, std::vector<ActionTagHash>> axisBindings;
+    std::unordered_map<int, ButtonAxisBinding> buttonAxisBindings;
 
     static const float DEAD_ZONE;
     static const float AXIS_PRESS_ZONE;
