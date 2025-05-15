@@ -1,7 +1,7 @@
 #include <Input/KeyboardState.h>
 
 #include <Input/ActionMapping.h>
-#include <Input/InputStringMap.h>
+#include <Input/GLFWInputStringMap.h>
 
 #include <Core/JsonDataLoader.h>
 
@@ -13,7 +13,7 @@ void KeyboardState::loadMapping(const JsonDataLoader& loader, ActionMapping& act
     for (auto& [tagStr, keysLoader] : loader.getLoader("action").getKeyValueMap()) {
         const auto tag = actionMapping.getActionTagHash(tagStr);
         for (const auto& keyStr : keysLoader.asVectorOf<std::string>()) {
-            const auto scancode = toSDLScancode(keyStr);
+            const auto scancode = toGLFWKey(keyStr);
             addActionMapping(scancode, tag);
         }
     }
@@ -28,7 +28,7 @@ void KeyboardState::loadMapping(const JsonDataLoader& loader, ActionMapping& act
         float scale{};
         mappingLoader.get("scale", scale);
 
-        const auto scancode = toSDLScancode(keyStr);
+        const auto scancode = toGLFWKey(keyStr);
         const auto tag = actionMapping.getActionTagHash(tagStr);
 
         addAxisMapping(scancode, tag, scale);
@@ -77,32 +77,32 @@ void KeyboardState::update(float /*dt*/, ActionMapping& actionMapping)
     }
 }
 
-void KeyboardState::addActionMapping(SDL_Scancode key, ActionTagHash tag)
+void KeyboardState::addActionMapping(int key, ActionTagHash tag)
 {
     keyActionBindings[tag].push_back(key);
 }
 
-void KeyboardState::addAxisMapping(SDL_Scancode key, ActionTagHash tag, float scale)
+void KeyboardState::addAxisMapping(int key, ActionTagHash tag, float scale)
 {
     axisButtonBindings[key].push_back(ButtonAxisBinding{tag, scale});
 }
 
-bool KeyboardState::wasJustPressed(SDL_Scancode key) const
+bool KeyboardState::wasJustPressed(int key) const
 {
     return keyStates[key].wasJustPressed();
 }
 
-bool KeyboardState::wasJustReleased(SDL_Scancode key) const
+bool KeyboardState::wasJustReleased(int key) const
 {
     return keyStates[key].wasJustReleased();
 }
 
-bool KeyboardState::isPressed(SDL_Scancode key) const
+bool KeyboardState::isPressed(int key) const
 {
     return keyStates[key].isPressed();
 }
 
-bool KeyboardState::isHeld(SDL_Scancode key) const
+bool KeyboardState::isHeld(int key) const
 {
     return keyStates[key].isHeld();
 }

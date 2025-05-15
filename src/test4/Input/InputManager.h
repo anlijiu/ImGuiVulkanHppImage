@@ -21,6 +21,8 @@ public:
     void onNewFrame();
     // void handleEvent(const SDL_Event& event);
     void handleKeyCallback(int key, int scancode, int action, int mods);
+    void handleJoystickCallback(int pad_id, bool connected) { gamepad.handleJoystickCallback(pad_id, connected); };
+    void handleCursorPosCallback(int xpos, int ypos) { mouse.handleCursorPosCallback(xpos, ypos); }
     void update(float dt);
 
     void cleanup();

@@ -5,7 +5,6 @@
 #include "format.h"
 
 int main(int argc, char **argv) {
-    std::print("main in\n");
     spdlog::set_level(spdlog::level::info);  // Set global log level to info
     spdlog::info("Welcome to spdlog version {}.{}.{}  !", SPDLOG_VER_MAJOR, SPDLOG_VER_MINOR, SPDLOG_VER_PATCH);
     Game1 app;

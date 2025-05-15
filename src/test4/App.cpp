@@ -50,13 +50,9 @@ App::~App() {
 
 
 void App::init(const Params& ps) {
-    std::print("App::init\n");
-
     params = ps;
 
-    std::print("111\n");
-    std::print("windowSize x{} y{}\n", params.windowSize.x, params.windowSize.y);
-    std::print("222\n");
+    spdlog::info("windowSize x{} y{}\n", params.windowSize.x, params.windowSize.y);
 
 
     if (params.windowSize == glm::ivec2{}) {
@@ -73,7 +69,7 @@ void App::init(const Params& ps) {
         params.windowTitle = params.appName;
     }
 
-    std::print("windowTitle {}\n", params.windowTitle);
+    spdlog::info("windowTitle {}\n", params.windowTitle);
 
     glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_WAYLAND);
     glfwInit();
@@ -94,14 +90,30 @@ void App::init(const Params& ps) {
     // 设置键盘回调
     glfwSetKeyCallback(window, key_callback);
 
-    // 设置鼠标位置回调
-    glfwSetCursorPosCallback(window, mouse_position_callback);
+    // 设置鼠标指针位置回调
+    // glfwSetKeyCallback doesn't take a lambda - it takes a plain old function pointer. 
+    glfwSetCursorPosCallback(window, [](GLFWwindow *win, double xpos, double ypos) -> void {
+        auto app = reinterpret_cast<App*>(glfwGetWindowUserPointer(win));
+        spdlog::info("xpos: {}, ypos: {} ", xpos, ypos);
+        app->getInputManager()->handleCursorPosCallback(xpos, ypos);
+    });
 
     // 设置鼠标按键回调
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
     // 设置鼠标滚轮回调
 	glfwSetScrollCallback(window, mouse_scroll_callback);
+
+    // Initialize joystick/-pad input
+	for (auto jid = 0; jid <= GLFW_JOYSTICK_LAST; ++jid) {
+		glfwSetJoystickUserPointer(jid, &inputManager);
+		// if(glfwJoystickPresent(jid) == GLFW_TRUE)
+		// 	handleJoystickConntection(jid, GLFW_CONNECTED);
+	}
+    glfwSetJoystickCallback([](int jid, int e) -> void {
+        auto* data = reinterpret_cast<InputManager*>(glfwGetJoystickUserPointer(jid));
+        data->handleJoystickCallback(jid, e == GLFW_CONNECTED);
+    });
 
     // 实际检测调整大小，我们可以使用glfwSetFramebufferSizeCallbackGLFW 框架中的函数来设置回调：
     glfwSetFramebufferSizeCallback(window, framebufferResizeCallback);

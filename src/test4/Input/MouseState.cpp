@@ -1,8 +1,8 @@
-#include <edbr/Input/MouseState.h>
+#include <Input/MouseState.h>
 
-#include <edbr/Input/ActionMapping.h>
+#include <Input/ActionMapping.h>
 
-#include <SDL_events.h>
+// #include <SDL_events.h>
 
 MouseState::MouseState() : prevPosition(getPosition())
 {}
@@ -10,51 +10,55 @@ MouseState::MouseState() : prevPosition(getPosition())
 void MouseState::onNewFrame()
 {
     prevPosition = position;
-    SDL_GetMouseState(&position.x, &position.y);
-    for (auto& mouseButtonState : mouseButtonStates) {
-        mouseButtonState.onNewFrame();
-    }
+    // SDL_GetMouseState(&position.x, &position.y);
+    // for (auto& mouseButtonState : mouseButtonStates) {
+    //     mouseButtonState.onNewFrame();
+    // }
 }
 
-void MouseState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
-{
-    switch (event.type) {
-    case SDL_MOUSEBUTTONDOWN:
-    case SDL_MOUSEBUTTONUP: {
-        const bool isPressed = (event.type == SDL_MOUSEBUTTONDOWN);
-        const auto button = (SDLMouseButtonID)event.button.button;
-        auto& buttonState = mouseButtonStates[button];
+void MouseState::handleCursorPosCallback(int xpos, int ypos) {
 
-        buttonState.pressed = isPressed;
-
-        // handle button press
-        auto actionTag = getActionTag(button);
-        if (actionTag != ACTION_NONE_HASH && isPressed) {
-            actionMapping.setActionPressed(actionTag);
-        }
-        break;
-    }
-    default:
-        break;
-    }
 }
 
-void MouseState::addActionMapping(SDLMouseButtonID button, ActionTagHash tag)
+// void MouseState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
+// {
+//     switch (event.type) {
+//     case SDL_MOUSEBUTTONDOWN:
+//     case SDL_MOUSEBUTTONUP: {
+//         const bool isPressed = (event.type == SDL_MOUSEBUTTONDOWN);
+//         const auto button = (GLFWMouseButtonID)event.button.button;
+//         auto& buttonState = mouseButtonStates[button];
+// 
+//         buttonState.pressed = isPressed;
+// 
+//         // handle button press
+//         auto actionTag = getActionTag(button);
+//         if (actionTag != ACTION_NONE_HASH && isPressed) {
+//             actionMapping.setActionPressed(actionTag);
+//         }
+//         break;
+//     }
+//     default:
+//         break;
+//     }
+// }
+
+void MouseState::addActionMapping(GLFWMouseButtonID button, ActionTagHash tag)
 {
     mouseActionBindings.emplace(button, tag);
 }
 
-bool MouseState::wasJustPressed(SDLMouseButtonID button) const
+bool MouseState::wasJustPressed(GLFWMouseButtonID button) const
 {
     return mouseButtonStates[button].wasJustPressed();
 }
 
-bool MouseState::isHeld(SDLMouseButtonID button) const
+bool MouseState::isHeld(GLFWMouseButtonID button) const
 {
     return mouseButtonStates[button].isHeld();
 }
 
-bool MouseState::wasJustReleased(SDLMouseButtonID button) const
+bool MouseState::wasJustReleased(GLFWMouseButtonID button) const
 {
     return mouseButtonStates[button].wasJustReleased();
 }
@@ -66,7 +70,7 @@ void MouseState::resetInput()
     }
 }
 
-ActionTagHash MouseState::getActionTag(SDLMouseButtonID button) const
+ActionTagHash MouseState::getActionTag(GLFWMouseButtonID button) const
 {
     auto it = mouseActionBindings.find(button);
     return (it != mouseActionBindings.end()) ? it->second : ACTION_NONE_HASH;

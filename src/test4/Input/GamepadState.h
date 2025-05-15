@@ -32,9 +32,10 @@ public:
     void loadMapping(const JsonDataLoader& loader, ActionMapping& actionMapping);
 
     void onNewFrame();
-    void handleEvent(const SDL_Event& event, ActionMapping& actionMapping);
+    // void handleEvent(const SDL_Event& event, ActionMapping& actionMapping);
     void update(float dt, ActionMapping& actionMapping);
-    void handleButtonEvent(const SDL_Event& event, ActionMapping& actionMapping);
+    void handleJoystickCallback(int pad_id, bool connected);
+    // void handleButtonEvent(const SDL_Event& event, ActionMapping& actionMapping);
 
     void addActionMapping(GamepadButton button, ActionTagHash tag);
     void addAxisActionMapping(ActionAxisMapping mapping, ActionTagHash tag);
@@ -74,11 +75,11 @@ private:
         float scale;
     };
 
-    std::array<ButtonState, SDL_CONTROLLER_BUTTON_MAX> buttonStates;
+    std::array<ButtonState, GLFW_JOYSTICK_LAST> buttonStates;
     std::unordered_map<GamepadAxis, Axis> axes;
     std::array<int, MAX_CONTROLLERS> connectedIds{};
 
-    std::array<SDL_GameController*, MAX_CONTROLLERS> handles;
+
     int id{-1}; // current id of gamepad being used
                 // TODO: make possible to use multiple gamepads
 

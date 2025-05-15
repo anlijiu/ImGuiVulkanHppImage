@@ -1,8 +1,10 @@
 [constants]
 
 [built-in options]
-c_std = 'gnu23'
-cpp_std = 'gnu++26'
+c_std='c17'
+cpp_std='c++20'
+;;c_std = 'gnu23'
+;;cpp_std = 'gnu++26'
 buildtype = 'plain'
 debug = true
 

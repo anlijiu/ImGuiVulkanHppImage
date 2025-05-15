@@ -1,4 +1,4 @@
-#include <Input/InputStringMap.h>
+#include <Input/GLFWInputStringMap.h>
 
 #include <GLFW/glfw3.h>
 
@@ -117,6 +117,10 @@ StringBimap<int> initGamepadButtonMapGLFW()
 {
     StringBimap<int> bimap;
 
+    // cross = a,
+    // circle = b,
+    // square = x,
+    // triangle = y,
     bimap.addMapping(GLFW_GAMEPAD_BUTTON_A,            "A");
     bimap.addMapping(GLFW_GAMEPAD_BUTTON_B,            "B");
     bimap.addMapping(GLFW_GAMEPAD_BUTTON_X,            "X");
@@ -144,7 +148,7 @@ int toGLFWGameControllerButton(const std::string& str)
 }
 
 
-const std::string& gameControllerButtonKeyToString(int key);
+const std::string& gameControllerButtonKeyToString(int key)
 {
     return gamepadButtonMapGLFW.at(key);
 }
@@ -165,7 +169,7 @@ StringBimap<int> initGamepadAxisMapGLFW()
 
 static StringBimap<int> gamepadAxisMapGLFW = initGamepadAxisMapGLFW();
 
-int toSDLGameControllerAxis(const std::string& str)
+int toGLFWGameControllerAxis(const std::string& str)
 {
     return gamepadAxisMapGLFW.at(str);
 }

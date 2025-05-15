@@ -12,9 +12,9 @@ const float GamepadState::AXIS_PRESS_ZONE = 0.6f; // TODO: configurable
 
 GamepadState::GamepadState()
 {
-    for (auto& handle : handles) {
-        handle = nullptr;
-    }
+    // for (auto& handle : handles) {
+    //     handle = nullptr;
+    // }
 }
 
 void GamepadState::init()
@@ -23,13 +23,13 @@ void GamepadState::init()
         if (glfwJoystickIsGamepad(jid)) {
             std::cout << "Gamepad connected: id=" << jid << std::endl;
 
-            if (connectedIds[static_cast<size_t>(jid) - GLFW_JOYSTICK_1] != 0) {
+            if (connectedIds[jid] != 0) {
                 continue;
             }
 
-            connectedIds[static_cast<size_t>(jid) - GLFW_JOYSTICK_1] = jid;
+            connectedIds[jid] = jid;
 
-            if (jid - GLFW_JOYSTICK_1 >= MAX_CONTROLLERS) {
+            if (jid >= MAX_CONTROLLERS) {
                 break;
             }
         }
@@ -49,14 +49,17 @@ void GamepadState::init()
     }
 }
 
+void GamepadState::handleJoystickCallback(int jid, bool connected) {
+    if (connected) {
+        connectedIds[jid] = jid;
+    } else {
+        connectedIds[jid] = 0;
+    }
+}
+
 void GamepadState::cleanup()
 {
-    for (auto& handle : handles) {
-        if (handle) {
-            SDL_GameControllerClose(handle);
-            handle = nullptr;
-        }
-    }
+
 }
 
 void GamepadState::loadMapping(const JsonDataLoader& loader, ActionMapping& actionMapping)
@@ -74,7 +77,7 @@ void GamepadState::loadMapping(const JsonDataLoader& loader, ActionMapping& acti
         } else {
             return {{}, false};
         }
-        const auto axis = toSDLGameControllerAxis(axisStr);
+        const auto axis = toGLFWGameControllerAxis(axisStr);
         return {ActionAxisMapping{.axis = axis, .positive = positive}, true};
     };
 
@@ -87,7 +90,7 @@ void GamepadState::loadMapping(const JsonDataLoader& loader, ActionMapping& acti
                 addAxisActionMapping(aam, tag);
                 continue;
             }
-            const auto button = toSDLGameControllerButton(buttonStr);
+            const auto button = toGLFWGameControllerButton(buttonStr);
             addActionMapping(button, tag);
         }
     }
@@ -99,7 +102,7 @@ void GamepadState::loadMapping(const JsonDataLoader& loader, ActionMapping& acti
         std::string tagStr;
         mappingLoader.get("tag", tagStr);
 
-        const auto axis = toSDLGameControllerAxis(axisStr);
+        const auto axis = toGLFWGameControllerAxis(axisStr);
         const auto tag = actionMapping.getActionTagHash(tagStr);
         addAxisMapping(axis, tag);
     }
@@ -115,7 +118,7 @@ void GamepadState::loadMapping(const JsonDataLoader& loader, ActionMapping& acti
             float scale{};
             mappingLoader.get("scale", scale);
 
-            const auto button = toSDLGameControllerButton(buttonStr);
+            const auto button = toGLFWGameControllerButton(buttonStr);
             const auto tag = actionMapping.getActionTagHash(tagStr);
             addButtonAxisMapping(button, tag, scale);
         }
@@ -129,51 +132,52 @@ void GamepadState::onNewFrame()
     }
 }
 
-void GamepadState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
-{
-    switch (event.type) {
-    case SDL_CONTROLLERBUTTONDOWN:
-    case SDL_CONTROLLERBUTTONUP:
-        handleButtonEvent(event, actionMapping);
-        break;
-        break;
-    case SDL_CONTROLLERDEVICEADDED: {
-        const auto gamepadId = event.cdevice.which;
-        if (!handles[gamepadId]) {
-            handles[gamepadId] = SDL_GameControllerOpen(gamepadId);
-            id = gamepadId;
-            std::cout << "Controller connected: " << gamepadId << std::endl;
-        }
-    } break;
-    case SDL_CONTROLLERDEVICEREMOVED: {
-        const auto gamepadId = event.cdevice.which;
-        if (id == gamepadId) {
-            assert(handles[gamepadId]);
-            SDL_GameControllerClose(handles[gamepadId]);
-            handles[gamepadId] = nullptr;
-        }
-        std::cout << "Controller removed: " << gamepadId << std::endl;
-        findConnectedGamepad();
-        std::cout << "New gamepad id: " << id << std::endl;
-    } break;
-    default:
-        break;
-    }
-}
+// void GamepadState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)
+// {
+//     switch (event.type) {
+//     case SDL_CONTROLLERBUTTONDOWN:
+//     case SDL_CONTROLLERBUTTONUP:
+//         handleButtonEvent(event, actionMapping);
+//         break;
+//         break;
+//     case SDL_CONTROLLERDEVICEADDED: {
+//         const auto gamepadId = event.cdevice.which;
+//         if (!handles[gamepadId]) {
+//             handles[gamepadId] = SDL_GameControllerOpen(gamepadId);
+//             id = gamepadId;
+//             std::cout << "Controller connected: " << gamepadId << std::endl;
+//         }
+//     } break;
+//     case SDL_CONTROLLERDEVICEREMOVED: {
+//         const auto gamepadId = event.cdevice.which;
+//         if (id == gamepadId) {
+//             assert(handles[gamepadId]);
+//             SDL_GameControllerClose(handles[gamepadId]);
+//             handles[gamepadId] = nullptr;
+//         }
+//         std::cout << "Controller removed: " << gamepadId << std::endl;
+//         findConnectedGamepad();
+//         std::cout << "New gamepad id: " << id << std::endl;
+//     } break;
+//     default:
+//         break;
+//     }
+// }
 
 void GamepadState::findConnectedGamepad()
 {
     id = -1;
     for (int i = 0; i < MAX_CONTROLLERS; ++i) {
-        if (handles[i]) {
-            id = i;
-            break;
-        }
+        // if (handles[i]) {
+        //     id = i;
+        //     break;
+        // }
     }
 }
 
 void GamepadState::update(float /*dt*/, ActionMapping& actionMapping)
 {
+#if 0
     if (id == -1) { // gamepad not connected
         return;
     }
@@ -216,13 +220,14 @@ void GamepadState::update(float /*dt*/, ActionMapping& actionMapping)
             actionMapping.updateAxisState(binding.tag, binding.scale);
         }
     }
+#endif
 }
 
-void GamepadState::handleButtonEvent(const SDL_Event& event, ActionMapping& actionMapping)
-{
-    const bool isPressed = (event.type == SDL_CONTROLLERBUTTONDOWN);
-    buttonStates[event.cbutton.button].pressed = isPressed;
-}
+// void GamepadState::handleButtonEvent(const SDL_Event& event, ActionMapping& actionMapping)
+// {
+//     const bool isPressed = (event.type == SDL_CONTROLLERBUTTONDOWN);
+//     buttonStates[event.cbutton.button].pressed = isPressed;
+// }
 
 void GamepadState::addActionMapping(GamepadButton button, ActionTagHash tag)
 {
@@ -246,18 +251,18 @@ void GamepadState::addAxisActionMapping(ActionAxisMapping mapping, ActionTagHash
 
 float GamepadState::getAxisValue(GamepadAxis axis) const
 {
-    if (axis == SDL_CONTROLLER_AXIS_INVALID) {
+    // if (axis == SDL_CONTROLLER_AXIS_INVALID) {
         return 0.f;
-    }
+    // }
 
     return axes.at(axis).getValue();
 }
 
 void GamepadState::setAxisInverted(GamepadAxis axis, bool b)
 {
-    if (axis != SDL_CONTROLLER_AXIS_INVALID) {
+    // if (axis != SDL_CONTROLLER_AXIS_INVALID) {
         return axes.at(axis).setInverted(b);
-    }
+    // }
 }
 
 void GamepadState::resetInput()

@@ -8,6 +8,7 @@
 #include <VkBootstrap.h>
 #include <vma/vk_mem_alloc.h>
 #include <tracy/TracyVulkan.hpp>
+#include <optional>
 
 // clang-format on
 
