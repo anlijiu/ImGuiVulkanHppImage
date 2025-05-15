@@ -21,7 +21,7 @@ public:
 
     void onNewFrame();
     // void handleEvent(const SDL_Event& event, ActionMapping& actionMapping);
-    void handleCursorPosCallback(int xpos, int ypos);
+    void handleCursorPosCallback(double xpos, double ypos);
 
     void addActionMapping(GLFWMouseButtonID button, ActionTagHash tag);
 

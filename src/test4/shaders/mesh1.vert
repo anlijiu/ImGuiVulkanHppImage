@@ -19,23 +19,23 @@ void main()
 
     gl_Position = pcs.sceneData.viewProj * worldPos;
     gl_Position.w = 1.0f;
-    debugPrintfEXT("outPos is %f %f %f %f", gl_Position.x, gl_Position.y, gl_Position.z, gl_Position.w);
+    /* debugPrintfEXT("outPos is %f %f %f %f", gl_Position.x, gl_Position.y, gl_Position.z, gl_Position.w); */
 
     outPos = worldPos.xyz;
-    debugPrintfEXT("outPos is %f %f %f ", outPos.x, outPos.y, outPos.z);
+    /* debugPrintfEXT("outPos is %f %f %f ", outPos.x, outPos.y, outPos.z); */
 
     outUV = vec2(v.uv_x, v.uv_y);
-    debugPrintfEXT("outUV is %f %f ", outUV.x, outUV.y);
+    /* debugPrintfEXT("outUV is %f %f ", outUV.x, outUV.y); */
 
     // A bit inefficient, but okay - this is needed for non-uniform scale
     // models. See: http://www.lighthouse3d.com/tutorials/glsl-12-tutorial/the-normal-matrix/
     // Simpler case, when everything is uniform
     // outNormal = (pcs.transform * vec4(v.normal, 0.0)).xyz;
     outNormal = mat3(transpose(inverse(pcs.transform))) * v.normal;
-    debugPrintfEXT("outNormal is %f %f %f  ", outNormal[0], outNormal[1], outNormal[2] );
+    /* debugPrintfEXT("outNormal is %f %f %f  ", outNormal[0], outNormal[1], outNormal[2] ); */
 
     outTangent = v.tangent;
-    debugPrintfEXT("outTangent is %f %f %f %f ", outTangent [0], outTangent [1], outTangent [2], outTangent [3] );
+    /* debugPrintfEXT("outTangent is %f %f %f %f ", outTangent [0], outTangent [1], outTangent [2], outTangent [3] ); */
 
     vec3 T = normalize(vec3(pcs.transform * v.tangent));
     vec3 N = normalize(outNormal);

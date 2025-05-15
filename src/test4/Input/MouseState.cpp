@@ -1,6 +1,7 @@
 #include <Input/MouseState.h>
-
 #include <Input/ActionMapping.h>
+
+#include "spdlog/spdlog.h"
 
 // #include <SDL_events.h>
 
@@ -16,8 +17,8 @@ void MouseState::onNewFrame()
     // }
 }
 
-void MouseState::handleCursorPosCallback(int xpos, int ypos) {
-
+void MouseState::handleCursorPosCallback(double xpos, double ypos) {
+    spdlog::info("handleCursorPosCallback {:f}x{:f}", xpos, ypos);
 }
 
 // void MouseState::handleEvent(const SDL_Event& event, ActionMapping& actionMapping)

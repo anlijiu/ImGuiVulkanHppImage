@@ -23,7 +23,7 @@ void main()
     // 确保 DebugPrintf 执行
     /* float dynamicValue = gl_FragCoord.x * 0.001; // 避免优化 */
 
-    debugPrintfEXT("pcs.materialID is %d", pcs.materialID);
+    /* debugPrintfEXT("pcs.materialID is %d", pcs.materialID); */
 
     MaterialData material = pcs.sceneData.materials.data[pcs.materialID];
 
@@ -133,7 +133,7 @@ void main()
     /* fragColor.r = dynamicValue ; */
 	outFragColor = vec4(fragColor, 1.0f);
 
-    debugPrintfEXT("outFragColor is %1.2v4f", outFragColor);
+    /* debugPrintfEXT("outFragColor is %1.2v4f", outFragColor); */
 
 	/* outFragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f); */
 }
